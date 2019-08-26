@@ -34,3 +34,5 @@ atlassian*
 /lib/
 /auth.json.sample
 /grunt-config.json.sample
+/phpserver/README.md
+/phpserver/router.php

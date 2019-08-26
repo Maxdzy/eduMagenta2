@@ -27,7 +27,6 @@ atlassian*
 /var/
 /vendor/
 /generated/
-/phpserver/
 /pub/
 /setup/
 .DS_Store

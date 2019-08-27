@@ -1,0 +1,40 @@
+*{
+    box-sizing: content-box;
+}
+
+.page{
+    width:100%;
+}
+.full_page{
+    width: 100%;
+    max-width: 949px;
+    margin 1rem auto;
+    padding: 2rem 0 0;
+    background-color:#ddfee6;
+    color: #85878f;
+}
+.full_page h2{
+    color: #2c2f46;
+}
+
+.block_text-green{
+    color:#85b73c;
+    width:75%;
+    font-size:1.1rem;
+    padding:0 0 0 9rem;
+}
+.block_text-green:before{
+    content: "___________";
+    width:5%;
+    position:absolute;
+    margin:-0.5rem 0 0 -9rem
+}
+.cell-6{
+    width:57%;
+}
+.cell-4{
+    width:39%;
+}
+.block_left{
+    float:right;
+}

@@ -1,0 +1,23 @@
+{
+  "name": "edu/ultimate",
+  "description": "summary",
+  "license": [
+    "OSL-3.0"
+  ],
+  "type": "magento2-module",
+  "version": "0.0.2",
+  "authors": [
+    {
+      "name": "Slava Yurthev",
+      "email": "support@slavayurthev.com",
+      "homepage": "https://github.com/Maxdzy/",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "files": [ "registration.php" ],
+    "psr-4": {
+      "Vendor\\Module\\": ""
+    }
+  }
+}

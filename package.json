@@ -8,12 +8,28 @@
     "path": "^0.12.7"
   },
   "devDependencies": {
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-notify": "^3.0.0",
     "gulp-plumber": "^1.1.0",
     "gulp-sass": "^3.2.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
-  }
+  },
+  "name": "magento",
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Maxdzy/eduMagenta2.git"
+  },
+  "keywords": [
+    "magento"
+  ],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Maxdzy/eduMagenta2/issues"
+  },
+  "homepage": "https://github.com/Maxdzy/eduMagenta2#readme"
 }

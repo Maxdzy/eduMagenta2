@@ -2,17 +2,51 @@ $font-stack: "Open sans", Helvetica, Arial, sans-serif;
 $primary-color: #85878f;
 $grey-color: #2c2f46;
 $grey-ligth-color: #eee;
+$grey2-ligth-color: #e7e8f0;
 $ligth-grey-color: #e4e6e9;
 $blue-color: #257fb7;
-$blue2-color:  #1e49a4;
-$blue3-color:  #1f2993;
-$green-color:  #72af45;
-$green2-color:  #85b73c;
+$blue2-color: #1e49a4;
+$blue3-color: #1f2993;
+$green-color: #85b73c;
+$green2-color: #85b73c;
 $white-true-color: #fff;
 $white-color: #f5f7fb;
+$light-blueb-color: #cddaf0;
+$jysk-blue-color: #003187;
+$dark-color: #465b42;
+$copy-color: #46536c;
+$orange-color: #f47b20;
+
+.green-color {
+  background-color: $green-color;
+}
+
+.white-color {
+  background-color: $white-true-color;
+}
+
+.light_blueb-color {
+  background-color: $light-blueb-color;
+}
+
+.jysk_blue-color {
+  background-color: $jysk-blue-color;
+}
+
+.dark-color {
+  background-color: $dark-color;
+}
+
+.copy-color {
+  background-color: $copy-color;
+}
+
+.orange-color {
+  background-color: $orange-color;
+}
 
 body {
-  font: 100% $font-stack;
+  font: 62.5% $font-stack;
   color: $primary-color;
   margin: 0;
   padding: 0;
@@ -29,16 +63,22 @@ body {
   text-align: center;
 }
 
-.page {
+%page {
   width: 100%;
+  color: $primary-color;
+  max-width: 949px;
+  margin: 0 auto;
+}
+%h1 {
+  font-size: 2.2rem;
+  color: $jysk-blue-color;
+  margin: 0.6rem 0 0.6rem;
 }
 
 .full_page {
-  width: 100%;
-  max-width: 949px;
+  @extend %page;
   margin: 0.7rem auto;
   padding: 2rem 0 0;
-  color: $primary-color;
 
   h2 {
     color: $grey-color;
@@ -112,13 +152,12 @@ body {
     color: $green-color;
   }
 
-
   @media (max-width: 640px) {
-      width: 100%;
-      max-width: 100%;
-      min-width: 320px;
-      margin: 0 auto;
-      padding: 0 0.5rem;
+    width: 100%;
+    max-width: 100%;
+    min-width: 320px;
+    margin: 0 auto;
+    padding: 0 0.5rem;
 
     .cell-6,
     .cell-4,
@@ -132,7 +171,7 @@ body {
       display: block;
       width: 100%;
     }
-    .blocks_cell6{
+    .blocks_cell6 {
       text-align: center;
     }
     table thead {
@@ -208,4 +247,65 @@ body {
   width: 50%;
   -webkit-flex-grow: 1;
   flex-grow: 1;
+}
+
+p{
+  font-size: 1.2rem;
+}
+
+.page-center {
+  @extend %page;
+  padding: 50px 0;
+  max-width: 1056px;
+
+  h2{
+    @extend %h1;
+  }
+
+  .wrapper{
+    padding: 2.4rem 0;
+    border-bottom: 1px solid $grey2-ligth-color;
+
+    .block{
+      width: 50%;
+      flex: 0 0 50%;
+    }
+
+    .h1{
+      @extend %h1;
+      font-size: 3.1rem;
+      color: $primary-color;
+      color: $dark-color;
+    }
+
+    b{
+      font-size: 1.3rem;
+      color: $dark-color;
+    }
+  }
+}
+
+.grey_b {
+  background-color: $grey2-ligth-color;
+  padding: 4rem 0;
+
+  h1 {
+    @extend %h1;
+  }
+
+  .block {
+    margin: 1rem;
+    text-align: center;
+
+    h3 {
+      font-size: 1rem;
+      margin: 0.6rem 0 0.6rem;
+    }
+
+    .show {
+      width: 7.4rem;
+      height: 7.4rem;
+      border-radius: 5px;
+    }
+  }
 }

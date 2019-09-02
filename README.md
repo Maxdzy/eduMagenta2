@@ -26,3 +26,9 @@ Requirements
 * Make tables look appropriate on mobile, so they are easily readable
 
 Task should be submitted as Pull Request to your edu repository
+
+
+###use - php bin/magento setup:upgrade
+
+* url ```http://<host>/task2-gade-style```
+* url ```http://<host>/task2```

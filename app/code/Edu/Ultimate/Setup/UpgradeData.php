@@ -12,6 +12,7 @@ class UpgradeData implements UpgradeDataInterface
      * @var \Magento\Cms\Model\PageFactory
      */
     protected $_pageFactory;
+    protected $_logger;
 
     /**
      * Construct
@@ -19,9 +20,11 @@ class UpgradeData implements UpgradeDataInterface
      * @param \Magento\Cms\Model\PageFactory $pageFactory
      */
     public function __construct(
-        \Magento\Cms\Model\PageFactory $pageFactory
+        \Magento\Cms\Model\PageFactory $pageFactory,
+        \Psr\Log\LoggerInterface $logger
     ) {
         $this->_pageFactory = $pageFactory;
+        $this->_logger = $logger;
     }
 
     /**
@@ -32,26 +35,33 @@ class UpgradeData implements UpgradeDataInterface
     {
         $setup->startSetup();
 
-        if (version_compare($context->getVersion(), '1.5') < 0) {
+        if (version_compare($context->getVersion(), '1.6.1') < 0) {
             $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-
             $directory = $objectManager->get('\Magento\Framework\Filesystem\DirectoryList');
+            $rootPath  =  $directory->getRoot(); ///var/www/magento2.local
 
-            $rootPath  =  $directory->getRoot();
-
-            $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/debug.log');
+            $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/test.log');
             $logger = new \Zend\Log\Logger();
             $logger->addWriter($writer);
-            $logger->info($rootPath);
-/*
+            $logger->info('debug1234' . $rootPath);
+
             $page = $this->_pageFactory->create();
-            $page->setTitle('Example CMS page')
-                ->setIdentifier('example-cms-page')
+            $page->setTitle('test')
+                ->setIdentifier('task2')
                 ->setIsActive(true)
                 ->setPageLayout('1column')
                 ->setStores([0])
-                ->setContent('Lorem ipsum dolor sit amet, consectetur adipiscing elit.')
-                ->save();*/
+                ->setContent(file_get_contents($rootPath . "/app/code/Edu/Ultimate/Template/a.html"))
+                ->save();
+
+            $page2 = $this->_pageFactory->create();
+            $page2->setTitle('gade-style')
+                ->setIdentifier('task2-gade-style')
+                ->setIsActive(true)
+                ->setPageLayout('1column')
+                ->setStores([0])
+                ->setContent(file_get_contents($rootPath . "/app/code/Edu/Ultimate/Template/b.html"))
+                ->save();
         }
 
         $setup->endSetup();

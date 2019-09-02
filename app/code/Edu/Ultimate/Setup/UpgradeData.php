@@ -10,10 +10,15 @@ use Magento\Cms\Model\PageFactory;
 use Psr\Log\LoggerInterface;
 use Zend\Log as log;
 
+/**
+ * Class UpgradeData
+ * @package Edu\Ultimate\Setup
+ */
 class UpgradeData implements UpgradeDataInterface
 {
     /**
      * @var PageFactory
+     * @var log\Logger
      */
     protected $_pageFactory;
     protected $_logger;

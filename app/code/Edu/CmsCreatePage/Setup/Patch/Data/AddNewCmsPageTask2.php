@@ -37,10 +37,6 @@ class AddNewCmsPageTask2 implements
         PageFactory $pageFactory,
         LoggerInterface $logger
     ) {
-        /**
-         * If before, we pass $setup as argument in install/upgrade function, from now we start
-         * inject it with DI. If you want to use setup, you can inject it, with the same way as here
-         */
         $this->moduleDataSetup = $moduleDataSetup;
         $this->pageFactory = $pageFactory;
         $this->logger = $logger;
@@ -54,7 +50,7 @@ class AddNewCmsPageTask2 implements
     {
         $objectManager = ObjectManager::getInstance();
         $directory = $objectManager->get('\Magento\Framework\Filesystem\DirectoryList');
-        $rootPath = $directory->getRoot(); ///var/www/magento2.local
+        $rootPath = $directory->getRoot();
 
         $writer = new log\Writer\Stream(BP . '/var/log/test.log');
         $logger = new log\Logger();
@@ -71,7 +67,7 @@ class AddNewCmsPageTask2 implements
             'layout_update_xml' => '',
             'url_key' => 'custom-page',
             'is_active' => 1,
-            'stores' => [0], // store_id comma separated
+            'stores' => [0],
             'sort_order' => 0
         ];
         $pageData2 = [
@@ -85,12 +81,11 @@ class AddNewCmsPageTask2 implements
             'layout_update_xml' => '',
             'url_key' => 'custom-page',
             'is_active' => 1,
-            'stores' => [0], // store_id comma separated
+            'stores' => [0],
             'sort_order' => 0
         ];
 
         $this->moduleDataSetup->startSetup();
-        /* Save CMS Page logic */
         $this->pageFactory->create()->setData($pageData)->save();
         $logger->info('add page task2, get template = ' . $rootPath . '/app/code/Edu/CmsCreatePage/Template/a.html');
         $this->pageFactory->create()->setData($pageData2)->save();
@@ -103,23 +98,12 @@ class AddNewCmsPageTask2 implements
      */
     public static function getDependencies()
     {
-        /**
-         * This is dependency to another patch. Dependency should be applied first
-         * One patch can have few dependencies
-         * Patches do not have versions, so if in old approach with Install/Ugrade data scripts you used
-         * versions, right now you need to point from patch with higher version to patch with lower version
-         * But please, note, that some of your patches can be independent and can be installed in any sequence
-         * So use dependencies only if this important for you
-         */
         return [];
     }
 
     public function revert()
     {
         $this->moduleDataSetup->getConnection()->startSetup();
-        //Here should go code that will revert all operations from `apply` method
-        //Please note, that some operations, like removing data from column, that is in role of foreign key reference
-        //is dangerous, because it can trigger ON DELETE statement
         $this->moduleDataSetup->getConnection()->endSetup();
     }
 
@@ -128,11 +112,6 @@ class AddNewCmsPageTask2 implements
      */
     public function getAliases()
     {
-        /**
-         * This internal Magento method, that means that some patches with time can change their names,
-         * but changing name should not affect installation process, that's why if we will change name of the patch
-         * we will add alias here
-         */
         return [];
     }
 }

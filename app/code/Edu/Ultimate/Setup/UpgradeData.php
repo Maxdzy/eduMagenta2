@@ -20,8 +20,8 @@ class UpgradeData implements UpgradeDataInterface
      * @var PageFactory
      * @var log\Logger
      */
-    protected $_pageFactory;
-    protected $_logger;
+    protected $pageFactory;
+    protected $logger;
 
     /**
      * Construct
@@ -32,8 +32,8 @@ class UpgradeData implements UpgradeDataInterface
         PageFactory $pageFactory,
         LoggerInterface $logger
     ) {
-        $this->_pageFactory = $pageFactory;
-        $this->_logger = $logger;
+        $this->pageFactory = $pageFactory;
+        $this->logger = $logger;
     }
 
     /**
@@ -54,7 +54,7 @@ class UpgradeData implements UpgradeDataInterface
             $logger->addWriter($writer);
             $logger->info('debug1234' . $rootPath);
 
-            $page = $this->_pageFactory->create();
+            $page = $this->pageFactory->create();
             $page->setTitle('test')
                 ->setIdentifier('task2')
                 ->setIsActive(true)
@@ -63,7 +63,7 @@ class UpgradeData implements UpgradeDataInterface
                 ->setContent(file_get_contents($rootPath . "/app/code/Edu/Ultimate/Template/a.html"))
                 ->save();
 
-            $page2 = $this->_pageFactory->create();
+            $page2 = $this->pageFactory->create();
             $page2->setTitle('gade-style')
                 ->setIdentifier('task2-gade-style')
                 ->setIsActive(true)

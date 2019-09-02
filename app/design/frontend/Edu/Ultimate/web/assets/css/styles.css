@@ -37,7 +37,7 @@ p {
 .center {
   text-align: center; }
 
-.page-center h2, .page-center .wrapper .h1, .grey_b h1 {
+.page-center h2, .grey_b h1 {
   font-size: 2.2rem;
   color: #003187;
   margin: 0.6rem 0 0.6rem; }
@@ -157,8 +157,6 @@ p {
         text-align: center; }
       .full_page table thead {
         display: none; }
-      .full_page table td:before {
-        content: attr(data-table-head); }
       .full_page table td {
         display: block;
         text-align: right;
@@ -183,6 +181,7 @@ p {
       width: 50%;
       flex: 0 0 50%; }
     .page-center .wrapper .h1 {
+      margin: 0.6rem 0 0.6rem;
       font-size: 3.1rem;
       color: #465b42; }
     .page-center .wrapper b {

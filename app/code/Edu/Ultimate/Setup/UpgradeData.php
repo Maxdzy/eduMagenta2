@@ -5,11 +5,15 @@ namespace Edu\Ultimate\Setup;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\UpgradeDataInterface;
+use Magento\Framework\App\ObjectManager;
+use Magento\Cms\Model\PageFactory;
+use Psr\Log\LoggerInterface;
+use Zend\Log as log;
 
 class UpgradeData implements UpgradeDataInterface
 {
     /**
-     * @var \Magento\Cms\Model\PageFactory
+     * @var PageFactory
      */
     protected $_pageFactory;
     protected $_logger;
@@ -17,11 +21,11 @@ class UpgradeData implements UpgradeDataInterface
     /**
      * Construct
      *
-     * @param \Magento\Cms\Model\PageFactory $pageFactory
+     * @param PageFactory $pageFactory
      */
     public function __construct(
-        \Magento\Cms\Model\PageFactory $pageFactory,
-        \Psr\Log\LoggerInterface $logger
+        PageFactory $pageFactory,
+        LoggerInterface $logger
     ) {
         $this->_pageFactory = $pageFactory;
         $this->_logger = $logger;
@@ -36,12 +40,12 @@ class UpgradeData implements UpgradeDataInterface
         $setup->startSetup();
 
         if (version_compare($context->getVersion(), '1.6.1') < 0) {
-            $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+            $objectManager = ObjectManager::getInstance();
             $directory = $objectManager->get('\Magento\Framework\Filesystem\DirectoryList');
             $rootPath  =  $directory->getRoot(); ///var/www/magento2.local
 
-            $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/test.log');
-            $logger = new \Zend\Log\Logger();
+            $writer = new log\Writer\Stream(BP . '/var/log/test.log');
+            $logger = new log\Logger();
             $logger->addWriter($writer);
             $logger->info('debug1234' . $rootPath);
 

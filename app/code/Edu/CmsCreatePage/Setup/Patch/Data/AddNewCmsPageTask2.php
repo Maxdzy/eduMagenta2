@@ -1,6 +1,6 @@
 <?php
 
-namespace Edu\Ultimate\Setup\Patch\Data;
+namespace Edu\CmsCreatePage\Setup\Patch\Data;
 
 use Magento\Cms\Model\PageFactory;
 use Magento\Framework\App\ObjectManager;
@@ -12,7 +12,7 @@ use Zend\Log as log;
 
 /**
  * Class AddNewCmsPageTask2
- * @package Edu\Ultimate\Setup\Patch\Data
+ * @package Edu\CmsCreatePage\Setup\Patch\Data
  */
 class AddNewCmsPageTask2 implements
     DataPatchInterface,
@@ -66,7 +66,7 @@ class AddNewCmsPageTask2 implements
             'meta_description' => 'Page description task2',
             'identifier' => 'task2',
             'content_heading' => 'task2 wep page',
-            'content' => file_get_contents($rootPath . "/app/code/Edu/Ultimate/Template/a.html"),
+            'content' => file_get_contents($rootPath . "/app/code/Edu/CmsCreatePage/Template/a.html"),
             'layout_update_xml' => '',
             'url_key' => 'custom-page',
             'is_active' => 1,
@@ -80,7 +80,7 @@ class AddNewCmsPageTask2 implements
             'meta_description' => 'Page description task2 gade-style',
             'identifier' => 'task2-gade-style',
             'content_heading' => 'task2 wep page gade-style',
-            'content' => file_get_contents($rootPath . "/app/code/Edu/Ultimate/Template/b.html"),
+            'content' => file_get_contents($rootPath . "/app/code/Edu/CmsCreatePage/Template/b.html"),
             'layout_update_xml' => '',
             'url_key' => 'custom-page',
             'is_active' => 1,
@@ -91,9 +91,9 @@ class AddNewCmsPageTask2 implements
         $this->moduleDataSetup->startSetup();
         /* Save CMS Page logic */
         $this->pageFactory->create()->setData($pageData)->save();
-        $logger->info('add page task2, get template = ' . $rootPath . '/app/code/Edu/Ultimate/Template/a.html');
+        $logger->info('add page task2, get template = ' . $rootPath . '/app/code/Edu/CmsCreatePage/Template/a.html');
         $this->pageFactory->create()->setData($pageData2)->save();
-        $logger->info('add page task2 gade style, get template = ' . $rootPath . '/app/code/Edu/Ultimate/Template/b.html');
+        $logger->info('add page task2 gade style, get template = ' . $rootPath . '/app/code/Edu/CmsCreatePage/Template/b.html');
         $this->moduleDataSetup->endSetup();
     }
 

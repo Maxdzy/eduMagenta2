@@ -3,7 +3,7 @@ use \Magento\Framework\Component\ComponentRegistrar;
 
 ComponentRegistrar::register(
     ComponentRegistrar::MODULE,
-    'Edu_Ultimate',
+    'Edu_CmsCreatePage',
     __DIR__
 );
 ?>

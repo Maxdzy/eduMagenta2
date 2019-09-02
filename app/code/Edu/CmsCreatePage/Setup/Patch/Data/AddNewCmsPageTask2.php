@@ -20,7 +20,8 @@ class AddNewCmsPageTask2 implements
 {
     /**
      * @var PageFactory
-     * @var log\Logger
+     * @var PageFactory
+     * @var ModuleDataSetupInterface
      */
     protected $pageFactory;
     protected $logger;

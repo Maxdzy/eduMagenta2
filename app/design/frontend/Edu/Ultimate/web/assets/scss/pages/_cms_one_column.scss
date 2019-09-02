@@ -1,5 +1,7 @@
 .full_page {
-  @extend %page;
+  width: 100%;
+  color: $primary-color;
+  max-width: 949px;
   margin: 0.7rem auto;
   padding: 2rem 0 0;
 
@@ -126,12 +128,16 @@
 }
 
 .page-center {
-  @extend %page;
+  width: 100%;
+  color: $primary-color;
+  margin: 0 auto;
   padding: 50px 0;
   max-width: 1056px;
 
   h2 {
-    @extend %h1;
+    font-size: 2.2rem;
+    color: $jysk-blue-color;
+    margin: 0.6rem 0 0.6rem;
   }
 
   .wrapper {
@@ -161,7 +167,9 @@
   padding: 4rem 0;
 
   h1 {
-    @extend %h1;
+    font-size: 2.2rem;
+    color: $jysk-blue-color;
+    margin: 0.6rem 0 0.6rem;
   }
 
   .block {

@@ -2,7 +2,7 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
-        <css src="assets/css/style.css" />
+        <css src="assets/css/styles.css" />
         <script src_type="url" src="https://kit.fontawesome.com/0fdb539c7e.js"></script>
     </head>
 </page>

@@ -1,0 +1,17 @@
+*, *:after, *:before {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  transition: .5s ease-in-out;
+}
+
+body {
+  font: 62.5% $font-stack;
+  color: $primary-color;
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  font-size: 1.2rem;
+}

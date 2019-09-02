@@ -1,0 +1,94 @@
+.green-color {
+  background-color: $green-color;
+}
+
+.white-color {
+  background-color: $white-true-color;
+}
+
+.light_blueb-color {
+  background-color: $light-blueb-color;
+}
+
+.jysk_blue-color {
+  background-color: $jysk-blue-color;
+}
+
+.dark-color {
+  background-color: $dark-color;
+}
+
+.copy-color {
+  background-color: $copy-color;
+}
+
+.orange-color {
+  background-color: $orange-color;
+}
+
+.center {
+  text-align: center;
+}
+
+%h1 {
+  font-size: 2.2rem;
+  color: $jysk-blue-color;
+  margin: 0.6rem 0 0.6rem;
+}
+
+.block_text-green {
+  color: $green2-color;
+  width: 92%;
+  font-size: 1.4rem;
+  padding: 0 0 0 4rem;
+  line-height: 2.4rem;
+}
+
+.block_text-green:before {
+  content: "_____";
+  width: 5%;
+  position: absolute;
+  margin: -0.7rem 0 0 -4.4rem;
+}
+
+.cell-6 {
+  width: 68%;
+}
+
+.cell-4 {
+  width: 27%;
+}
+
+.block_left {
+  float: right;
+}
+
+.blocks {
+  display: -webkit-flex;
+  display: flex;
+}
+
+.blocks_cell6 {
+  width: 60%;
+  -webkit-flex-grow: 2;
+  flex-grow: 2;
+}
+
+.blocks_cell4 {
+  width: 40%;
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+}
+
+.block_cell5 {
+  width: 50%;
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+}
+
+%page {
+  width: 100%;
+  color: $primary-color;
+  max-width: 949px;
+  margin: 0 auto;
+}

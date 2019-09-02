@@ -1,80 +1,3 @@
-$font-stack: "Open sans", Helvetica, Arial, sans-serif;
-$primary-color: #85878f;
-$grey-color: #2c2f46;
-$grey-ligth-color: #eee;
-$grey2-ligth-color: #e7e8f0;
-$ligth-grey-color: #e4e6e9;
-$blue-color: #257fb7;
-$blue2-color: #1e49a4;
-$blue3-color: #1f2993;
-$green-color: #85b73c;
-$green2-color: #85b73c;
-$white-true-color: #fff;
-$white-color: #f5f7fb;
-$light-blueb-color: #cddaf0;
-$jysk-blue-color: #003187;
-$dark-color: #465b42;
-$copy-color: #46536c;
-$orange-color: #f47b20;
-
-.green-color {
-  background-color: $green-color;
-}
-
-.white-color {
-  background-color: $white-true-color;
-}
-
-.light_blueb-color {
-  background-color: $light-blueb-color;
-}
-
-.jysk_blue-color {
-  background-color: $jysk-blue-color;
-}
-
-.dark-color {
-  background-color: $dark-color;
-}
-
-.copy-color {
-  background-color: $copy-color;
-}
-
-.orange-color {
-  background-color: $orange-color;
-}
-
-body {
-  font: 62.5% $font-stack;
-  color: $primary-color;
-  margin: 0;
-  padding: 0;
-}
-
-*, *:after, *:before {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  transition: .5s ease-in-out; /* добавим плавность переходов для всех элементов страницы*/
-}
-
-.center {
-  text-align: center;
-}
-
-%page {
-  width: 100%;
-  color: $primary-color;
-  max-width: 949px;
-  margin: 0 auto;
-}
-%h1 {
-  font-size: 2.2rem;
-  color: $jysk-blue-color;
-  margin: 0.6rem 0 0.6rem;
-}
-
 .full_page {
   @extend %page;
   margin: 0.7rem auto;
@@ -199,86 +122,31 @@ body {
 
 }
 
-.block_text-green {
-  color: $green2-color;
-  width: 92%;
-  font-size: 1.4rem;
-  padding: 0 0 0 4rem;
-  line-height: 2.4rem;
-}
-
-.block_text-green:before {
-  content: "_____";
-  width: 5%;
-  position: absolute;
-  margin: -0.7rem 0 0 -4.4rem;
-}
-
-.cell-6 {
-  width: 68%;
-}
-
-.cell-4 {
-  width: 27%;
-}
-
-.block_left {
-  float: right;
-}
-
-.blocks {
-  display: -webkit-flex;
-  display: flex;
-}
-
-.blocks_cell6 {
-  width: 60%;
-  -webkit-flex-grow: 2;
-  flex-grow: 2;
-}
-
-.blocks_cell4 {
-  width: 40%;
-  -webkit-flex-grow: 1;
-  flex-grow: 1;
-}
-
-.block_cell5 {
-  width: 50%;
-  -webkit-flex-grow: 1;
-  flex-grow: 1;
-}
-
-p{
-  font-size: 1.2rem;
-}
-
 .page-center {
   @extend %page;
   padding: 50px 0;
   max-width: 1056px;
 
-  h2{
+  h2 {
     @extend %h1;
   }
 
-  .wrapper{
+  .wrapper {
     padding: 2.4rem 0;
     border-bottom: 1px solid $grey2-ligth-color;
 
-    .block{
+    .block {
       width: 50%;
       flex: 0 0 50%;
     }
 
-    .h1{
+    .h1 {
       @extend %h1;
       font-size: 3.1rem;
-      color: $primary-color;
       color: $dark-color;
     }
 
-    b{
+    b {
       font-size: 1.3rem;
       color: $dark-color;
     }

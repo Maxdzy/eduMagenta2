@@ -36,7 +36,8 @@ class AddNewCmsPageTask2 implements
         ModuleDataSetupInterface $moduleDataSetup,
         PageFactory $pageFactory,
         LoggerInterface $logger
-    ) {
+    )
+    {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->pageFactory = $pageFactory;
         $this->logger = $logger;
@@ -51,45 +52,46 @@ class AddNewCmsPageTask2 implements
         $objectManager = ObjectManager::getInstance();
         $directory = $objectManager->get('\Magento\Framework\Filesystem\DirectoryList');
         $rootPath = $directory->getRoot();
+        $templatePath = $rootPath . "/app/code/Edu/CmsCreatePage/Template/";
 
         $writer = new log\Writer\Stream(BP . '/var/log/test.log');
         $logger = new log\Logger();
         $logger->addWriter($writer);
 
-        $pageData = [
+        $pagesData[] = [
             'title' => 'task 2',
             'page_layout' => '1column',
             'meta_keywords' => 'Page task2',
             'meta_description' => 'Page description task2',
             'identifier' => 'task2',
             'content_heading' => 'task2 wep page',
-            'content' => file_get_contents($rootPath . "/app/code/Edu/CmsCreatePage/Template/Page_task2.html"),
+            'content' => file_get_contents($templatePath . "page_task2.html"),
             'layout_update_xml' => '',
-            'url_key' => 'custom-page',
+            'url_key' => 'page_task2',
             'is_active' => 1,
             'stores' => [0],
             'sort_order' => 0
         ];
-        $pageData2 = [
+        $pagesData[] = [
             'title' => 'gade-style',
             'page_layout' => '1column',
             'meta_keywords' => 'Page task2 gade-style',
             'meta_description' => 'Page description task2 gade-style',
             'identifier' => 'task2-gade-style',
             'content_heading' => 'task2 wep page gade-style',
-            'content' => file_get_contents($rootPath . "/app/code/Edu/CmsCreatePage/Template/Page_task2_gade-style.html"),
+            'content' => file_get_contents($templatePath . "page_task2_gade-style.html"),
             'layout_update_xml' => '',
-            'url_key' => 'custom-page',
+            'url_key' => 'page_task2_gade-style',
             'is_active' => 1,
             'stores' => [0],
             'sort_order' => 0
         ];
 
         $this->moduleDataSetup->startSetup();
-        $this->pageFactory->create()->setData($pageData)->save();
-        $logger->info('add page task2, get template = ' . $rootPath . '/app/code/Edu/CmsCreatePage/Template/a.html');
-        $this->pageFactory->create()->setData($pageData2)->save();
-        $logger->info('add page task2 gade style, get template = ' . $rootPath . '/app/code/Edu/CmsCreatePage/Template/b.html');
+        foreach ($pagesData as $page) {
+            $this->pageFactory->create()->setData($page)->save();
+            $logger->info('add page task2, get template = ' . $templatePath . $page['url_key'] . '.html');
+        }
         $this->moduleDataSetup->endSetup();
     }
 

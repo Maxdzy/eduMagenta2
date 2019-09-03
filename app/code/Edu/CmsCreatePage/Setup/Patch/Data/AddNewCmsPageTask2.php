@@ -25,7 +25,7 @@ class AddNewCmsPageTask2 implements
     /**
      * @var DirectoryList
      */
-    protected $DirectoryList;
+    protected $directoryList;
 
     /**
      * @param PageFactory $pageFactory
@@ -35,11 +35,11 @@ class AddNewCmsPageTask2 implements
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,
         PageFactory $pageFactory,
-        DirectoryList $DirectoryList
+        DirectoryList $directoryList
     ) {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->pageFactory = $pageFactory;
-        $this->DirectoryList = $DirectoryList;
+        $this->directoryList = $directoryList;
     }
 
     /**
@@ -48,7 +48,7 @@ class AddNewCmsPageTask2 implements
      */
     public function apply()
     {
-        $directory = $this->DirectoryList;
+        $directory = $this->directoryList;
         $rootPath = $directory->getRoot();
         $templatePath = $rootPath . "/app/code/Edu/CmsCreatePage/Template/";
 

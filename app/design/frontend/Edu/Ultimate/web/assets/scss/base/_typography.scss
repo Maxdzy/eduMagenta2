@@ -6,11 +6,11 @@
   background-color: $white-true-color;
 }
 
-.light_blueb-color {
+.light-blueb-color {
   background-color: $light-blueb-color;
 }
 
-.jysk_blue-color {
+.jysk-blue-color {
   background-color: $jysk-blue-color;
 }
 
@@ -36,7 +36,7 @@
   margin: 0.6rem 0 0.6rem;
 }
 
-.block_text-green {
+.block-text-green {
   color: $green2-color;
   width: 92%;
   font-size: 1.4rem;
@@ -44,7 +44,7 @@
   line-height: 2.4rem;
 }
 
-.block_text-green:before {
+.block-text-green:before {
   content: "_____";
   width: 5%;
   position: absolute;
@@ -59,7 +59,7 @@
   width: 27%;
 }
 
-.block_right {
+.block-right {
   float: right;
 }
 
@@ -68,19 +68,19 @@
   display: flex;
 }
 
-.blocks_cell6 {
+.blocks-cell6 {
   width: 60%;
   -webkit-flex-grow: 2;
   flex-grow: 2;
 }
 
-.blocks_cell4 {
+.blocks-cell4 {
   width: 40%;
   -webkit-flex-grow: 1;
   flex-grow: 1;
 }
 
-.block_cell5 {
+.block-cell5 {
   width: 50%;
   -webkit-flex-grow: 1;
   flex-grow: 1;

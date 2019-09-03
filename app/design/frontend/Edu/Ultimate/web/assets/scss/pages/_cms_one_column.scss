@@ -1,4 +1,4 @@
-.full_page {
+.full-page {
   width: 100%;
   color: $primary-color;
   max-width: 949px;
@@ -29,7 +29,7 @@
     margin: 1.7rem 0 0 0;
   }
 
-  .long_text_pagging {
+  .long-text-pagging {
     padding: 0 1rem 0 0;
   }
 
@@ -90,9 +90,9 @@
 
     .cell-6,
     .cell-4,
-    .blocks_cell4,
-    .block_cell5,
-    .blocks_cell6 {
+    .blocks-cell4,
+    .block-cell5,
+    .blocks-cell6 {
       width: 100%;
       flex: 0 0 100%;
     }
@@ -100,7 +100,7 @@
       display: block;
       width: 100%;
     }
-    .blocks_cell6 {
+    .blocks-cell6 {
       text-align: center;
     }
     table {
@@ -162,7 +162,7 @@
   }
 }
 
-.grey_b {
+.grey-b {
   background-color: $grey2-ligth-color;
   padding: 4rem 0;
 

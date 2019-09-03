@@ -3,44 +3,43 @@
 namespace Edu\CmsCreatePage\Setup\Patch\Data;
 
 use Magento\Cms\Model\PageFactory;
-use Magento\Framework\App\ObjectManager;
+use Magento\Framework\Filesystem\DirectoryList;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
-use Magento\Framework\Setup\Patch\PatchRevertableInterface;
-use Psr\Log\LoggerInterface;
-use Zend\Log as log;
 
 /**
  * Class AddNewCmsPageTask2
  * @package Edu\CmsCreatePage\Setup\Patch\Data
  */
 class AddNewCmsPageTask2 implements
-    DataPatchInterface,
-    PatchRevertableInterface
+    DataPatchInterface
 {
     /**
      * @var PageFactory
-     * @var PageFactory
-     * @var ModuleDataSetupInterface
      */
     protected $pageFactory;
-    protected $logger;
+    /**
+     * @var ModuleDataSetupInterface
+     */
     protected $moduleDataSetup;
+    /**
+     * @var DirectoryList
+     */
+    protected $DirectoryList;
 
     /**
      * @param PageFactory $pageFactory
      * @param ModuleDataSetupInterface $moduleDataSetup
-     * @param LoggerInterface $logger
+     * @param DirectoryList $DirectoryList
      */
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,
         PageFactory $pageFactory,
-        LoggerInterface $logger
-    )
-    {
+        DirectoryList $DirectoryList
+    ) {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->pageFactory = $pageFactory;
-        $this->logger = $logger;
+        $this->DirectoryList = $DirectoryList;
     }
 
     /**
@@ -49,14 +48,9 @@ class AddNewCmsPageTask2 implements
      */
     public function apply()
     {
-        $objectManager = ObjectManager::getInstance();
-        $directory = $objectManager->get('\Magento\Framework\Filesystem\DirectoryList');
+        $directory = $this->DirectoryList;
         $rootPath = $directory->getRoot();
         $templatePath = $rootPath . "/app/code/Edu/CmsCreatePage/Template/";
-
-        $writer = new log\Writer\Stream(BP . '/var/log/test.log');
-        $logger = new log\Logger();
-        $logger->addWriter($writer);
 
         $pagesData[] = [
             'title' => 'task 2',
@@ -90,7 +84,6 @@ class AddNewCmsPageTask2 implements
         $this->moduleDataSetup->startSetup();
         foreach ($pagesData as $page) {
             $this->pageFactory->create()->setData($page)->save();
-            $logger->info('add page task2, get template = ' . $templatePath . $page['url_key'] . '.html');
         }
         $this->moduleDataSetup->endSetup();
     }
@@ -101,12 +94,6 @@ class AddNewCmsPageTask2 implements
     public static function getDependencies()
     {
         return [];
-    }
-
-    public function revert()
-    {
-        $this->moduleDataSetup->getConnection()->startSetup();
-        $this->moduleDataSetup->getConnection()->endSetup();
     }
 
     /**

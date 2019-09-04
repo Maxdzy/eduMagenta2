@@ -1,31 +1,32 @@
 #EDU270 scandiweb
 
-##2. Content FE Styling (CMS content)
+##3. FE Templating (styling default Magento functionality e.g. Related products)
 
 Description
 
-Create a CMS page that contains sample content according to design -
-https://www.dropbox.com/s/8c4ezm4mv4nm8ih/CMS%20page.psd?dl=0
+Update related product template and styling to match the design - Related Product design
 
-Create variable file according to style guide - 
-https://www.dropbox.com/s/90hwe61sgn31ynn/Style%20guide.psd?dl=0
-Requirements
+Requirments
 
-* Use Sass for styling
+Need to use the Slick slider
 
-* Use Webpack/Gulp/Compass to run it
+Max number of products: 10
 
-* Follow the mobile first approach - https://zellwk.com/blog/how-to-write-mobile-first-css/
+The related products must be in a slider. The slider should shows:
 
-* Use Sass variables and mixins for tablet and desktop screen sizes
+• 4 products for screens sizes of 1280px - ...         
+• 3 products for screen sizes of 1024px - 1279px        
+• 2 products for screen sizes of 768px - 1023px        
+• 1 product for screen sizes of ... - 767px 
 
-* For icons use SVG (https://www.flaticon.com/) or icon font (https://fontawesome.com)
+Each product must be clickable and link to the product page of that product
 
-* Don't forget about the mobile layouts. You can choose mobile styles as you see fit. Make the mobile design similar in style to the desktop version
+The user must be able to navigate through the slider by clicking on arrows  (as per design)
 
-* Make tables look appropriate on mobile, so they are easily readable
+The dots below the slider represent the current location in image list (if the left-most item is the first item, the first dot is darker)
 
-Task should be submitted as Pull Request to your edu repository
+Once the slider reaches the end of the image list it should continue with the first images (infinite loop) appended to the end of the list so that there is no jump to first items and the transition is seamless.
+
 
 
 ###use - php bin/magento setup:upgrade

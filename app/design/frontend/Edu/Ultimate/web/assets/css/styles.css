@@ -1,0 +1,206 @@
+*, *:after, *:before {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  transition: .5s ease-in-out; }
+
+body {
+  font: 62.5% "Open sans", Helvetica, Arial, sans-serif;
+  color: #85878f;
+  margin: 0;
+  padding: 0; }
+
+p {
+  font-size: 1.2rem; }
+
+.green-color {
+  background-color: #85b73c; }
+
+.white-color {
+  background-color: #fff; }
+
+.light-blueb-color {
+  background-color: #cddaf0; }
+
+.jysk-blue-color {
+  background-color: #003187; }
+
+.dark-color {
+  background-color: #465b42; }
+
+.copy-color {
+  background-color: #46536c; }
+
+.orange-color {
+  background-color: #f47b20; }
+
+.center {
+  text-align: center; }
+
+.block-text-green {
+  color: #85b73c;
+  width: 92%;
+  font-size: 1.4rem;
+  padding: 0 0 0 4rem;
+  line-height: 2.4rem; }
+
+.block-text-green:before {
+  content: "_____";
+  width: 5%;
+  position: absolute;
+  margin: -0.7rem 0 0 -4.4rem; }
+
+.cell-6 {
+  width: 68%; }
+
+.cell-4 {
+  width: 27%; }
+
+.block-right {
+  float: right; }
+
+.blocks {
+  display: -webkit-flex;
+  display: flex; }
+
+.blocks-cell6 {
+  width: 60%;
+  -webkit-flex-grow: 2;
+  flex-grow: 2; }
+
+.blocks-cell4 {
+  width: 40%;
+  -webkit-flex-grow: 1;
+  flex-grow: 1; }
+
+.block-cell5 {
+  width: 50%;
+  -webkit-flex-grow: 1;
+  flex-grow: 1; }
+
+.full-page {
+  width: 100%;
+  color: #85878f;
+  max-width: 949px;
+  margin: 0.7rem auto;
+  padding: 2rem 0 0; }
+  .full-page h2 {
+    color: #2c2f46;
+    font-size: 1rem;
+    margin: 0.8rem 0 1.3rem; }
+  .full-page h3 {
+    color: #257fb7;
+    font-size: 1rem;
+    font-weight: normal; }
+  .full-page p {
+    line-height: 1.6rem; }
+  .full-page li {
+    line-height: 2rem; }
+  .full-page .p2 {
+    margin: 1.7rem 0 0 0; }
+  .full-page .long-text-pagging {
+    padding: 0 1rem 0 0; }
+  .full-page table {
+    color: #85878f; }
+  .full-page th {
+    background: #f5f7fb;
+    border-right: 1px solid #e4e6e9;
+    padding: 2rem 1rem; }
+  .full-page tr td:first-child {
+    border-width: 1px 0 0 0; }
+  .full-page td {
+    border-top: 1px solid #e4e6e9;
+    border-left: 1px solid #e4e6e9;
+    padding: 1rem; }
+  .full-page .text-b2 {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 0.1rem 0 0.5rem; }
+  .full-page .icons-center {
+    padding: 1rem;
+    text-align: center; }
+  .full-page .icons-center i {
+    font-size: 1.6rem;
+    background-color: #1e49a4;
+    padding: 0.4rem;
+    border-radius: 50%;
+    color: #fff;
+    border: 1px solid #1f2993; }
+  .full-page .ico-green {
+    color: #85b73c; }
+  @media (max-width: 640px) {
+    .full-page {
+      width: 100%;
+      max-width: 100%;
+      min-width: 320px;
+      margin: 0 auto;
+      padding: 0 0.5rem; }
+      .full-page .cell-6,
+      .full-page .cell-4,
+      .full-page .blocks-cell4,
+      .full-page .block-cell5,
+      .full-page .blocks-cell6 {
+        width: 100%;
+        flex: 0 0 100%; }
+      .full-page .blocks {
+        display: block;
+        width: 100%; }
+      .full-page .blocks-cell6 {
+        text-align: center; }
+      .full-page table thead {
+        display: none; }
+      .full-page table td {
+        display: block;
+        text-align: right;
+        width: 100%;
+        border-width: 1px 0 0 0; }
+      .full-page table td::before {
+        content: attr(data-table-head);
+        float: left;
+        text-transform: uppercase;
+        font-weight: bold;
+        display: block;
+        padding: 0 8px;
+        background: #eee; } }
+
+.page-center {
+  width: 100%;
+  color: #85878f;
+  margin: 0 auto;
+  padding: 50px 0;
+  max-width: 1056px; }
+  .page-center h2 {
+    font-size: 2.2rem;
+    color: #003187;
+    margin: 0.6rem 0 0.6rem; }
+  .page-center .wrapper {
+    padding: 2.4rem 0;
+    border-bottom: 1px solid #e7e8f0; }
+    .page-center .wrapper .block {
+      width: 50%;
+      flex: 0 0 50%; }
+    .page-center .wrapper .h1 {
+      margin: 0.6rem 0 0.6rem;
+      font-size: 3.1rem;
+      color: #465b42; }
+    .page-center .wrapper b {
+      font-size: 1.3rem;
+      color: #465b42; }
+
+.grey-b {
+  background-color: #e7e8f0;
+  padding: 4rem 0; }
+  .grey-b h1 {
+    font-size: 2.2rem;
+    color: #003187;
+    margin: 0.6rem 0 0.6rem; }
+  .grey-b .block {
+    margin: 1rem;
+    text-align: center; }
+    .grey-b .block h3 {
+      font-size: 1rem;
+      margin: 0.6rem 0 0.6rem; }
+    .grey-b .block .show {
+      width: 7.4rem;
+      height: 7.4rem;
+      border-radius: 5px; }

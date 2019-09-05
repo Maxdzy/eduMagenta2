@@ -3,13 +3,12 @@
 namespace Edu\CmsCreateSlider\Setup\Patch\Data;
 
 use Magento\Cms\Model\PageFactory;
-use Magento\Framework\Filesystem\DirectoryList;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 
 /**
  * Class AddNewCmsPageTask2
- * @package Edu\CmsCreatePage\Setup\Patch\Data
+ * @package Edu\CmsCreateSlider\Setup\Patch\Data
  */
 class AddNewCmsSliderProducts implements
     DataPatchInterface
@@ -22,24 +21,17 @@ class AddNewCmsSliderProducts implements
      * @var ModuleDataSetupInterface
      */
     protected $moduleDataSetup;
-    /**
-     * @var DirectoryList
-     */
-    protected $directoryList;
 
     /**
      * @param PageFactory $pageFactory
      * @param ModuleDataSetupInterface $moduleDataSetup
-     * @param DirectoryList $DirectoryList
      */
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,
-        PageFactory $pageFactory,
-        DirectoryList $directoryList
+        PageFactory $pageFactory
     ) {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->pageFactory = $pageFactory;
-        $this->directoryList = $directoryList;
     }
 
     /**
@@ -48,10 +40,6 @@ class AddNewCmsSliderProducts implements
      */
     public function apply()
     {
-        $directory = $this->directoryList;
-        $rootPath = $directory->getRoot();
-        $templatePath = $rootPath . "/app/code/Edu/CmsCreatePage/Template/";
-
         $pageData = [
             'title' => 'task 3 slick',
             'page_layout' => '1column',

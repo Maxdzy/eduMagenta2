@@ -53,9 +53,9 @@ class AddNewCmsProducts implements
     {
         $this->moduleDataSetup->startSetup();
         $this->state->setAreaCode(Area::AREA_FRONTEND);
-        for ($i = 50; $i <= 60; $i++) {
+        for ($i = 0; $i <= 15; $i++) {
             $product = [
-                'sku' => 'Simple Product ' . $i,
+                'sku' => 'SimpleProduct' . $i,
                 'name' => 'Simple Product ' . $i,
                 'attribute_set_id' => '4',
                 'website_ids' => [1],

@@ -3,6 +3,7 @@
 namespace Edu\CmsCreateSlider\Setup\Patch\Data;
 
 use Magento\Cms\Model\PageFactory;
+use Magento\Cms\Model\PageRepository;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 
@@ -18,6 +19,10 @@ class AddNewCmsSliderProducts implements
      */
     protected $pageFactory;
     /**
+     * @var PageRepository
+     */
+    protected $pageRepository;
+    /**
      * @var ModuleDataSetupInterface
      */
     protected $moduleDataSetup;
@@ -28,10 +33,12 @@ class AddNewCmsSliderProducts implements
      */
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,
-        PageFactory $pageFactory
+        PageFactory $pageFactory,
+        PageRepository $pageRepository
     ) {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->pageFactory = $pageFactory;
+        $this->pageRepository = $pageRepository;
     }
 
     /**
@@ -56,7 +63,8 @@ class AddNewCmsSliderProducts implements
         ];
 
         $this->moduleDataSetup->startSetup();
-        $this->pageFactory->create()->setData($pageData)->save();
+        $page = $this->pageFactory->create()->setData($pageData);
+        $this->pageRepository->save($page);
         $this->moduleDataSetup->endSetup();
     }
 

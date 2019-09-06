@@ -2,6 +2,7 @@
 
 namespace Edu\CmsCreateSlider\Setup\Patch\Data;
 
+use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Catalog\Model\Product\Attribute\Source\Status;
 use Magento\Catalog\Model\ProductFactory;
 use Magento\Framework\App\Area;
@@ -20,6 +21,11 @@ class AddNewCmsProducts implements
      * @var ProductFactory
      */
     protected $productFactory;
+
+    /**
+     * @var ProductRepositoryInterface
+     */
+    protected $productRepository;
     /**
      * @var ModuleDataSetupInterface
      */
@@ -33,15 +39,18 @@ class AddNewCmsProducts implements
     /**
      * @param ModuleDataSetupInterface $moduleDataSetup
      * @param ProductFactory $productFactory
+     * @param ProductRepositoryInterface $productRepository
      * @param State $state
      */
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,
         ProductFactory $productFactory,
-        State $state
+        State $state,
+        ProductRepositoryInterface $productRepository
     ) {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->productFactory = $productFactory;
+        $this->productRepository = $productRepository;
         $this->state = $state;
     }
 
@@ -53,10 +62,11 @@ class AddNewCmsProducts implements
     {
         $this->moduleDataSetup->startSetup();
         $this->state->setAreaCode(Area::AREA_FRONTEND);
-        for ($i = 0; $i <= 15; $i++) {
-            $product = [
-                'sku' => 'SimpleProduct' . $i,
-                'name' => 'Simple Product ' . $i,
+        for ($i = 0; $i <= 10; $i++) {
+            $rand_int = rand(100, 500);
+            $productData = [
+                'sku' => 'SimpleProduct' . $rand_int,
+                'name' => 'Simple Product ' . $rand_int,
                 'attribute_set_id' => '4',
                 'website_ids' => [1],
                 'status' => Status::STATUS_ENABLED,
@@ -70,7 +80,8 @@ class AddNewCmsProducts implements
                     'qty' => 100
                 ],
             ];
-            $this->productFactory->create()->setData($product)->save();
+            $product = $this->productFactory->create()->setData($productData);
+            $this->productRepository->save($product);
         }
         $this->moduleDataSetup->endSetup();
     }

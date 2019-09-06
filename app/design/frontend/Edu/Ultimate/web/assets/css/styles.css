@@ -285,7 +285,7 @@ p {
   text-align: center;
   margin: 4rem 0; }
   .block-products-list .block-title strong {
-    font-size: 4rem;
+    font-size: 4rem !important;
     color: #2c2f46; }
 
 /* Slider */

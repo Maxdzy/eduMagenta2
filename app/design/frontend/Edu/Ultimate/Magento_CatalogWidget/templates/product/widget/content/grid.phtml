@@ -39,13 +39,16 @@ use Magento\Framework\App\Action\Action;
                 <ol class="product-items <?= /* @noEscape */
                 $type ?>">
                     <?php $iterator = 1; ?>
-                    <?php foreach ($items as $_item): ?>
-                        <?= /* @noEscape */
-                        ($iterator++ == 1) ? '<li class="product-item">' : '</li><li class="product-item">' ?>
+                    <?php foreach ($items
+
+                    as $_item): ?>
+                    <?php /* @noEscape */
+                    $iterator++
+                    ?>
+                    <li class="product-item">
                         <a href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>">
                             <div class="product-item-info">
-                                <div href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>"
-                                     class="product-item-photo">
+                                <div class="product-item-photo">
                                     <?= $block->getImage($_item, $image)->toHtml() ?>
                                 </div>
                                 <div class="product-item-details">
@@ -55,43 +58,33 @@ use Magento\Framework\App\Action\Action;
                                         <?= $block->escapeHtml($_item->getName()) ?>
                                     </span>
                                     </strong>
-                                    <?php if ($templateType): ?>
-                                        <?= $block->getReviewsSummaryHtml($_item, $templateType) ?>
-                                    <?php endif; ?>
 
                                     <?= $block->getProductPriceHtml($_item, $type) ?>
 
                                     <?= $block->getProductDetailsHtml($_item) ?>
 
-                                    <?php if ($showWishlist || $showCompare || $showCart): ?>
-                                        <div class="product-item-inner">
-                                            <div class="product-item-actions">
-                                                <?php if ($showCart): ?>
-                                                    <div class="actions-primary">
-                                                        <?php if ($_item->getIsSalable()): ?>
-                                                            <div class="stock available">
-                                                                <ul>
-                                                                    <li><?= $block->escapeHtml(__('In stock')) ?></li>
-                                                                </ul>
-                                                            </div>
-                                                        <?php else: ?>
-                                                            <div class="stock unavailable">
-                                                                <span><?= $block->escapeHtml(__('Out of stock')) ?></span>
-                                                            </div>
-                                                        <?php endif; ?>
-                                                    </div>
-                                                <?php endif; ?>
-                                            </div>
+                                    <div class="product-item-inner">
+                                        <div class="actions-primary">
+                                            <?php if ($_item->getIsSalable()): ?>
+                                                <div class="stock available">
+                                                    <ul>
+                                                        <li><?= $block->escapeHtml(__('In stock')) ?></li>
+                                                    </ul>
+                                                </div>
+                                            <?php else: ?>
+                                                <div class="stock unavailable">
+                                                    <span><?= $block->escapeHtml(__('Out of stock')) ?></span>
+                                                </div>
+                                            <?php endif; ?>
                                         </div>
-                                    <?php endif; ?>
+                                    </div>
                                 </div>
                             </div>
                         </a>
                         <?= ($iterator == count($items) + 1) ? '</li>' : '' ?>
-                    <?php endforeach ?>
+                        <?php endforeach ?>
                 </ol>
             </div>
-            <?= $block->getPagerHtml() ?>
         </div>
     </div>
 

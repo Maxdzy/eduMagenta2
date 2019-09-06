@@ -31,5 +31,4 @@ Once the slider reaches the end of the image list it should continue with the fi
 
 ###use - php bin/magento setup:upgrade
 
-* url ```http://<host>/task2-gade-style```
-* url ```http://<host>/task2```
+* url ```http://<host>/slick```

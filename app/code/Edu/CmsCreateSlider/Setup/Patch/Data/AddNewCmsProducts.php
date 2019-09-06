@@ -2,7 +2,10 @@
 
 namespace Edu\CmsCreateSlider\Setup\Patch\Data;
 
+use Magento\Catalog\Model\Product\Attribute\Source\Status;
 use Magento\Catalog\Model\ProductFactory;
+use Magento\Framework\App\Area;
+use Magento\Framework\App\State;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 
@@ -23,19 +26,19 @@ class AddNewCmsProducts implements
     protected $moduleDataSetup;
 
     /**
-     * @var \Magento\Framework\App\State
+     * @var State
      */
     private $state;
 
     /**
      * @param ModuleDataSetupInterface $moduleDataSetup
      * @param ProductFactory $productFactory
-     * @param \Magento\Framework\App\State $state
+     * @param State $state
      */
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,
         ProductFactory $productFactory,
-        \Magento\Framework\App\State $state
+        State $state
     ) {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->productFactory = $productFactory;
@@ -49,24 +52,25 @@ class AddNewCmsProducts implements
     public function apply()
     {
         $this->moduleDataSetup->startSetup();
-        $this->state->setAreaCode(\Magento\Framework\App\Area::AREA_FRONTEND);
-        for ($i = 5; $i <= 15; $i++) {
-            $simpleProduct1 = $this->productFactory->create();
-            $simpleProduct1->setData('sku', 'Simple Product ' . $i);
-            $simpleProduct1->setData('name', 'Simple Product ' . $i);
-            $simpleProduct1->setData('attribute_set_id', '4');
-            $simpleProduct1->setData('website_ids', [1]); // product can be found in main website
-            $simpleProduct1->setData('status', \Magento\Catalog\Model\Product\Attribute\Source\Status::STATUS_ENABLED);
-            $simpleProduct1->setData('visibility', 4);
-            $simpleProduct1->setData('price', 12);
-            $simpleProduct1->setData('type_id', 'simple');
-            $simpleProduct1->setData('stock_data', [
-                'use_config_manage_stock' => 0,
-                'manage_stock' => 1,
-                'is_in_stock' => 1,
-                'qty' => 100
-            ]);
-            $simpleProduct1->save();
+        $this->state->setAreaCode(Area::AREA_FRONTEND);
+        for ($i = 50; $i <= 60; $i++) {
+            $product = [
+                'sku' => 'Simple Product ' . $i,
+                'name' => 'Simple Product ' . $i,
+                'attribute_set_id' => '4',
+                'website_ids' => [1],
+                'status' => Status::STATUS_ENABLED,
+                'visibility' => 4,
+                'price' => 14,
+                'type_id' => 'simple',
+                'stock_data' => [
+                    'use_config_manage_stock' => 0,
+                    'manage_stock' => 3,
+                    'is_in_stock' => 5,
+                    'qty' => 100
+                ],
+            ];
+            $this->productFactory->create()->setData($product)->save();
         }
         $this->moduleDataSetup->endSetup();
     }

@@ -4,6 +4,7 @@ namespace Edu\CmsCreateSlider\Setup\Patch\Data;
 
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Catalog\Model\Product\Attribute\Source\Status;
+use Magento\Catalog\Model\Product\Visibility;
 use Magento\Catalog\Model\ProductFactory;
 use Magento\Framework\App\Area;
 use Magento\Framework\App\State;
@@ -70,7 +71,7 @@ class AddNewCmsProducts implements
                 'attribute_set_id' => '4',
                 'website_ids' => [1],
                 'status' => Status::STATUS_ENABLED,
-                'visibility' => 4,
+                'visibility' => Visibility::VISIBILITY_BOTH,
                 'price' => 14,
                 'type_id' => 'simple',
                 'stock_data' => [

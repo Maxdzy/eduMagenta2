@@ -1,0 +1,23 @@
+{
+  "name": "edu/cmscreatestore",
+  "description": "summary",
+  "license": [
+    "OSL-3.0"
+  ],
+  "type": "magento2-module",
+  "version": "2.3.2",
+  "authors": [
+    {
+      "name": "Maxim Dzyuba",
+      "email": "maxim.d@tdo.kz",
+      "homepage": "https://github.com/Maxdzy/",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "files": [ "registration.php" ],
+    "psr-4": {
+      "Vendor\\Module\\": ""
+    }
+  }
+}

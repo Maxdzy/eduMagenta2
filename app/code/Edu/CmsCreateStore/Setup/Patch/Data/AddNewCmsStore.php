@@ -39,8 +39,6 @@ class AddNewCmsStore implements
      */
     protected $moduleDataSetup;
 
-    protected $_logger;
-
     /**
      * @param ModuleDataSetupInterface $moduleDataSetup
      * @param StoreFactory $storeFactory
@@ -53,15 +51,13 @@ class AddNewCmsStore implements
         StoreFactory $storeFactory,
         StoreResource $storeResource,
         ConfigFactory $configFactory,
-        ConfigResurce $configResurce,
-        \Psr\Log\LoggerInterface $logger
+        ConfigResurce $configResurce
     ) {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->storeResource = $storeResource;
         $this->storeFactory = $storeFactory;
         $this->configFactory = $configFactory;
         $this->configResurce = $configResurce;
-        $this->_logger = $logger;
     }
 
     /**
@@ -70,38 +66,36 @@ class AddNewCmsStore implements
      */
     public function apply()
     {
-        $this->_logger->info('info gogo start patch 5');
-
         $this->moduleDataSetup->startSetup();
         $store = $this->storeFactory->create();
-
-        $store->setName('testtt');
-        $store->setCode('tetett');
+        $store->setName('lEURO');
+        $store->setCode('ded');
         $store->setWebsiteId(1);
         $store->setGroupId(1);
         $store->setSortOrder(0);
         $store->setIsActive(1);
-
-        $storeTop = $this->storeResource->save($store);
-
-        /*$config[] = [
-            'scope' => "stores",
-            'scopeId' => $storeId,
-            'path_url_suffix' => "catalog/seo/product_url_suffix",
-            'value_url_suffix' => "",
-            'path_currency_default' => "currency/options/default",
-            'value_currency_default' => "EUR",
-            'path_currency_allow' => "currency/options/allow",
-            'value_currency_allow' => "EUR",
+        $this->storeResource->save($store);
+        $storeId=$store->getId();
+        $configs[] = [
+            'path' => "catalog/seo/product_url_suffix",
+            'value' => "",
         ];
-
-        $configModel = $this->configFactory->create();
-        $configModel->setWebsite($config['scopeId']);
-        $configModel->setStore($config['scopeId']);
-        $configModel->setDataByPath($config['path_url_suffix'], $config['value_url_suffix']);
-        $configModel->setDataByPath($config['path_currency_default'], $config['value_currency_default']);
-        $configModel->setDataByPath($config['path_currency_allow'], $config['value_currency_allow']);
-        $this->configResurce->save($configModel);*/
+        $configs[] = [
+            'path' => "currency/options/default",
+            'value' => "EUR",
+        ];
+        $configs[] = [
+            'path' => "currency/options/allow",
+            'value' => "EUR",
+        ];
+        foreach ($configs as $config) {
+            $configModel = $this->configFactory->create();
+            $configModel->setWebsite($storeId);
+            $configModel->setStore($storeId);
+            $configModel->setDataByPath($config['path'], $config['value']);
+            //$this->configResurce->save($configModel);
+            $configModel->save();
+        }
 
         $this->moduleDataSetup->endSetup();
     }

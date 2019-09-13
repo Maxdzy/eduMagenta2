@@ -3,11 +3,13 @@
 namespace Edu\CmsCreateStore\Setup\Patch\Data;
 
 use Magento\Config\Model\ConfigFactory;
+use Magento\Theme\Model\ResourceModel\Theme\CollectionFactory;
 use Magento\Config\Model\ResourceModel\Config as ConfigResurce;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Store\Model\ResourceModel\Store as StoreResource;
 use Magento\Store\Model\StoreFactory;
+use Magento\Store\Model\StoreManagerInterface;
 
 /**
  * Class AddNewCmsPageTask2
@@ -40,24 +42,40 @@ class AddNewCmsStore implements
     protected $moduleDataSetup;
 
     /**
+     * @var StoreManagerInterface
+     */
+    private $storeManager;
+
+    /**
+     * @var CollectionFactory $themeCollectionFactory
+     */
+    private $collectionFactory;
+
+    /**
      * @param ModuleDataSetupInterface $moduleDataSetup
      * @param StoreFactory $storeFactory
      * @param StoreResource $storeResource
      * @param ConfigFactory $configFactory
      * @param ConfigResurce $configResurce
+     * @param StoreManagerInterface $storeManager
+     * @param CollectionFactory $themeCollectionFactory
      */
     public function __construct(
         ModuleDataSetupInterface $moduleDataSetup,
         StoreFactory $storeFactory,
         StoreResource $storeResource,
         ConfigFactory $configFactory,
-        ConfigResurce $configResurce
+        ConfigResurce $configResurce,
+        CollectionFactory $themeCollectionFactory,
+        StoreManagerInterface $storeManager
     ) {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->storeResource = $storeResource;
         $this->storeFactory = $storeFactory;
         $this->configFactory = $configFactory;
         $this->configResurce = $configResurce;
+        $this->collectionFactory = $themeCollectionFactory;
+        $this->storeManager = $storeManager;
     }
 
     /**
@@ -67,11 +85,16 @@ class AddNewCmsStore implements
     public function apply()
     {
         $this->moduleDataSetup->startSetup();
+        $themeCollection = $this->collectionFactory->create();
+        $theme = $themeCollection->getThemeByFullPath("frontend/Skin/german");
+        $themeId = $theme->getId();
+        $websiteid = $this->storeManager->getWebsite()->getId();
+        $groupid = $this->storeManager->getGroup()->getId();
         $store = $this->storeFactory->create();
-        $store->setName('lEURO');
-        $store->setCode('ded');
-        $store->setWebsiteId(1);
-        $store->setGroupId(1);
+        $store->setName('german');
+        $store->setCode('euro');
+        $store->setWebsiteId($websiteid);
+        $store->setGroupId($groupid);
         $store->setSortOrder(0);
         $store->setIsActive(1);
         $this->storeResource->save($store);
@@ -88,12 +111,15 @@ class AddNewCmsStore implements
             'path' => "currency/options/allow",
             'value' => "EUR",
         ];
+        $configs[] = [
+            'path' => "design/theme/theme_id",
+            'value' => $themeId,
+        ];
         foreach ($configs as $config) {
             $configModel = $this->configFactory->create();
-            $configModel->setWebsite($storeId);
+            $configModel->setWebsite($websiteid);
             $configModel->setStore($storeId);
             $configModel->setDataByPath($config['path'], $config['value']);
-            //$this->configResurce->save($configModel);
             $configModel->save();
         }
 

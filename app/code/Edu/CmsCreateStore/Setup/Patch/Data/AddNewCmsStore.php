@@ -3,13 +3,13 @@
 namespace Edu\CmsCreateStore\Setup\Patch\Data;
 
 use Magento\Config\Model\ConfigFactory;
-use Magento\Theme\Model\ResourceModel\Theme\CollectionFactory;
 use Magento\Config\Model\ResourceModel\Config as ConfigResurce;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Store\Model\ResourceModel\Store as StoreResource;
 use Magento\Store\Model\StoreFactory;
 use Magento\Store\Model\StoreManagerInterface;
+use Magento\Theme\Model\ResourceModel\Theme\CollectionFactory;
 
 /**
  * Class AddNewCmsStore
@@ -68,8 +68,7 @@ class AddNewCmsStore implements
         ConfigResurce $configResurce,
         CollectionFactory $themeCollectionFactory,
         StoreManagerInterface $storeManager
-    )
-    {
+    ) {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->storeResource = $storeResource;
         $this->storeFactory = $storeFactory;
@@ -89,13 +88,13 @@ class AddNewCmsStore implements
         $themeCollection = $this->collectionFactory->create();
         $theme = $themeCollection->getThemeByFullPath("frontend/Skin/german");
         $themeId = $theme->getId();
-        $websiteid = $this->storeManager->getWebsite()->getId();
-        $groupid = $this->storeManager->getGroup()->getId();
+        $websiteId = $this->storeManager->getWebsite()->getId();
+        $groupId = $this->storeManager->getGroup()->getId();
         $store = $this->storeFactory->create();
         $store->setName('german');
         $store->setCode('euro');
-        $store->setWebsiteId($websiteid);
-        $store->setGroupId($groupid);
+        $store->setWebsiteId($websiteId);
+        $store->setGroupId($groupId);
         $store->setSortOrder(0);
         $store->setIsActive(1);
         $this->storeResource->save($store);
@@ -120,7 +119,7 @@ class AddNewCmsStore implements
         ];
         foreach ($configs as $config) {
             $configModel = $this->configFactory->create();
-            $configModel->setWebsite($websiteid);
+            $configModel->setWebsite($websiteId);
             $configModel->setStore($storeId);
             $configModel->setDataByPath($config['path'], $config['value']);
             $configModel->save();

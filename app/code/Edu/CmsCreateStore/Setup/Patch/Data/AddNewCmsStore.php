@@ -85,44 +85,50 @@ class AddNewCmsStore implements
     public function apply()
     {
         $this->moduleDataSetup->startSetup();
-        $themeCollection = $this->collectionFactory->create();
-        $theme = $themeCollection->getThemeByFullPath("frontend/Skin/german");
-        $themeId = $theme->getId();
-        $websiteId = $this->storeManager->getWebsite()->getId();
-        $groupId = $this->storeManager->getGroup()->getId();
         $store = $this->storeFactory->create();
-        $store->setName('german');
-        $store->setCode('euro');
-        $store->setWebsiteId($websiteId);
-        $store->setGroupId($groupId);
-        $store->setSortOrder(0);
-        $store->setIsActive(1);
-        $this->storeResource->save($store);
-        $storeId = $store->getId();
-        $configs = [
-            [
-                'path' => "catalog/seo/product_url_suffix",
-                'value' => "",
-            ],
-            [
-                'path' => "currency/options/default",
-                'value' => "EUR",
-            ],
-            [
-                'path' => "currency/options/allow",
-                'value' => "EUR",
-            ],
-            [
-                'path' => "design/theme/theme_id",
-                'value' => $themeId,
-            ],
-        ];
-        foreach ($configs as $config) {
-            $configModel = $this->configFactory->create();
-            $configModel->setWebsite($websiteId);
-            $configModel->setStore($storeId);
-            $configModel->setDataByPath($config['path'], $config['value']);
-            $configModel->save();
+        $store->load('euro');
+
+        if (!$store->getId()) {
+
+            $themeCollection = $this->collectionFactory->create();
+            $theme = $themeCollection->getThemeByFullPath("frontend/Skin/german");
+            $themeId = $theme->getId();
+            $websiteId = $this->storeManager->getWebsite()->getId();
+            $groupId = $this->storeManager->getGroup()->getId();
+            $store->setName('german');
+            $store->setCode('euro');
+            $store->setWebsiteId($websiteId);
+            $store->setGroupId($groupId);
+            $store->setSortOrder(0);
+            $store->setIsActive(1);
+            $this->storeResource->save($store);
+            $storeId = $store->getId();
+            $configs = [
+                [
+                    'path' => "catalog/seo/product_url_suffix",
+                    'value' => "",
+                ],
+                [
+                    'path' => "currency/options/default",
+                    'value' => "EUR",
+                ],
+                [
+                    'path' => "currency/options/allow",
+                    'value' => "EUR",
+                ],
+                [
+                    'path' => "design/theme/theme_id",
+                    'value' => $themeId,
+                ],
+            ];
+            foreach ($configs as $config) {
+                $configModel = $this->configFactory->create();
+                $configModel->setWebsite($websiteId);
+                $configModel->setStore($storeId);
+                $configModel->setDataByPath($config['path'], $config['value']);
+                $configModel->save();
+            }
+
         }
 
         $this->moduleDataSetup->endSetup();

@@ -89,18 +89,17 @@ class AddNewCmsStore implements
         $store->load('euro');
 
         if (!$store->getId()) {
-
             $themeCollection = $this->collectionFactory->create();
             $theme = $themeCollection->getThemeByFullPath("frontend/Skin/german");
             $themeId = $theme->getId();
             $websiteId = $this->storeManager->getWebsite()->getId();
             $groupId = $this->storeManager->getGroup()->getId();
-            $store->setName('german');
-            $store->setCode('euro');
-            $store->setWebsiteId($websiteId);
-            $store->setGroupId($groupId);
-            $store->setSortOrder(0);
-            $store->setIsActive(1);
+            $store->setName('german')
+                ->setCode('euro')
+                ->setWebsiteId($websiteId)
+                ->setGroupId($groupId)
+                ->setSortOrder(0)
+                ->setIsActive(1);
             $this->storeResource->save($store);
             $storeId = $store->getId();
             $configs = [
@@ -128,7 +127,6 @@ class AddNewCmsStore implements
                 $configModel->setDataByPath($config['path'], $config['value']);
                 $configModel->save();
             }
-
         }
 
         $this->moduleDataSetup->endSetup();

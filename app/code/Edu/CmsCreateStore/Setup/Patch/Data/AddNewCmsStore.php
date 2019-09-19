@@ -13,7 +13,7 @@ use Magento\Store\Model\StoreManagerInterface;
 
 /**
  * Class AddNewCmsStore
- * @package Edu\CmsCreateSlider\Setup\Patch\Data
+ * @package Edu\CmsCreateStore\Setup\Patch\Data
  */
 class AddNewCmsStore implements
     DataPatchInterface
@@ -68,7 +68,8 @@ class AddNewCmsStore implements
         ConfigResurce $configResurce,
         CollectionFactory $themeCollectionFactory,
         StoreManagerInterface $storeManager
-    ) {
+    )
+    {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->storeResource = $storeResource;
         $this->storeFactory = $storeFactory;
@@ -98,22 +99,24 @@ class AddNewCmsStore implements
         $store->setSortOrder(0);
         $store->setIsActive(1);
         $this->storeResource->save($store);
-        $storeId=$store->getId();
-        $configs[] = [
-            'path' => "catalog/seo/product_url_suffix",
-            'value' => "",
-        ];
-        $configs[] = [
-            'path' => "currency/options/default",
-            'value' => "EUR",
-        ];
-        $configs[] = [
-            'path' => "currency/options/allow",
-            'value' => "EUR",
-        ];
-        $configs[] = [
-            'path' => "design/theme/theme_id",
-            'value' => $themeId,
+        $storeId = $store->getId();
+        $configs = [
+            [
+                'path' => "catalog/seo/product_url_suffix",
+                'value' => "",
+            ],
+            [
+                'path' => "currency/options/default",
+                'value' => "EUR",
+            ],
+            [
+                'path' => "currency/options/allow",
+                'value' => "EUR",
+            ],
+            [
+                'path' => "design/theme/theme_id",
+                'value' => $themeId,
+            ],
         ];
         foreach ($configs as $config) {
             $configModel = $this->configFactory->create();

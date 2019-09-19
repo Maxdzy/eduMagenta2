@@ -12,7 +12,7 @@ use Magento\Store\Model\StoreFactory;
 use Magento\Store\Model\StoreManagerInterface;
 
 /**
- * Class AddNewCmsPageTask2
+ * Class AddNewCmsStore
  * @package Edu\CmsCreateSlider\Setup\Patch\Data
  */
 class AddNewCmsStore implements

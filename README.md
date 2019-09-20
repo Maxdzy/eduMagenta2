@@ -2,20 +2,20 @@
 
 ##4. Updating database data (migration scripts e.g. Configure store)
 
-Configure store according to requirements using migration scripts 
+Implement sticky header according to requirements.
+
+Example:
+
+www.dropbox.com/s/gvmzf19lholly8d/Sticky_header_transition.mov?dl=0
+
+https://www.loom.com/share/12489330f7b648a299c634dac0a7918a
 
 ###Requirements
 
-* Store available in 2 different languages via store switcher in the header - Store switcher example  (Just example. The styling does not have to match)
+When the user is scrolling down the header must be decreased to just the navigation menu.
 
-* Base currency is EUR, but English store uses GBP 
+The transition must happen smoothly. Logo and the search input should not dissapear during the transition 
 
-* English store uses scandi/default theme, but the german store uses scandi/german theme. (Both are should be created in the skin folder, but no modification necessary yet)
+When scrolling back up, the menu should return to the original state.
 
-* Product and category pages should not have .html suffix
-
-
-
-###use - php bin/magento setup:upgrade
-
-* url ```http://<host>/slick```
+This transition must happen at 400px from the top of the page threshold 

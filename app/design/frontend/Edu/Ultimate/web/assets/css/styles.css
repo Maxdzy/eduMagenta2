@@ -206,6 +206,16 @@ p {
       height: 7.4rem;
       border-radius: 5px; }
 
+#header.sticky {
+  background: #fff none repeat scroll 0 0;
+  border-bottom: 4px solid #325052;
+  margin: 0 auto;
+  max-width: 100%;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99; }
+
 /* Slider */
 .slick-slider {
   position: relative;

@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    let current_screen_offset = 0;
+    let currentScreenOffset = 0;
     window.onscroll = function () {
         stickyHeader()
     };
@@ -11,21 +11,20 @@ document.addEventListener('DOMContentLoaded', function () {
     let minicart = document.getElementsByClassName('minicart-wrapper')[0];
 
     function stickyHeader() {
-        let screen_offset = window.pageYOffset;
-        if (screen_offset >= current_screen_offset && screen_offset > 400) {
-            current_screen_offset = screen_offset;
+        let screenOffset = window.pageYOffset;
+        const beginStickRun = 400;
+        header.classList.remove('sticky_header');
+        sections.classList.remove('sticky_sections');
+        logo.classList.remove('sticky_logo');
+        search.classList.remove('sticky_search');
+        minicart.classList.remove('sticky_minicart');
+        if (screenOffset > beginStickRun) {
+            currentScreenOffset = screenOffset;
             header.classList.add('sticky_header');
             sections.classList.add('sticky_sections');
             logo.classList.add('sticky_logo');
             search.classList.add('sticky_search');
             minicart.classList.add('sticky_minicart');
-        } else if (screen_offset < current_screen_offset) {
-            header.classList.remove('sticky_header');
-            sections.classList.remove('sticky_sections');
-            logo.classList.remove('sticky_logo');
-            search.classList.remove('sticky_search');
-            minicart.classList.remove('sticky_minicart');
-            current_screen_offset = screen_offset;
         }
     }
 });

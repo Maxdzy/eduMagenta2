@@ -1,31 +1,18 @@
 #EDU270 scandiweb
 
-##3. FE Templating (styling default Magento functionality e.g. Related products)
+##4. Updating database data (migration scripts e.g. Configure store)
 
-Description
+Configure store according to requirements using migration scripts 
 
-Update related product template and styling to match the design - Related Product design
+###Requirements
 
-Requirments
+* Store available in 2 different languages via store switcher in the header - Store switcher example  (Just example. The styling does not have to match)
 
-Need to use the Slick slider
+* Base currency is EUR, but English store uses GBP 
 
-Max number of products: 10
+* English store uses scandi/default theme, but the german store uses scandi/german theme. (Both are should be created in the skin folder, but no modification necessary yet)
 
-The related products must be in a slider. The slider should shows:
-
-• 4 products for screens sizes of 1280px - ...         
-• 3 products for screen sizes of 1024px - 1279px        
-• 2 products for screen sizes of 768px - 1023px        
-• 1 product for screen sizes of ... - 767px 
-
-Each product must be clickable and link to the product page of that product
-
-The user must be able to navigate through the slider by clicking on arrows  (as per design)
-
-The dots below the slider represent the current location in image list (if the left-most item is the first item, the first dot is darker)
-
-Once the slider reaches the end of the image list it should continue with the first images (infinite loop) appended to the end of the list so that there is no jump to first items and the transition is seamless.
+* Product and category pages should not have .html suffix
 
 
 

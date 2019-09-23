@@ -1,30 +1,29 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    let currentScreenOffset = 0;
     window.onscroll = function () {
         stickyHeader()
     };
-    let header = document.getElementsByClassName('page-header')[0];
-    let sections = document.getElementsByClassName('sections nav-sections')[0];
-    let logo = document.getElementsByClassName('logo')[0];
-    let search = document.getElementsByClassName('block block-search')[0];
-    let minicart = document.getElementsByClassName('minicart-wrapper')[0];
 
     function stickyHeader() {
-        let screenOffset = window.pageYOffset;
         const beginStickRun = 400;
-        header.classList.remove('sticky_header');
-        sections.classList.remove('sticky_sections');
-        logo.classList.remove('sticky_logo');
-        search.classList.remove('sticky_search');
-        minicart.classList.remove('sticky_minicart');
+        let screenOffset = window.pageYOffset,
+            header = document.getElementsByClassName('page-header')[0],
+            sections = document.getElementsByClassName('sections nav-sections')[0],
+            logo = document.getElementsByClassName('logo')[0],
+            search = document.getElementsByClassName('block block-search')[0],
+            minicart = document.getElementsByClassName('minicart-wrapper')[0],
+            variablesClass = {
+                'sticky_header': header.classList,
+                'sticky_sections': sections.classList,
+                'sticky_logo': logo.classList,
+                'sticky_search': search.classList,
+                'sticky_minicart': minicart.classList,
+            };
+        Object.entries(variablesClass).forEach(([className, classObject]) => classObject.remove(className));
+
         if (screenOffset > beginStickRun) {
-            currentScreenOffset = screenOffset;
-            header.classList.add('sticky_header');
-            sections.classList.add('sticky_sections');
-            logo.classList.add('sticky_logo');
-            search.classList.add('sticky_search');
-            minicart.classList.add('sticky_minicart');
+            Object.entries(variablesClass).forEach(([className, classObject]) => classObject.add(className));
         }
     }
+
 });

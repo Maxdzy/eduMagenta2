@@ -2,16 +2,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let current_screen_offset = 0;
     window.onscroll = function () {
-        myFunction()
+        stickyHeader()
     };
     let header = document.getElementsByClassName('page-header')[0];
     let sections = document.getElementsByClassName('sections nav-sections')[0];
+    let logo = document.getElementsByClassName('logo')[0];
+    let search = document.getElementsByClassName('block block-search')[0];
+    let minicart = document.getElementsByClassName('minicart-wrapper')[0];
 
-    let logo = document.getElementsByClassName("logo")[0];
-    let search = document.getElementsByClassName("block block-search")[0];
-    let minicart = document.getElementsByClassName("minicart-wrapper")[0];
-
-    function myFunction() {
+    function stickyHeader() {
         let screen_offset = window.pageYOffset;
         if (screen_offset >= current_screen_offset && screen_offset > 400) {
             current_screen_offset = screen_offset;

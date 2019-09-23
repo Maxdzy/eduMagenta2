@@ -18,7 +18,7 @@
   transform-origin: left;
   transition: 0.7s;
 
-  @media (max-width: 1280px) {
+  @media (max-width: $desctop_width) {
     right: 49px;
   }
 }
@@ -61,7 +61,7 @@ header {
 .logo {
   left: calc((100% - 1240px) / 2);
 
-  @media (max-width: 1280px) {
+  @media (max-width: $desctop_width) {
     left: 20px;
   }
 }
@@ -69,7 +69,7 @@ header {
 .minicart-wrapper {
   right: calc((100% - 1240px) / 2);
 
-  @media (max-width: 1280px) {
+  @media (max-width: $desctop_width) {
     right: 20px;
   }
 }

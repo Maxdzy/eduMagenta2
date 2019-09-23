@@ -207,7 +207,7 @@ p {
       border-radius: 5px; }
 
 .page-header {
-  background-color: white; }
+  background-color: #fff; }
 
 .sticky_sections {
   height: 73px; }
@@ -236,7 +236,7 @@ header {
   z-index: 6; }
 
 .header.content {
-  background-color: white;
+  background-color: #fff;
   height: 90px; }
 
 .section-items {

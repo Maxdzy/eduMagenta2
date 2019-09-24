@@ -9,7 +9,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
     <router id="admin">
-        <route id="bages" frontName="bages">
+        <route id="badges" frontName="badges">
             <module name="Edu_CmsSimpleBadge"/>
         </route>
     </router>

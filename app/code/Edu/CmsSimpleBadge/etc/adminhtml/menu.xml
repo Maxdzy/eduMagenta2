@@ -9,6 +9,6 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
         <add id="Edu_CmsSimpleBadge::greetings" title="Greetings" translate="title" module="Edu_CmsSimpleBadge" parent="Magento_Backend::content" sortOrder="50" dependsOnModule="Edu_CmsSimpleBadge" resource="Edu_CmsSimpleBadge::greetings"/>
-        <add id="Edu_CmsSimpleBadge::greetings_helloworld" title="Hello World" translate="title" module="Edu_CmsSimpleBadge" parent="Edu_CmsSimpleBadge::greetings" sortOrder="10" dependsOnModule="Edu_CmsSimpleBadge" action="exampleadminnewpage/helloworld" resource="Edu_CmsSimpleBadge::greetings"/>
+        <add id="Edu_CmsSimpleBadge::greetings_helloworld" title="Hello World" translate="title" module="Edu_CmsSimpleBadge" parent="Edu_CmsSimpleBadge::greetings" sortOrder="10" dependsOnModule="Edu_CmsSimpleBadge" action="badges/badges" resource="Edu_CmsSimpleBadge::greetings"/>
     </menu>
 </config>

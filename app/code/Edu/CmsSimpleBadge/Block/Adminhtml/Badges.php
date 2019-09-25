@@ -13,7 +13,7 @@ class Badges extends Container
 {
     protected function _construct()
     {
-        $this->_controller = 'adminhtml_post';
+        $this->_controller = 'adminhtml_badges';
         $this->_blockGroup = 'Edu_CmsSimpleBadge';
         $this->_headerText = __('Badges');
         $this->_addButtonLabel = __('Create New Badges');

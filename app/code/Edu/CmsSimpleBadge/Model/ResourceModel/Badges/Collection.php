@@ -12,7 +12,7 @@ use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 class Collection extends AbstractCollection
 {
     protected $_idFieldName = 'badge_id';
-    protected $_eventPrefix = 'edu_cmssimplebadge_badges_collection';
+    protected $_eventPrefix = 'edu_cmssimplebadgeid_badge_collection';
     protected $_eventObject = 'badges_collection';
 
     /**

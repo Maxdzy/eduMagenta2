@@ -20,7 +20,7 @@
     <virtualType name="Edu\CmsSimpleBadge\Model\ResourceModel\Badges\Grid\Collection"
                  type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
         <arguments>
-            <argument name="mainTable" xsi:type="string">edu_cmssimplebadge_badges</argument>
+            <argument name="mainTable" xsi:type="string">badges</argument>
             <argument name="resourceModel" xsi:type="string">Edu\CmsSimpleBadge\Model\ResourceModel\Badges</argument>
         </arguments>
     </virtualType>

@@ -13,14 +13,7 @@
             <item name="deps" xsi:type="string">edu_cmssimplebadge_badges_listing.edu_cmssimplebadge_badges_listing_data_source</item>
         </item>
         <item name="spinner" xsi:type="string">spinner_columns</item>
-        <item name="buttons" xsi:type="array">
-            <item name="add" xsi:type="array">
-                <item name="name" xsi:type="string">add</item>
-                <item name="label" xsi:type="string" translate="true">Add New Badge</item>
-                <item name="class" xsi:type="string">primary</item>
-                <item name="url" xsi:type="string">*/*/new</item>
-            </item>
-        </item>
+
     </argument>
     <dataSource name="nameOfDataSource">
         <argument name="dataProvider" xsi:type="configurableObject">
@@ -39,16 +32,9 @@
             </argument>
         </argument>
     </dataSource>
+
     <columns name="spinner_columns">
-        <selectionsColumn name="ids">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="resizeEnabled" xsi:type="boolean">false</item>
-                    <item name="resizeDefaultWidth" xsi:type="string">55</item>
-                    <item name="indexField" xsi:type="string">badge_id</item>
-                </item>
-            </argument>
-        </selectionsColumn>
+
         <column name="badge_id">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">

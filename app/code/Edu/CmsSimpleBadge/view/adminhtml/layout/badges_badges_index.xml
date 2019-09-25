@@ -11,7 +11,7 @@
     <update handle="styles"/>
     <body>
         <referenceContainer name="content">
-            <uiComponent name="edu_cmssimplebadge_badges_listing"/>
+            <uiComponent name="badges_badges_listing"/>
         </referenceContainer>
     </body>
 </page>

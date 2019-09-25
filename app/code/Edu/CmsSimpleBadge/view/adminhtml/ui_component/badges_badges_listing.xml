@@ -6,18 +6,32 @@
  * @author      Maxim Dzyuba
  */
 -->
-<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
-            <item name="provider" xsi:type="string">edu_cmssimplebadge_badges_listing.edu_cmssimplebadge_badges_listing_data_source</item>
-            <item name="deps" xsi:type="string">edu_cmssimplebadge_badges_listing.edu_cmssimplebadge_badges_listing_data_source</item>
+            <item name="provider" xsi:type="string">
+                badges_badges_listing.edu_cmssimplebadge_badges_listing_data_source
+            </item>
+            <item name="deps" xsi:type="string">
+                badges_badges_listing.edu_cmssimplebadge_badges_listing_data_source
+            </item>
         </item>
         <item name="spinner" xsi:type="string">spinner_columns</item>
-
+        <item name="buttons" xsi:type="array">
+            <item name="add" xsi:type="array">
+                <item name="name" xsi:type="string">add</item>
+                <item name="label" xsi:type="string" translate="true">Add New Badge222</item>
+                <item name="class" xsi:type="string">primary</item>
+                <item name="url" xsi:type="string">*/*/new</item>
+            </item>
+        </item>
     </argument>
     <dataSource name="nameOfDataSource">
         <argument name="dataProvider" xsi:type="configurableObject">
-            <argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider</argument>
+            <argument name="class" xsi:type="string">
+                Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider
+            </argument>
             <argument name="name" xsi:type="string">edu_cmssimplebadge_badges_listing_data_source</argument>
             <argument name="primaryFieldName" xsi:type="string">badge_id</argument>
             <argument name="requestFieldName" xsi:type="string">id</argument>
@@ -80,4 +94,3 @@
         </column>
     </columns>
 </listing>
-

@@ -196,5 +196,16 @@
                 </item>
             </argument>
         </column>
+        <!-- Add Action with each row of grid and for this we will create a class Action -->
+        <actionsColumn name="actions" class="Edu\CmsSimpleBadge\Ui\Component\Listing\Grid\Column\Action">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="resizeEnabled" xsi:type="boolean">false</item>
+                    <item name="resizeDefaultWidth" xsi:type="string">107</item>
+                    <item name="indexField" xsi:type="string">badge_id</item>
+                </item>
+            </argument>
+        </actionsColumn>
+
     </columns>
 </listing>

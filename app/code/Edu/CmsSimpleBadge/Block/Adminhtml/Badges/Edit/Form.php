@@ -100,14 +100,14 @@ class Form extends Generic
 
         $fieldset->addField(
             'image_url',
-            'text',
+            'image',
             [
                 'name' => 'image_url',
                 'label' => __('image_url'),
                 'id' => 'image_url',
                 'title' => __('Image Url'),
                 'class' => 'required-entry',
-                'required' => true,
+                'required' => false,
             ]
         );
 

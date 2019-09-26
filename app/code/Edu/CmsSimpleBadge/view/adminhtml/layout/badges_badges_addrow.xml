@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Edu_CmsSimpleBadge add row layout
+ *
+ * @category    Edu
+ * @package     Edu\CmsSimpleBadge
+ * @author      Maxim Dzyuba
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="Edu\CmsSimpleBadge\Block\Adminhtml\Badges\AddRow" name="add_row"/>
+        </referenceContainer>
+    </body>
+</page>

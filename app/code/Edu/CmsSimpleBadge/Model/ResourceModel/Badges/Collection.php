@@ -1,5 +1,6 @@
 <?php
 /**
+ * Badges Badges  Collection.
  * @category    Edu
  * @package     Edu\CmsSimpleBadge
  * @author      Maxim Dzyuba
@@ -11,6 +12,9 @@ use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 
 class Collection extends AbstractCollection
 {
+    /**
+     * @var string
+     */
     protected $_idFieldName = 'badge_id';
     protected $_eventPrefix = 'edu_cmssimplebadgeid_badge_collection';
     protected $_eventObject = 'badges_collection';

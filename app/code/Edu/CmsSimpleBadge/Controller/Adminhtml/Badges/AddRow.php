@@ -9,11 +9,11 @@
 namespace Edu\CmsSimpleBadge\Controller\Adminhtml\Badges;
 
 use Edu\CmsSimpleBadge\Model\BadgesFactory;
-use Magento\Backend\App\Action\Context;
 use Magento\Backend\App\Action;
+use Magento\Backend\App\Action\Context;
+use Magento\Backend\Model\View\Result\Page;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Registry;
-use Magento\Backend\Model\View\Result\Page;
 
 class AddRow extends Action
 {
@@ -51,11 +51,13 @@ class AddRow extends Action
         $rowName="";
         $rowId = (int) $this->getRequest()->getParam('id');
         $rowData = $this->badgesFactory->create();
+
         /** @var Page $resultPage */
         if ($rowId) {
             $rowData = $rowData->load($rowId);
             $rowName = $rowData->getName();
-            if (!$rowData->getEntityId()) {
+
+            if (!$rowData->getBadgeId()) {
                 $this->messageManager->addError(__('row data no longer exist.'));
                 $this->_redirect('badges/badges/index'); //grid/grid/rowdata
                 return;

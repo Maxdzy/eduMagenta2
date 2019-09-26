@@ -43,10 +43,10 @@ class AddRow extends Container
     protected function _construct()
     {
         $this->_objectId = 'row_id';
-        $this->_blockGroup = 'Edu_Badges';
+        $this->_blockGroup = 'Edu_CmsSimpleBadge';
         $this->_controller = 'adminhtml_badges';
         parent::_construct();
-        if ($this->_isAllowedAction('Edu_Badges::add_row')) {
+        if ($this->_isAllowedAction('Edu_CmsSimpleBadge::add_row')) {
             $this->buttonList->update('save', 'label', __('Save'));
         } else {
             $this->buttonList->remove('save');
@@ -61,7 +61,7 @@ class AddRow extends Container
      */
     public function getHeaderText()
     {
-        return __('Add Badge Data');
+        return __('Add RoW Badge Data');
     }
 
     /**

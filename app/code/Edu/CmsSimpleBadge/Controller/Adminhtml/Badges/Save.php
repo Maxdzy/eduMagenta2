@@ -46,7 +46,7 @@ class Save extends Action
             $rowData = $this->badgesFactory->create();
             $rowData->setData($data);
             if (isset($data['id'])) {
-                $rowData->setEntityId($data['id']);
+                $rowData->setBadgeId($data['id']);
             }
             $rowData->save();
             $this->messageManager->addSuccess(__('Row data has been successfully saved.'));

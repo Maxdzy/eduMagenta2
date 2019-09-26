@@ -72,7 +72,7 @@ class Form extends Generic
         );
 
         $form->setHtmlIdPrefix('wkbadges_');
-        if ($model->getEntityId()) {
+        if ($model->getBadgeId()) {
             $fieldset = $form->addFieldset(
                 'base_fieldset',
                 ['legend' => __('Edit Row Badge Data'), 'class' => 'fieldset-wide']
@@ -99,14 +99,15 @@ class Form extends Generic
         );
 
         $fieldset->addField(
-            'content',
-            'editor',
+            'image_url',
+            'text',
             [
                 'name' => 'image_url',
                 'label' => __('image_url'),
                 'id' => 'image_url',
-                'required' => true,
+                'title' => __('Image Url'),
                 'class' => 'required-entry',
+                'required' => true,
             ]
         );
 

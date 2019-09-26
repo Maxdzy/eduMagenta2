@@ -52,7 +52,6 @@ class AddRow extends Action
         $rowId = (int) $this->getRequest()->getParam('id');
         $rowData = $this->badgesFactory->create();
 
-        /** @var Page $resultPage */
         if ($rowId) {
             $rowData = $rowData->load($rowId);
             $rowName = $rowData->getName();
@@ -65,9 +64,12 @@ class AddRow extends Action
         }
 
         $this->coreRegistry->register('row_data', $rowData);
+        /** @var Page $resultPage */
         $resultPage = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
         $name = $rowId ? __('Edit Row Data ') . $rowName : __('Add Row Data');
-        $resultPage->getConfig()->getTitle()->prepend($name);
+        $resultPage->getConfig()
+            ->getTitle()
+            ->prepend($name);
         return $resultPage;
     }
 

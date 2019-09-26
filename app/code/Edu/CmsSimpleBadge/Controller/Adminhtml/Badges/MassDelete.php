@@ -6,15 +6,16 @@
  * @package   Edu_CmsSimpleBadge
  * @author    Maxim Dzyuba
  */
+
 namespace Edu\CmsSimpleBadge\Controller\Adminhtml\Badges;
 
+use Edu\CmsSimpleBadge\Model\ResourceModel\Badges\CollectionFactory;
 use Magento\Backend\App\Action;
+use Magento\Backend\App\Action\Context;
 use Magento\Backend\Model\View\Result\Redirect;
 use Magento\Framework\Controller\ResultFactory;
-use Magento\Backend\App\Action\Context;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Ui\Component\MassAction\Filter;
-use Edu\CmsSimpleBadge\Model\ResourceModel\Badges\CollectionFactory;
 
 class MassDelete extends Action
 {
@@ -30,8 +31,8 @@ class MassDelete extends Action
     protected $collectionFactory;
 
     /**
-     * @param Context           $context
-     * @param Filter            $filter
+     * @param Context $context
+     * @param Filter $filter
      * @param CollectionFactory $collectionFactory
      */
     public function __construct(
@@ -39,7 +40,6 @@ class MassDelete extends Action
         Filter $filter,
         CollectionFactory $collectionFactory
     ) {
-
         $this->filter = $filter;
         $this->collectionFactory = $collectionFactory;
         parent::__construct($context);
@@ -54,7 +54,7 @@ class MassDelete extends Action
         $collection = $this->filter->getCollection($this->collectionFactory->create());
         $recordDeleted = 0;
         foreach ($collection->getItems() as $record) {
-            $record->setId($record->getEntityId());
+            $record->setId($record->getBadgeId());
             $record->delete();
             $recordDeleted++;
         }

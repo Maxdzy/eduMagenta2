@@ -17,7 +17,7 @@ class Upload extends Action
     /**
      * @var string
      */
-    const ACTION_RESOURCE = 'Edu_CmsSimpleBadgeUploader::image';
+    const ACTION_RESOURCE = 'Edu_CmsSimpleBadgeUploader::badges';
 
     /**
      * @var Uploader

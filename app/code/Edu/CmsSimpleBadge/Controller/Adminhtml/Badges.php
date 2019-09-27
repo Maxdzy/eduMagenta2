@@ -20,7 +20,7 @@ abstract class Badges extends Action
     /**
      * @var string
      */
-    const ACTION_RESOURCE = 'Edu_CmsSimpleBadgeUploader::badge';
+    const ACTION_RESOURCE = 'Edu_CmsSimpleBadgeUploader::badges';
 
     /**
      * Image repository

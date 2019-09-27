@@ -218,7 +218,8 @@ return [
         'MSP_TwoFactorAuth' => 1,
         'Mageplaza_HelloWorld' => 0,
         'Temando_Shipping' => 1,
+        'Turiknox_SampleImageUploader' => 1,
         'Vertex_Tax' => 1,
-        'Webkul_Grid' => 1
+        'Webkul_Grid' => 0
     ]
 ];

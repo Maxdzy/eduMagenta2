@@ -90,7 +90,7 @@ class Form extends Generic
             'text',
             [
                 'name' => 'name',
-                'label' => __('name'),
+                'label' => __('Name'),
                 'id' => 'name',
                 'title' => __('Name'),
                 'class' => 'required-entry',
@@ -103,7 +103,7 @@ class Form extends Generic
             'image',
             [
                 'name' => 'image_url',
-                'label' => __('image_url'),
+                'label' => __('Image Url'),
                 'id' => 'image_url',
                 'title' => __('Image Url'),
                 'class' => 'required-entry',

@@ -12,35 +12,85 @@ use Edu\CmsSimpleBadge\Model\BadgesFactory;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Filesystem\DirectoryList;
-use Magento\Framework\Filesystem\Directory\Read;
-use Magento\Framework\Image\Adapter\AdapterInterface;
-use Magento\Framework\ObjectManagerInterface;
 
-class Save extends Action
+use Magento\Framework\Api\DataObjectHelper;
+use Magento\Framework\Message\Manager;
+use Magento\Framework\Registry;
+use Magento\Framework\Stdlib\DateTime\Filter\Date;
+use Magento\Framework\View\Result\PageFactory;
+use Edu\CmsSimpleBadge\Api\BadgesRepositoryInterface;
+use Edu\CmsSimpleBadge\Api\Data\BadgesInterface;
+use Edu\CmsSimpleBadge\Api\Data\GadgesInterfaceFactory;
+use Edu\CmsSimpleBadge\Controller\Adminhtml\Badges;
+use Edu\CmsSimpleBadge\Model\Uploader;
+use Edu\CmsSimpleBadge\Model\UploaderPool;
+
+class Save extends Badges
 {
     /**
      * @var BadgesFactory
      */
-    public $badgesFactory;
+    protected $badgesFactory;
 
     /**
-     * @var ObjectManagerInterface
+     * @var DirectoryList
      */
-    public $objectManager;
+    protected $fileUploaderFactory;
+    /**
+     * @var Manager
+     */
+    protected $messageManager;
 
     /**
+     * @var ImageRepositoryInterface
+     */
+    protected $badgesRepository;
+
+
+    /**
+     * @var DataObjectHelper
+     */
+    protected $dataObjectHelper;
+
+    /**
+     * @var UploaderPool
+     */
+    protected $uploaderPool;
+
+    /**
+     * Save constructor.
+     *
+     * @param Registry $registry
+     * @param BadgesRepositoryInterface $imageRepository
+     * @param PageFactory $resultPageFactory
+     * @param Date $dateFilter
+     * @param Manager $messageManager
+     * @param BadgesInterfaceFactory $imageFactory
+     * @param DataObjectHelper $dataObjectHelper
+     * @param UploaderPool $uploaderPool
      * @param Context $context
      * @param BadgesFactory $badgesFactory
-     * @param ObjectManagerInterface $objectManagerInterface
      */
     public function __construct(
         Context $context,
         BadgesFactory $badgesFactory,
-        ObjectManagerInterface $objectManagerInterface
-    ) {
+        Registry $registry,
+        BadgesRepositoryInterface $badgesRepository,
+        PageFactory $resultPageFactory,
+        Date $dateFilter,
+        Manager $messageManager,
+        BadgesInterfaceFactory $badgesInterfaceFactory,
+        DataObjectHelper $dataObjectHelper,
+        UploaderPool $uploaderPool
+    )
+    {
         parent::__construct($context);
         $this->badgesFactory = $badgesFactory;
-        $this->objectManager = $objectManagerInterface;
+        $this->messageManager = $messageManager;
+        $this->badgesInterfaceFactory = $badgesInterfaceFactory;
+        $this->badgesRepository = $badgesRepository;
+        $this->dataObjectHelper = $dataObjectHelper;
+        $this->uploaderPool = $uploaderPool;
     }
 
     /**
@@ -49,10 +99,47 @@ class Save extends Action
      */
     public function execute()
     {
-        $data = 123;
-        print_r($data);
-        exit();
         $data = $this->getRequest()->getPostValue();
+        $resultRedirect = $this->resultRedirectFactory->create();
+        if ($data) {
+            $id = $this->getRequest()->getParam('image_id');
+            if ($id) {
+                $model = $this->badgesRepository->getBadgeId($id);
+            } else {
+                unset($data['image_id']);
+                $model = $this->badgesFactory->create();
+            }
+
+            try {
+                $image = $this->getUploader('image')->uploadFileAndGetName('image', $data);
+                $data['image'] = $image;
+
+                $this->dataObjectHelper->populateWithArray($model, $data, badgesInterface::class);
+                $this->badgesRepository->save($model);
+                $this->messageManager->addSuccessMessage(__('You saved this image.'));
+                $this->_getSession()->setFormData(false);
+                if ($this->getRequest()->getParam('back')) {
+                    return $resultRedirect->setPath('*/*/edit', ['image_id' => $model->getId(), '_current' => true]);
+                }
+                return $resultRedirect->setPath('*/*/');
+            } catch (\Magento\Framework\Exception\LocalizedException $e) {
+                $this->messageManager->addErrorMessage($e->getMessage());
+            } catch (\RuntimeException $e) {
+                $this->messageManager->addErrorMessage($e->getMessage());
+            } catch (\Exception $e) {
+                $this->messageManager->addException(
+                    $e,
+                    __('Something went wrong while saving the image:' . $e->getMessage())
+                );
+            }
+
+            $this->_getSession()->setFormData($data);
+            return $resultRedirect->setPath('*/*/edit', ['image_id' => $this->getRequest()->getParam('badge_id')]);
+        }
+        return $resultRedirect->setPath('*/*/');
+
+        $data = $this->getRequest()->getPostValue();
+
         if (!$data) {
             $this->_redirect('badges/badges/addrow');
             return;
@@ -60,41 +147,6 @@ class Save extends Action
         try {
             $rowData = $this->badgesFactory->create();
             $rowData->setData($data);
-
-
-            $profileImage = $this->getRequest()->getFiles('image_url');
-            $fileName = ($profileImage && array_key_exists('name', $profileImage)) ? $profileImage['name'] : null;
-            if ($profileImage && $fileName) {
-                try {
-                    /** @var ObjectManagerInterface $uploader */
-                    $uploader = $this->objectManager->create(
-                        'Magento\MediaStorage\Model\File\Uploader',
-                        ['fileId' => 'profile']
-                    );
-                    $uploader->setAllowedExtensions(['jpg', 'jpeg', 'gif', 'png']);
-                    /** @var AdapterInterface $imageAdapterFactory */
-                    $imageAdapterFactory = $this->objectManager->get('Magento\Framework\Image\AdapterFactory')
-                        ->create();
-                    $uploader->setAllowRenameFiles(true);
-                    $uploader->setFilesDispersion(true);
-                    $uploader->setAllowCreateFolders(true);
-                    /** @var Read $mediaDirectory */
-                    $mediaDirectory = $this->objectManager->get('Magento\Framework\Filesystem')
-                        ->getDirectoryRead(DirectoryList::MEDIA);
-
-                    $result = $uploader->save(
-                        $mediaDirectory
-                            ->getAbsolutePath('Badges/Images')
-                    );
-                    //$data['profile'] = 'Modulename/Profile/'. $result['file'];
-                    $rowData->setImageUrl('Badges/Images' . $result['file']); //Database field name
-                } catch (\Exception $e) {
-                    if ($e->getCode() == 0) {
-                        $this->messageManager->addError($e->getMessage());
-                    }
-                }
-            }
-
             if (isset($data['id'])) {
                 $rowData->setBadgeId($data['id']);
             }
@@ -112,5 +164,15 @@ class Save extends Action
     protected function _isAllowed()
     {
         return $this->_authorization->isAllowed('Edu_badges::save');
+    }
+
+    /**
+     * @param $type
+     * @return Uploader
+     * @throws \Exception
+     */
+    protected function getUploader($type)
+    {
+        return $this->uploaderPool->getUploader($type);
     }
 }

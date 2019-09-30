@@ -14,6 +14,7 @@ interface BadgesInterface
     /**
      * Constants for keys of data array. Identical to the name of the getter in snake case.
      */
+    const BADGES = 'badges';
     const BADGE_ID = 'badge_id';
     const NAME = 'name';
     const IMAGE_URL = 'image_url';
@@ -22,11 +23,18 @@ interface BadgesInterface
     const UPDATE_TIME = 'update_time';
 
     /**
+     * Get ID
+     *
+     * @return int|null
+     */
+    public function getId();
+
+    /**
      * Get BadgeId.
      *
      * @return int
      */
-    public function getBadgeId();
+    public function getBadgeId($badgeId);
 
     /**
      * Set BadgeId.

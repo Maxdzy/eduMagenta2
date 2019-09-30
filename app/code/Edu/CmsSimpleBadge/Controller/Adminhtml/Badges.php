@@ -8,19 +8,19 @@
 
 namespace Edu\CmsSimpleBadge\Controller\Adminhtml;
 
-use Edu\CmsSimpleBadge\Api\BadgesRepositoryInterface;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\Registry;
-use Magento\Framework\Stdlib\DateTime\Filter\Date;
 use Magento\Framework\View\Result\PageFactory;
+use Magento\Framework\Stdlib\DateTime\Filter\Date;
+use Edu\CmsSimpleBadge\Api\BadgesRepositoryInterface;
 
 abstract class Badges extends Action
 {
     /**
      * @var string
      */
-    const ACTION_RESOURCE = 'Edu_CmsSimpleBadgeUploader::badges';
+    const ACTION_RESOURCE = 'Edu_CmsSimpleBadge::badges';
 
     /**
      * Image repository
@@ -54,21 +54,21 @@ abstract class Badges extends Action
      * Sliders constructor.
      *
      * @param Registry $registry
-     * @param BadgesRepositoryInterface $badgesRepositoryInterface
+     * @param BadgesRepositoryInterface $badgesRepository
      * @param PageFactory $resultPageFactory
      * @param Date $dateFilter
      * @param Context $context
      */
     public function __construct(
         Registry $registry,
-        BadgesRepositoryInterface $badgesRepositoryInterface,
+        BadgesRepositoryInterface $badgesRepository,
         PageFactory $resultPageFactory,
         Date $dateFilter,
         Context $context
     ) {
         parent::__construct($context);
         $this->coreRegistry = $registry;
-        $this->badgesRepositoryInterface = $badgesRepositoryInterface;
+        $this->badgesRepositoryInterface = $badgesRepository;
         $this->resultPageFactory = $resultPageFactory;
         $this->dateFilter = $dateFilter;
     }

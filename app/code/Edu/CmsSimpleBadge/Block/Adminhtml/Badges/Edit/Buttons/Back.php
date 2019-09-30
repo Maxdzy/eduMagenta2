@@ -4,6 +4,7 @@
  * @package     Edu\CmsSimpleBadge
  * @author      Maxim Dzyuba
  */
+
 namespace Edu\CmsSimpleBadge\Block\Adminhtml\Badges\Edit\Buttons;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;

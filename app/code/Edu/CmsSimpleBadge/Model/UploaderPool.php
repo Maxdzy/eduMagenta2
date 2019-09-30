@@ -30,7 +30,7 @@ class UploaderPool
         array $uploaders = []
     ) {
         $this->objectManager = $objectManager;
-        $this->uploaders     = $uploaders;
+        $this->uploaders = $uploaders;
     }
 
     /**

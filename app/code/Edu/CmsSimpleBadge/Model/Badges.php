@@ -1,6 +1,6 @@
 <?php
 /**
- * Edu_CmsSimpleBadge Status Options Model.
+ * Edu_CmsSimpleBadge Model.
  * @category    Edu
  * @package     Edu\CmsSimpleBadge
  * @author      Maxim Dzyuba
@@ -8,8 +8,13 @@
 
 namespace Edu\CmsSimpleBadge\Model;
 
-use Magento\Framework\Model\AbstractModel;
 use Edu\CmsSimpleBadge\Api\Data\BadgesInterface;
+use Magento\Framework\Data\Collection\AbstractDb;
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Model\AbstractModel;
+use Magento\Framework\Model\Context;
+use Magento\Framework\Model\ResourceModel\AbstractResource;
+use Magento\Framework\Registry;
 use Zend\Db\Sql\Ddl\Column\Varchar;
 
 class Badges extends AbstractModel implements BadgesInterface
@@ -25,6 +30,11 @@ class Badges extends AbstractModel implements BadgesInterface
     protected $_cacheTag = 'edu_cmssimplebadge_badges';
 
     /**
+     * @var UploaderPool
+     */
+    protected $uploaderPool;
+
+    /**
      * Prefix of model events names.
      *
      * @var string
@@ -32,19 +42,99 @@ class Badges extends AbstractModel implements BadgesInterface
     protected $_eventPrefix = 'edu_cmssimplebadge_badges';
 
     /**
-     * Initialize resource model.
+     * Sliders constructor.
+     * @param Context $context
+     * @param Registry $registry
+     * @param UploaderPool $uploaderPool
+     * @param AbstractResource|null $resource
+     * @param AbstractDb|null $resourceCollection
+     * @param array $data
+     */
+    public function __construct(
+        Context $context,
+        Registry $registry,
+        UploaderPool $uploaderPool,
+        AbstractResource $resource = null,
+        AbstractDb $resourceCollection = null,
+        array $data = []
+    ) {
+        parent::__construct($context, $registry, $resource, $resourceCollection, $data);
+        $this->uploaderPool    = $uploaderPool;
+    }
+
+    /**
+     * Initialise resource model
+     * @codingStandardsIgnoreStart
      */
     protected function _construct()
     {
+        // @codingStandardsIgnoreEnd
         $this->_init('Edu\CmsSimpleBadge\Model\ResourceModel\Badges');
     }
+
+    /**
+     * Get cache identities
+     *
+     * @return array
+     */
+    public function getIdentities()
+    {
+        return [self::CACHE_TAG . '_' . $this->getId()];
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->getData(BadgesInterface::BADGES);
+    }
+
+    /**
+     * Set image
+     *
+     * @param $image
+     * @return $this
+     */
+    public function setImage($badges)
+    {
+        return $this->setData(BadgesInterface::BADGES, $badges);
+    }
+
+    /**
+     * Get image URL
+     *
+     * @return bool|string
+     * @throws LocalizedException
+     * @throws \Exception
+     */
+    public function getImageUrl()
+    {
+        $url = false;
+        $badges = $this->getImage();
+        if ($badges) {
+            if (is_string($badges)) {
+                $uploader = $this->uploaderPool->getUploader('image');
+                $url = $uploader->getBaseUrl() . $uploader->getBasePath() . $badges;
+            } else {
+                throw new LocalizedException(
+                    __('Something went wrong while getting the image url.')
+                );
+            }
+        }
+        return $url;
+    }
+
+    //////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     /**
      * Get BadgeId.
      *
      * @return int
      */
-    public function getBadgeId()
+    public function getBadgeId($badgeId=null)
     {
         return $this->getData(self::BADGE_ID);
     }
@@ -80,7 +170,7 @@ class Badges extends AbstractModel implements BadgesInterface
      *
      * @return varchar
      */
-    public function getImageUrl()
+    public function getImageUrl2()
     {
         return $this->getData(self::IMAGE_URL);
     }
@@ -146,5 +236,4 @@ class Badges extends AbstractModel implements BadgesInterface
     {
         return $this->setData(self::UPDATE_TIME, $updateTime);
     }
-
 }

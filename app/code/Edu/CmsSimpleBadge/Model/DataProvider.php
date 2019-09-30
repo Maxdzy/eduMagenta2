@@ -28,6 +28,7 @@ class DataProvider extends AbstractDataProvider
      * @param PoolInterface $pool
      * @param array $meta
      * @param array $data
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function __construct(
         $name,

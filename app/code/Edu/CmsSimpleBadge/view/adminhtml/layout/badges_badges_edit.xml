@@ -1,8 +1,6 @@
 <?xml version="1.0"?>
 <!--
 /**
- * Edu_CmsSimpleBadge add row layout
- *
  * @category    Edu
  * @package     Edu\CmsSimpleBadge
  * @author      Maxim Dzyuba
@@ -12,11 +10,7 @@
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="content">
-            <uiComponent name="badges_badges_form" />
+            <uiComponent name="badges_badges_form"/>
         </referenceContainer>
-
-        <!--referenceContainer name="content">
-            <block class="Edu\CmsSimpleBadge\Block\Adminhtml\Badges\AddRow" name="add_row"/>
-        </referenceContainer-->
     </body>
 </page>

@@ -23,7 +23,7 @@
                 <item name="name" xsi:type="string">add</item>
                 <item name="label" xsi:type="string" translate="true">Add New Badge</item>
                 <item name="class" xsi:type="string">primary</item>
-                <item name="url" xsi:type="string">*/*/addrow</item>
+                <item name="url" xsi:type="string">*/*/add</item>
             </item>
         </item>
     </argument>
@@ -34,7 +34,7 @@
             </argument>
             <argument name="name" xsi:type="string">edu_cmssimplebadge_badges_listing_data_source</argument>
             <argument name="primaryFieldName" xsi:type="string">badge_id</argument>
-            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="requestFieldName" xsi:type="string">badge_id</argument>
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
@@ -107,6 +107,13 @@
                         <item name="validation" xsi:type="array">
                             <item name="required-entry" xsi:type="boolean">true</item>
                         </item>
+                <item name="childDefaults" xsi:type="array">
+                    <item name="fieldAction" xsi:type="array">
+                        <item name="provider" xsi:type="string">sampleimageuploader_image_grid.sampleimageuploader_image_grid.sampleimageuploader_image_grid_columns.actions</item>
+                        <item name="target" xsi:type="string">applyAction</item>
+                        <item name="params" xsi:type="array">
+                            <item name="0" xsi:type="string">edit</item>
+                            <item name="1" xsi:type="string">${ $.$data.rowIndex }</item>
                     </item>
                     <item name="label" xsi:type="string" translate="true">Name</item>
                 </item>
@@ -161,15 +168,14 @@
             </argument>
         </column>
         <!-- Add Action with each row of grid and for this we will create a class Action -->
-        <actionsColumn name="actions" class="Edu\CmsSimpleBadge\Ui\Component\Listing\Grid\Column\Action">
+        <!--actionsColumn name="actions" class="Edu\CmsSimpleBadge\Ui\Component\Listing\Column\BadgesActions">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="resizeEnabled" xsi:type="boolean">false</item>
-                    <item name="resizeDefaultWidth" xsi:type="string">107</item>
                     <item name="indexField" xsi:type="string">badge_id</item>
+                    <item name="urlEntityParamName" xsi:type="string">badge_id</item>
                 </item>
             </argument>
-        </actionsColumn>
+        </actionsColumn-->
 
     </columns>
 </listing>

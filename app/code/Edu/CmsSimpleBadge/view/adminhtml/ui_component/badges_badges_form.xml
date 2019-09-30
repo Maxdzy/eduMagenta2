@@ -33,9 +33,6 @@
             </item>
             <item name="save" xsi:type="string">Edu\CmsSimpleBadge\Block\Adminhtml\Badges\Edit\Buttons\Save
             </item>
-            <item name="save_and_continue" xsi:type="string">
-                Edu\CmsSimpleBadge\Block\Adminhtml\Badges\Edit\Buttons\SaveAndContinue
-            </item>
         </item>
     </argument>
     <dataSource name="edu_cmssimplebadge_badges_listing_data_source">
@@ -62,15 +59,15 @@
                 <item name="label" xsi:type="string" translate="true">Badge Details</item>
             </item>
         </argument>
-        <field name="image_id">
+        <field name="badge_id">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="visible" xsi:type="boolean">false</item>
                     <item name="dataType" xsi:type="string">text</item>
-                    <item name="label" xsi:type="string" translate="true">Image ID</item>
+                    <item name="label" xsi:type="string" translate="true">Badge ID</item>
                     <item name="formElement" xsi:type="string">input</item>
                     <item name="source" xsi:type="string">image</item>
-                    <item name="dataScope" xsi:type="string">image_id</item>
+                    <item name="dataScope" xsi:type="string">badge_id</item>
                 </item>
             </argument>
         </field>

@@ -56,7 +56,7 @@ class AddRow extends Action
             $rowData = $rowData->load($rowId);
             $rowName = $rowData->getName();
 
-            if (!$rowData->getBadgeId()) {
+            if (!$rowData->getBadgeId($rowId)) {
                 $this->messageManager->addError(__('row data no longer exist.'));
                 $this->_redirect('badges/badges/index'); //grid/grid/rowdata
                 return;

@@ -15,7 +15,7 @@ use Magento\Ui\Component\Listing\Columns\Column;
 class Action extends Column
 {
     /** Url path */
-    const ROW_EDIT_URL = 'badges/badges/addrow';
+    const ROW_EDIT_URL = 'badges/badges/add';
     /** @var UrlInterface */
     protected $_urlBuilder;
 

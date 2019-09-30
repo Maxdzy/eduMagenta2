@@ -9,8 +9,19 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
 
-    <preference for="Edu\CmsSimpleBadge\Api\Data\BadgesInterface" type="Edu\CmsSimpleBadge\Model\Badges" />
+    <preference for="Edu\CmsSimpleBadge\Api\BadgesRepositoryInterface"
+                type="Edu\CmsSimpleBadge\Model\BadgesRepository"/>
+    <preference for="Edu\CmsSimpleBadge\Api\Data\BadgesInterface" type="Edu\CmsSimpleBadge\Model\Badges"/>
 
+    <virtualType name="CmsSimpleBadgeDataProvider"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">
+                Edu\CmsSimpleBadge\Model\Resource\Badges\Collection
+            </argument>
+            <argument name="filterPool" xsi:type="object" shared="false">CmsSimpleBadgeDataGridFilterPool</argument>
+        </arguments>
+    </virtualType>
     <virtualType name="Edu\CmsSimpleBadge\Model\ResourceModel\Badges\Grid\Collection"
                  type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
         <arguments>
@@ -19,6 +30,18 @@
         </arguments>
     </virtualType>
 
+    <virtualType name="CmsSimpleBadgeBadgesUploader" type="Edu\CmsSimpleBadge\Model\Uploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="const">Edu\CmsSimpleBadge\Model\Uploader::IMAGE_TMP_PATH</argument>
+            <argument name="basePath" xsi:type="const">Edu\CmsSimpleBadge\Model\Uploader::IMAGE_PATH</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </virtualType>
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
@@ -29,4 +52,31 @@
         </arguments>
     </type>
 
+    <type name="Edu\CmsSimpleBadge\Model\UploaderPool">
+        <arguments>
+            <argument name="uploaders" xsi:type="array">
+                <item name="badges" xsi:type="string">CmsSimpleBadgeBadgesUploader</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Edu\CmsSimpleBadge\Controller\Adminhtml\Badges\Upload">
+        <arguments>
+            <argument name="uploader" xsi:type="object">CmsSimpleBadgeBadgesUploader</argument>
+        </arguments>
+    </type>
+    <type name="Edu\CmsSimpleBadge\Ui\Component\Listing\Column\Badges">
+        <arguments>
+            <argument name="badgesModel" xsi:type="object">CmsSimpleBadgeBadgesUploader</argument>
+        </arguments>
+    </type>
+    <type name="Edu\CmsSimpleBadge\Controller\Adminhtml\Badges\MassDelete">
+        <arguments>
+            <argument name="successMessage" xsi:type="string" translate="true">A total of %1 record(s) have been
+                deleted.
+            </argument>
+            <argument name="errorMessage" xsi:type="string" translate="true">An error occurred while deleting
+                record(s).
+            </argument>
+        </arguments>
+    </type>
 </config>

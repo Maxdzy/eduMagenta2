@@ -21,6 +21,7 @@ use Edu\CmsSimpleBadge\Api\Data\BadgesInterfaceFactory;
 use Edu\CmsSimpleBadge\Controller\Adminhtml\Badges;
 use Edu\CmsSimpleBadge\Model\Uploader;
 use Edu\CmsSimpleBadge\Model\UploaderPool;
+use Magento\Framework\Registry;
 
 class Save extends Badges
 {
@@ -66,9 +67,13 @@ class Save extends Badges
      * @param UploaderPool $uploaderPool
      * @param Context $context
      * @param BadgesFactory $badgesFactory
+     * @param Registry $registry
      */
     public function __construct(
         Context $context,
+        Registry $registry,
+        PageFactory $resultPageFactory,
+        Date $dateFilter,
         BadgesFactory $badgesFactory,
         BadgesRepositoryInterface $badgesRepository,
         Manager $messageManager,
@@ -77,7 +82,7 @@ class Save extends Badges
         UploaderPool $uploaderPool
     )
     {
-        parent::__construct($context);
+        parent::__construct($registry, $badgesRepository, $resultPageFactory, $dateFilter, $context);
         $this->badgesFactory = $badgesFactory;
         $this->messageManager = $messageManager;
         $this->badgesInterfaceFactory = $badgesInterfaceFactory;

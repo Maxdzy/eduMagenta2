@@ -42,7 +42,9 @@ class Generic
     public function getBadgeId()
     {
         try {
-            return $this->badgesInterface->getBadgeId();
+            return $this->badgesInterface->getBadgeId(
+                $this->context->getRequest()->getParam('badge_id')
+            )->getId();
         } catch (NoSuchEntityException $e) {
             return null;
         }

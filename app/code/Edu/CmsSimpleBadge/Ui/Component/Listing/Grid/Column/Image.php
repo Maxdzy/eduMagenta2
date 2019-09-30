@@ -72,8 +72,8 @@ class Image extends Column
                 $item[$fieldName . '_src'] = $url;
                 $item[$fieldName . '_alt'] = $this->getAlt($item) ?: '';
                 $item[$fieldName . '_link'] = $this->urlBuilder->getUrl(
-                    'sampleimageuploader/image/edit',
-                    ['image_id' => $item['image_id']]
+                    'badges/badges/edit',
+                    ['badge_id' => $item['badge_id']]
                 );
                 $item[$fieldName . '_orig_src'] = $url;
             }

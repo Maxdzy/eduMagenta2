@@ -11,7 +11,7 @@ use Magento\Framework\View\Element\UiComponentFactory;
 use Magento\Framework\UrlInterface;
 use Magento\Ui\Component\Listing\Columns\Column;
 
-class ImageActions extends Column
+class BadgesActions extends Column
 {
     const URL_PATH_EDIT = 'badges/badges/edit';
     const URL_PATH_DELETE = 'badges/badges/delete';
@@ -51,13 +51,13 @@ class ImageActions extends Column
     {
         if (isset($dataSource['data']['items'])) {
             foreach ($dataSource['data']['items'] as & $item) {
-                if (isset($item['image_id'])) {
+                if (isset($item['badge_id'])) {
                     $item[$this->getData('name')] = [
                         'edit' => [
                             'href' => $this->urlBuilder->getUrl(
                                 static::URL_PATH_EDIT,
                                 [
-                                    'image_id' => $item['image_id']
+                                    'badge_id' => $item['badge_id']
                                 ]
                             ),
                             'label' => __('Edit')
@@ -66,13 +66,13 @@ class ImageActions extends Column
                             'href' => $this->urlBuilder->getUrl(
                                 static::URL_PATH_DELETE,
                                 [
-                                    'image_id' => $item['image_id']
+                                    'badge_id' => $item['badge_id']
                                 ]
                             ),
                             'label' => __('Delete'),
                             'confirm' => [
-                                'title' => __('Delete Image'),
-                                'message' => __('Are you sure you want to delete the Image?')
+                                'title' => __('Delete Badges'),
+                                'message' => __('Are you sure you want to delete the Badges?')
                             ]
                         ]
                     ];

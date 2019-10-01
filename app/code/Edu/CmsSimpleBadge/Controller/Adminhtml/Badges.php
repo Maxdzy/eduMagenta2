@@ -13,7 +13,6 @@ use Magento\Backend\App\Action\Context;
 use Magento\Framework\Registry;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Framework\Stdlib\DateTime\Filter\Date;
-use Turiknox\SampleImageUploader\Api\ImageRepositoryInterface;
 use Edu\CmsSimpleBadge\Api\BadgesRepositoryInterface;
 
 abstract class Badges extends Action

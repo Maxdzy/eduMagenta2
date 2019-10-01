@@ -113,7 +113,7 @@ class Save extends Badges
             try {
                 $image = $this->getUploader('badges')->uploadFileAndGetName('image', $data);
                 $dataModel=[];
-                $dataModel['image_url'] = "/media/cmssimplebadge/images/image".$image;
+                $dataModel['image_url'] = $image;
                 $dataModel['name'] = "gogo123";
                 $dataModel['status'] = 1;
 

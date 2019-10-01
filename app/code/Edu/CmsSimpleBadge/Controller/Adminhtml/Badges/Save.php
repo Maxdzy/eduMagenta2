@@ -12,6 +12,7 @@ use Edu\CmsSimpleBadge\Model\BadgesFactory;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\Api\DataObjectHelper;
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Message\Manager;
 use Magento\Framework\Stdlib\DateTime\Filter\Date;
 use Magento\Framework\View\Result\PageFactory;
@@ -94,6 +95,7 @@ class Save extends Badges
     /**
      * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      * @SuppressWarnings(PHPMD.NPathComplexity)
+     * @throws LocalizedException
      */
     public function execute()
     {
@@ -109,20 +111,27 @@ class Save extends Badges
             }
 
             try {
-                $image = $this->getUploader('image')->uploadFileAndGetName('image', $data);
-                $data['image_url'] = $image;
-                $data['name'] = "gogo";
-                $data['status'] = 1;
+                $image = $this->getUploader('badges')->uploadFileAndGetName('image', $data);
+                $dataModel=[];
+                $dataModel['image_url'] = "/media/cmssimplebadge/images/image".$image;
+                $dataModel['name'] = "gogo123";
+                $dataModel['status'] = 1;
 
-                $this->dataObjectHelper->populateWithArray($model, $data, badgesInterface::class);
-                $this->badgesRepository->save($model);
+                $rowData = $this->badgesFactory->create();
+                $rowData->setData($dataModel);
+                $this->badgesRepository->save($rowData);
+
+                //$this->dataObjectHelper->populateWithArray($model, $data, badgesInterface::class);
+                //$this->badgesRepository->save($model);
+
+
                 $this->messageManager->addSuccessMessage(__('You saved this badges.'));
                 $this->_getSession()->setFormData(false);
                 if ($this->getRequest()->getParam('back')) {
                     return $resultRedirect->setPath('*/*/edit', ['badges_id' => $model->getId(), '_current' => true]);
                 }
                 return $resultRedirect->setPath('*/*/');
-            } catch (\Magento\Framework\Exception\LocalizedException $e) {
+            } catch (LocalizedException $e) {
                 $this->messageManager->addErrorMessage($e->getMessage());
             } catch (\RuntimeException $e) {
                 $this->messageManager->addErrorMessage($e->getMessage());
@@ -137,27 +146,6 @@ class Save extends Badges
             return $resultRedirect->setPath('*/*/edit', ['badges_id' => $this->getRequest()->getParam('badge_id')]);
         }
         return $resultRedirect->setPath('*/*/');
-
-        /*
-         * $data = $this->getRequest()->getPostValue();
-
-        if (!$data) {
-            $this->_redirect('badges/badges/addrow');
-            return;
-        }
-        try {
-            $rowData = $this->badgesFactory->create();
-            $rowData->setData($data);
-            if (isset($data['id'])) {
-                $rowData->setBadgeId($data['id']);
-            }
-            $rowData->save();
-            $this->messageManager->addSuccess(__('Row data has been successfully saved.'));
-        } catch (\Exception $e) {
-            $this->messageManager->addError(__($e->getMessage()));
-        }
-        $this->_redirect('badges/badges/index');
-        */
     }
 
     /**

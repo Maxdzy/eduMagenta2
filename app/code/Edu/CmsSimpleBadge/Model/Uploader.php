@@ -107,8 +107,8 @@ class Uploader
         UploaderFactory $uploaderFactory,
         StoreManagerInterface $storeManager,
         LoggerInterface $logger,
-        $baseTmpPath = self::IMAGE_TMP_PATH,
-        $basePath = self::IMAGE_PATH,
+        $baseTmpPath,
+        $basePath,
         $allowedExtensions = []
     ) {
         $this->coreFileStorageDatabase = $coreFileStorageDatabase;

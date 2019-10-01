@@ -9,17 +9,19 @@
 namespace Edu\CmsSimpleBadge\Controller\Adminhtml\Badges;
 
 use Edu\CmsSimpleBadge\Controller\Adminhtml\Badges;
+use Magento\Framework\View\Result\Page;
 
 class Edit extends Badges
 {
     /**
-     * @return \Magento\Framework\View\Result\Page
+     * @return Page
      */
     public function execute()
     {
-        //$badgesId = $this->getRequest()->getParam('badge_id');
+        $badgesId = $this->getRequest()->getParam('badge_id');
         $resultPage = $this->resultPageFactory->create();
-       /* $resultPage->setActiveMenu('Edu_CmsSimpleBadge::badges')
+        $resultPage->setActiveMenu('Edu_CmsSimpleBadge::badges');
+        $resultPage->setActiveMenu('Edu_CmsSimpleBadge::badges')
             ->addBreadcrumb(__('Badges'), __('Badges'))
             ->addBreadcrumb(__('Manage Badges'), __('Manage Badges'));
 
@@ -29,9 +31,7 @@ class Edit extends Badges
         } else {
             $resultPage->addBreadcrumb(__('Edit Badges'), __('Edit Badges'));
             $resultPage->getConfig()->getTitle()->prepend(__('Edit Badges'));
-        }*/
-       var_dump($resultPage);
-
+        }
         return $resultPage;
     }
 }

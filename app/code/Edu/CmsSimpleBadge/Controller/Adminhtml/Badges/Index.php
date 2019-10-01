@@ -44,8 +44,10 @@ class Index extends Action
         /** @var Page $resultPage */
         $resultPage = $this->resultPageFactory->create();
 
-        $resultPage->setActiveMenu('Edu_CmsSimpleBadge::badges_list');
-        $resultPage->getConfig()->getTitle()->prepend((__('Badges List')));
+        $resultPage->setActiveMenu('Edu_CmsSimpleBadge::badges')
+            ->getConfig()
+            ->getTitle()
+            ->prepend((__('Badges List')));
 
         return $resultPage;
     }

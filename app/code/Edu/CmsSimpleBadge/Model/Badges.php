@@ -116,7 +116,7 @@ class Badges extends AbstractModel implements BadgesInterface
         $badges = $this->getImage();
         if ($badges) {
             if (is_string($badges)) {
-                $uploader = $this->uploaderPool->getUploader('image');
+                $uploader = $this->uploaderPool->getUploader('badges');
                 $url = $uploader->getBaseUrl() . $uploader->getBasePath() . $badges;
             } else {
                 throw new LocalizedException(

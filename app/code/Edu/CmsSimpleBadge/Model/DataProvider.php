@@ -67,6 +67,7 @@ class DataProvider extends AbstractDataProvider
      * Get data
      *
      * @return array
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function getData()
     {

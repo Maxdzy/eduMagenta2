@@ -27,7 +27,7 @@ interface BadgesRepositoryInterface
     public function save(BadgesInterface $badges);
 
     /**
-     * Retrieve Image.
+     * Retrieve Badges.
      *
      * @param int $badgeId
      * @return BadgesInterface
@@ -35,8 +35,18 @@ interface BadgesRepositoryInterface
      */
     public function getBadgeId($badgeId);
 
+
     /**
-     * Delete image.
+     * Retrieve Badges.
+     *
+     * @param int $badgeId
+     * @return BadgesInterface
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
+    public function getById($badgeId);
+
+    /**
+     * Delete Badges.
      *
      * @param BadgesInterface $badges
      * @return bool true on success

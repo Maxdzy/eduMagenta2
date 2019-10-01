@@ -20,18 +20,15 @@
         <item name="label" xsi:type="string" translate="true">Badge Information</item>
         <item name="config" xsi:type="array">
             <item name="dataScope" xsi:type="string">data</item>
-            <item name="namespace" xsi:type="string">image_form</item>
+            <item name="namespace" xsi:type="string">badge_form</item>
         </item>
         <item name="template" xsi:type="string">templates/form/collapsible</item>
         <item name="buttons" xsi:type="array">
-            <item name="back" xsi:type="string">Edu\CmsSimpleBadge\Block\Adminhtml\Badges\Edit\Buttons\Back
+            <item name="back" xsi:type="string">
+                Edu\CmsSimpleBadge\Block\Adminhtml\Badges\Edit\Buttons\Back
             </item>
-            <item name="delete" xsi:type="string">
-                Edu\CmsSimpleBadge\Block\Adminhtml\Badges\Edit\Buttons\Delete
-            </item>
-            <item name="reset" xsi:type="string">Edu\CmsSimpleBadge\Block\Adminhtml\Badges\Edit\Buttons\Reset
-            </item>
-            <item name="save" xsi:type="string">Edu\CmsSimpleBadge\Block\Adminhtml\Badges\Edit\Buttons\Save
+            <item name="save" xsi:type="string">
+                Edu\CmsSimpleBadge\Block\Adminhtml\Badges\Edit\Buttons\Save
             </item>
         </item>
     </argument>

@@ -114,8 +114,8 @@ class Save extends Badges
                 $image = $this->getUploader('badges')->uploadFileAndGetName('image', $data);
                 $dataModel=[];
                 $dataModel['image_url'] = $image;
-                $dataModel['name'] = "gogo123";
-                $dataModel['status'] = 1;
+                $dataModel['name'] = $this->getRequest()->getParam('name');
+                $dataModel['status'] = $this->getRequest()->getParam('status');
 
                 $rowData = $this->badgesFactory->create();
                 $rowData->setData($dataModel);

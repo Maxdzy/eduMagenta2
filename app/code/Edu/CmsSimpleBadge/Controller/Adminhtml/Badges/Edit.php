@@ -18,17 +18,15 @@ class Edit extends Badges
      */
     public function execute()
     {
-        $badgesId = $this->getRequest()->getParam('badge_id');
+        //TODO change badges not work
+        $badgeId = $this->getRequest()->getParam('badge_id');
         $resultPage = $this->resultPageFactory->create();
         $resultPage->setActiveMenu('Edu_CmsSimpleBadge::badges');
         $resultPage->setActiveMenu('Edu_CmsSimpleBadge::badges')
             ->addBreadcrumb(__('Badges'), __('Badges'))
             ->addBreadcrumb(__('Manage Badges'), __('Manage Badges'));
 
-        if ($badgesId === null) {
-            $resultPage->addBreadcrumb(__('New Badges'), __('New Badges'));
-            $resultPage->getConfig()->getTitle()->prepend(__('New Badges'));
-        } else {
+        if ($badgeId != null) {
             $resultPage->addBreadcrumb(__('Edit Badges'), __('Edit Badges'));
             $resultPage->getConfig()->getTitle()->prepend(__('Edit Badges'));
         }

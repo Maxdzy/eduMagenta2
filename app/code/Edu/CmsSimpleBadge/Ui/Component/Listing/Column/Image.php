@@ -6,18 +6,19 @@
  */
 namespace Edu\CmsSimpleBadge\Ui\Component\Listing\Column;
 
-use Magento\Framework\UrlInterface;
-use Magento\Framework\View\Element\UiComponentFactory;
-use Magento\Framework\View\Element\UiComponent\ContextInterface;
-use Magento\Ui\Component\Listing\Columns\Column;
 use Edu\CmsSimpleBadge\Model\Uploader;
+use Magento\Framework\UrlInterface;
+use Magento\Framework\View\Element\UiComponent\ContextInterface;
+use Magento\Framework\View\Element\UiComponentFactory;
+use Magento\Store\Model\StoreManagerInterface;
+use Magento\Ui\Component\Listing\Columns\Column;
 
 class Image extends Column
 {
     const ALT_FIELD = 'name';
 
     /**
-     * @var \Magento\Store\Model\StoreManagerInterface
+     * @var StoreManagerInterface
      */
     protected $storeManager;
 
@@ -67,7 +68,7 @@ class Image extends Column
             foreach ($dataSource['data']['items'] as & $item) {
                 $url = '';
                 if ($item[$fieldName] != '') {
-                    $url = $this->imageModel->getBaseUrl().$this->imageModel->getBasePath().$item[$fieldName];
+                    $url = $this->imageModel->getBaseUrl() . $this->imageModel->getBasePath() . $item[$fieldName];
                 }
                 $item[$fieldName . '_src'] = $url;
                 $item[$fieldName . '_alt'] = $this->getAlt($item) ?: '';

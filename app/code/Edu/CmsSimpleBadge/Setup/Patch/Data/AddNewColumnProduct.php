@@ -8,6 +8,7 @@
 namespace Edu\CmsSimpleBadge\Setup\Patch\Data;
 
 use Magento\Catalog\Model\Product;
+use Magento\Catalog\Model\ResourceModel\Eav\Attribute;
 use Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface;
 use Magento\Eav\Setup\EavSetup;
 use Magento\Eav\Setup\EavSetupFactory;
@@ -47,26 +48,19 @@ class AddNewColumnProduct implements
         /** @var EavSetup $eavSetup */
         $eavSetup = $this->eavSetupFactory->create(['setup' => $this->moduleDataSetup]);
 
-        $eavSetup->addAttribute(Product::ENTITY, 'sample_attribute', [
-            'type' => 'text',
+        $eavSetup->addAttribute(Product::ENTITY, 'badges_multiselect', [
+            'group' => 'General',
+            'type' => 'int',
+            'label' => 'Badges multiselect',
             'backend' => '',
-            'frontend' => '',
-            'label' => 'Sample Atrribute',
-            'input' => 'text',
-            'class' => '',
-            'source' => '',
-            'global' => ScopedAttributeInterface::SCOPE_GLOBAL,
-            'visible' => true,
-            'required' => true,
-            'user_defined' => false,
-            'default' => '',
-            'searchable' => false,
-            'filterable' => false,
-            'comparable' => false,
+            'input' => 'multiselect',
+            'wysiwyg_enabled'   => false,
+            'source' => 'Edu\CmsSimpleBadge\Model\Config\Source\BadgesSelect',
+            'required' => false,
+            'sort_order' => 15,
+            'global' => Attribute::SCOPE_GLOBAL,
+            'used_in_product_listing' => false,
             'visible_on_front' => false,
-            'used_in_product_listing' => true,
-            'unique' => false,
-            'apply_to' => ''
         ]);
     }
 

@@ -17,7 +17,6 @@ use Magento\Framework\Message\Manager;
 use Magento\Framework\Stdlib\DateTime\Filter\Date;
 use Magento\Framework\View\Result\PageFactory;
 use Edu\CmsSimpleBadge\Api\BadgesRepositoryInterface;
-use Edu\CmsSimpleBadge\Api\Data\BadgesInterface;
 use Edu\CmsSimpleBadge\Api\Data\BadgesInterfaceFactory;
 use Edu\CmsSimpleBadge\Controller\Adminhtml\Badges;
 use Edu\CmsSimpleBadge\Model\Uploader;

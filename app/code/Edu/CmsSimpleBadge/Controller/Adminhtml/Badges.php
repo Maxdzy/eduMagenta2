@@ -23,7 +23,7 @@ abstract class Badges extends Action
     const ACTION_RESOURCE = 'Edu_CmsSimpleBadge::badges';
 
     /**
-     * Image repository
+     * Badges repository
      *
      * @var BadgesRepositoryInterface
      */

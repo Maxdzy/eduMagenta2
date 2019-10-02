@@ -79,4 +79,12 @@
             </argument>
         </arguments>
     </type>
+
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="Badge" xsi:type="object">Edu\CmsSimpleBadge\Console\Command\badgesList</item>
+            </argument>
+        </arguments>
+    </type>
 </config>

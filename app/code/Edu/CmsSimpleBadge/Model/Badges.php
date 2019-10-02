@@ -127,9 +127,7 @@ class Badges extends AbstractModel implements BadgesInterface
         return $url;
     }
 
-    //////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-    /**
+   /**
      * Get BadgeId.
      *
      * @return int

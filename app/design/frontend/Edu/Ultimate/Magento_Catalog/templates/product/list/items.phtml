@@ -9,7 +9,7 @@
 
 <?php
 $type = $block->getType();
-if($type == 'related') {
+if ($type == 'related') {
     /** @var \Magento\Catalog\Block\Product\ProductList\Related $block */
     if ($exist = $block->getItems()->getSize()) {
         $type = 'related';
@@ -27,7 +27,7 @@ if($type == 'related') {
         $templateType = null;
         $description = false;
     }
-}else{
+} else {
     $exist = null;
 }
 ?>
@@ -72,6 +72,19 @@ if($type == 'related') {
                                             <?= $block->escapeHtml($_item->getName()) ?>
                                         </a>
                                     </strong>
+
+
+                                    <?php
+                                    $attribute = $_item->getExtensionAttributes('badges_multiselect');
+                                    if ($attribute!=null) {
+                                        var_dump($attribute);
+                                    }
+                                    $attribute = $_item->getCustomAttribute('badges_select');
+                                    if ($attribute!=null) {
+                                        var_dump($attribute->getValue());
+                                    }
+                                    ?>
+                                    Collapse 222
 
                                     <?= /* @escapeNotVerified */
                                     $block->getProductPrice($_item) ?>

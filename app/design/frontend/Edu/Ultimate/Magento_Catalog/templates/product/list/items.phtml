@@ -75,14 +75,18 @@ if ($type == 'related') {
 
 
                                     <?php
-                                    $attribute = $_item->getExtensionAttributes('badges_multiselect');
+
+                                    print_r($_item->getResource()->getAttribute('badges_select')->getFrontend()->getValue($_item));
+                                    //print_r($_item->getCustomAttribute('name'));
+                                    /*$attribute = $_item->getExtensionAttributes('badges_multiselect');
                                     if ($attribute!=null) {
                                         var_dump($attribute);
                                     }
                                     $attribute = $_item->getCustomAttribute('badges_select');
                                     if ($attribute!=null) {
                                         var_dump($attribute->getValue());
-                                    }
+                                    }*/
+                                    break;
                                     ?>
                                     Collapse 222
 

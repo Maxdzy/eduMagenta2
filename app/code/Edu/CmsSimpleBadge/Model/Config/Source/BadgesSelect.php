@@ -23,9 +23,9 @@ class BadgesSelect extends AbstractSource
      */
     public function __construct(
         BadgesFactory $badges
-    )
-    {
+    ) {
         $this->badges = $badges;
+        $this->options = [];
     }
 
     /**
@@ -35,26 +35,16 @@ class BadgesSelect extends AbstractSource
      */
     public function getAllOptions()
     {
-        if ($this->options === null) {
-            $badges = $this->badges->create()->getCollection();
-            $this->options = [];
-            foreach ($badges as $item) {
-                if ($item->getData()['status'] == 1) {
-                    $this->options[] = [
-                        'value' => $item->getData()['badge_id'],
-                        'label' => __($item->getData()['name'])
-                    ];
-                }
-            }
-        }
-
-        return $this->options;
+        return $this->toOptionArray();
     }
 
     final public function toOptionArray()
     {
         $badges = $this->badges->create()->getCollection();
-        $this->options = [];
+        $this->options[] = [
+            'value' => 0,
+            'label' => __('---- Empty ----')
+        ];
         foreach ($badges as $item) {
             if ($item->getData()['status'] == 1) {
                 $this->options[] = [

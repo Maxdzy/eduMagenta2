@@ -60,7 +60,7 @@ class AddNewColumnProduct implements
             'sort_order' => 15,
             'global' => Attribute::SCOPE_GLOBAL,
             'used_in_product_listing' => false,
-            'visible_on_front' => false,
+            'visible_on_front' => true,
         ]);
     }
 

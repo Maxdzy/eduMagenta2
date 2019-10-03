@@ -76,7 +76,7 @@ if ($type == 'related') {
 
                                     <?php
 
-                                    print_r($_item->getResource()->getAttribute('badges_select')->getFrontend()->getValue($_item));
+                                    //print_r($_item->getResource()->getAttribute('badges_select')->getFrontend()->getValue($_item));
                                     //print_r($_item->getCustomAttribute('name'));
                                     /*$attribute = $_item->getExtensionAttributes('badges_multiselect');
                                     if ($attribute!=null) {
@@ -86,6 +86,8 @@ if ($type == 'related') {
                                     if ($attribute!=null) {
                                         var_dump($attribute->getValue());
                                     }*/
+                                    print_r($_item->getBadgesList());
+                                    echo $_item->getBadgesList();
                                     break;
                                     ?>
                                     Collapse 222

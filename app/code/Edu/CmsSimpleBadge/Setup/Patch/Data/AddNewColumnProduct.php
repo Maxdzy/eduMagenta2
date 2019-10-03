@@ -48,18 +48,18 @@ class AddNewColumnProduct implements
         /** @var EavSetup $eavSetup */
         $eavSetup = $this->eavSetupFactory->create(['setup' => $this->moduleDataSetup]);
 
-        $eavSetup->addAttribute(Product::ENTITY, 'badges_multiselect', [
+        $eavSetup->addAttribute(Product::ENTITY, 'badges_list', [
             'group' => 'General',
-            'type' => 'int',
-            'label' => 'Badges multiselect',
-            'backend' => '',
+            'type' => 'text',
+            'label' => 'Badges list',
+            'used_in_product_listing' => true,
+            'backend' => 'Magento\Eav\Model\Entity\Attribute\Backend\ArrayBackend',
             'input' => 'multiselect',
             'wysiwyg_enabled'   => false,
             'source' => 'Edu\CmsSimpleBadge\Model\Config\Source\BadgesSelect',
             'required' => false,
             'sort_order' => 15,
             'global' => Attribute::SCOPE_GLOBAL,
-            'used_in_product_listing' => false,
             'visible_on_front' => true,
         ]);
     }

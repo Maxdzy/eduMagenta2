@@ -60,9 +60,11 @@ class badgesList extends Command
     {
         $product_id=5;
         $_product = $this->_objectManager->get('Magento\Catalog\Model\Product')->load($product_id);
-        $p = $_product->getResource()->getAttribute('badges_select')->getFrontend()->getValue($_product);
-        print_r($p);
+        $p = $_product->getData('badges_list');
+        $q = $_product->getBadgesList();
+        //print_r($p);
         $output->writeln($p);
+        $output->writeln($q);
 
 
         /*$badges = $this->badges->create()->getCollection();

@@ -4,13 +4,14 @@
  * See COPYING.txt for license details.
  */
 // @codingStandardsIgnoreFile
-/* @var $block \Magento\Catalog\Block\Product\AbstractProduct */
-?>
+use Magento\Catalog\Block\Product\AbstractProduct;
+use Edu\Ultimate\Magento_Catalog\Block\Product\ProductList\Related;
 
-<?php
+/* @var $block AbstractProduct */
+
 $type = $block->getType();
 if ($type == 'related') {
-    /** @var \Magento\Catalog\Block\Product\ProductList\Related $block */
+    /** @var Related $block */
     if ($exist = $block->getItems()->getSize()) {
         $type = 'related';
         $class = $type;
@@ -30,8 +31,8 @@ if ($type == 'related') {
 } else {
     $exist = null;
 }
-?>
-<?php if ($exist): ?>
+
+if ($exist): ?>
     <div class="block <?= /* @escapeNotVerified */
         $class ?>" data-mage-init='{"relatedProducts":{"relatedCheckbox":".related.checkbox"}}'
         data-limit="<?= /* @escapeNotVerified */
@@ -75,22 +76,16 @@ if ($type == 'related') {
 
 
                                     <?php
-
-                                    //print_r($_item->getResource()->getAttribute('badges_select')->getFrontend()->getValue($_item));
-                                    //print_r($_item->getCustomAttribute('name'));
-                                    /*$attribute = $_item->getExtensionAttributes('badges_multiselect');
-                                    if ($attribute!=null) {
-                                        var_dump($attribute);
+                                    if ($_item->getBadgesList()!=null) {
+                                        echo $_item->getBadgesList();
+                                        echo '<br/>';
+                                        echo '<br/>';
+                                        echo '<br/>';
+                                        //if ($badges->getBadges()!=null) {
+                                        //    echo $badges->getBadges();
+                                        //}
                                     }
-                                    $attribute = $_item->getCustomAttribute('badges_select');
-                                    if ($attribute!=null) {
-                                        var_dump($attribute->getValue());
-                                    }*/
-                                    print_r($_item->getBadgesList());
-                                    echo $_item->getBadgesList();
-                                    break;
                                     ?>
-                                    Collapse 222
 
                                     <?= /* @escapeNotVerified */
                                     $block->getProductPrice($_item) ?>

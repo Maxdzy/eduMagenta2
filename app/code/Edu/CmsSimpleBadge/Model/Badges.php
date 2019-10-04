@@ -89,7 +89,7 @@ class Badges extends AbstractModel implements BadgesInterface
      */
     public function getImage()
     {
-        return $this->getData(BadgesInterface::BADGES);
+        return $this->getData(BadgesInterface::IMAGE_URL);
     }
 
     /**
@@ -100,7 +100,7 @@ class Badges extends AbstractModel implements BadgesInterface
      */
     public function setImage($badges)
     {
-        return $this->setData(BadgesInterface::BADGES, $badges);
+        return $this->setData(BadgesInterface::IMAGE_URL, $badges);
     }
 
     /**
@@ -161,16 +161,6 @@ class Badges extends AbstractModel implements BadgesInterface
     public function setName($name)
     {
         return $this->setData(self::NAME, $name);
-    }
-
-    /**
-     * Get getImage_url.
-     *
-     * @return varchar
-     */
-    public function getImageUrl2()
-    {
-        return $this->getData(self::IMAGE_URL);
     }
 
     /**

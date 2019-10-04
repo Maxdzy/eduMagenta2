@@ -5,10 +5,9 @@
  * @author      Maxim Dzyuba
  */
 
-namespace Edu\CmsSimpleBadge\Block\Product\View\Gallery;
+namespace Edu\CmsSimpleBadge\Block\Product\View;
 
 use Edu\CmsSimpleBadge\Model\BadgesFactory;
-use Edu\CmsSimpleBadge\Model\Uploader;
 use Magento\Catalog\Block\Product\Context;
 use Magento\Catalog\Block\Product\View\Gallery as ParentGallery;
 use Magento\Catalog\Model\Product\Gallery\ImagesConfigFactoryInterface;
@@ -40,8 +39,7 @@ class Gallery extends ParentGallery
         ImagesConfigFactoryInterface $imagesConfigFactory = null,
         array $galleryImagesConfig = [],
         UrlBuilder $urlBuilder = null
-    )
-    {
+    ) {
         $this->badges = $badges;
         parent::__construct(
             $context,
@@ -62,13 +60,16 @@ class Gallery extends ParentGallery
             foreach ($badgesId as $id) {
                 $badge = $this->badges->create()->load($id);
                 try {
-                    if ($badge->getStatus()) {
+                    if ($badge->getStatus() && $id != 0) {
                         $result .= "<img src='{$badge->getImageUrl()}' 
                                     data_badgeId='{$id}'
+                                    alt='{$badge->getName()}'
                                     class='product_badge' />";
                     }
                 } catch (LocalizedException $e) {
                     echo "error";
+                } catch (\Exception $e) {
+                    echo "error getImageUrl";
                 }
             }
         }

@@ -206,6 +206,9 @@ p {
       height: 7.4rem;
       border-radius: 5px; }
 
+.product-item-info {
+  width: 100% !important; }
+
 /* Slider */
 .slick-slider {
   position: relative;

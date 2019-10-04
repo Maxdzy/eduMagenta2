@@ -5,7 +5,7 @@
  */
 // @codingStandardsIgnoreFile
 use Magento\Catalog\Block\Product\AbstractProduct;
-use Edu\Ultimate\Magento_Catalog\Block\Product\ProductList\Related;
+use Magento\Catalog\Block\Product\ProductList\Related;
 
 /* @var $block AbstractProduct */
 
@@ -59,6 +59,13 @@ if ($exist): ?>
                                 <?= /* @escapeNotVerified */
                                 '<!-- ' . $image . '-->' ?>
 
+                                <div style="position: relative">
+                                    <?php
+                                    $badgesList = $_item->getData('badges_list');
+                                    echo $block->renderBadge($badgesList);
+                                    ?>
+                                </div>
+
                                 <a href="<?= /* @escapeNotVerified */
                                 $block->getProductUrl($_item) ?>" class="product photo product-item-photo">
                                     <?= $block->getImage($_item, $image)->toHtml() ?>
@@ -73,19 +80,6 @@ if ($exist): ?>
                                             <?= $block->escapeHtml($_item->getName()) ?>
                                         </a>
                                     </strong>
-
-
-                                    <?php
-                                    if ($_item->getBadgesList()!=null) {
-                                        echo $_item->getBadgesList();
-                                        echo '<br/>';
-                                        echo '<br/>';
-                                        echo '<br/>';
-                                        //if ($badges->getBadges()!=null) {
-                                        //    echo $badges->getBadges();
-                                        //}
-                                    }
-                                    ?>
 
                                     <?= /* @escapeNotVerified */
                                     $block->getProductPrice($_item) ?>

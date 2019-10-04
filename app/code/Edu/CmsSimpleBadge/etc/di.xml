@@ -89,5 +89,8 @@
     </type>
 
     <preference for="\Magento\Catalog\Block\Product\View\Gallery"
-                type="Edu\CmsSimpleBadge\Block\Product\View\Gallery\Gallery" />
+                type="Edu\CmsSimpleBadge\Block\Product\View\Gallery" />
+
+    <preference for="\Magento\Catalog\Block\Product\ProductList\Related"
+                type="Edu\CmsSimpleBadge\Block\Product\ProductList\Related" />
 </config>

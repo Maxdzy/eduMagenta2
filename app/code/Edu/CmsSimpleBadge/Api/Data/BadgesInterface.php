@@ -23,13 +23,6 @@ interface BadgesInterface
     const UPDATE_TIME = 'update_time';
 
     /**
-     * Get ID
-     *
-     * @return int|null
-     */
-    public function getId();
-
-    /**
      * Get BadgeId.
      *
      * @return int
@@ -61,7 +54,7 @@ interface BadgesInterface
     public function getImageUrl();
 
     /**
-     * Set Image_url.
+     * Set ImageUrl.
      */
     public function setImageUrl($imageUrl);
 

@@ -93,4 +93,8 @@
 
     <preference for="\Magento\Catalog\Block\Product\ProductList\Related"
                 type="Edu\CmsSimpleBadge\Block\Product\ProductList\Related" />
+
+    <preference for="\Magento\CatalogWidget\Block\Product\ProductsList"
+                type="Edu\CmsSimpleBadge\Block\Product\ProductsList" />
+
 </config>

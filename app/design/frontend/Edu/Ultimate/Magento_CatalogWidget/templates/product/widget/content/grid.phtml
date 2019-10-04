@@ -1,14 +1,16 @@
 <?php
 /**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
+ * @category    Edu
+ * @package     Edu\CmsSimpleBadge
+ * @author      Maxim Dzyuba
  */
 
-use Magento\Framework\App\Action\Action;
+use Magento\Catalog\Block\Product\ReviewRendererInterface;
+use Edu\CmsSimpleBadge\Block\Product\ProductsList;
 
 // @codingStandardsIgnoreFile
 
-/** @var \Magento\CatalogWidget\Block\Product\ProductsList $block */
+/** @var ProductsList $block */
 ?>
 <?php if ($exist = ($block->getProductCollection() && $block->getProductCollection()->getSize())): ?>
     <?php
@@ -19,7 +21,7 @@ use Magento\Framework\App\Action\Action;
     $showWishlist = true;
     $showCompare = true;
     $showCart = true;
-    $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+    $templateType = ReviewRendererInterface::SHORT_VIEW;
     $description = false;
     ?>
     <div class="block widget block-products-list <?= /* @noEscape */
@@ -45,6 +47,12 @@ use Magento\Framework\App\Action\Action;
                     ?>
                     <li class="product-item">
                         <a href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>">
+                            <?php
+                                $badgesList = $_item->getData('badges_list');
+                            ?>
+                            <div style="position: relative">
+                                <?= $block->renderBadge($badgesList) ?>
+                            </div>
                             <div class="product-item-info">
                                 <div class="product-item-photo">
                                     <?= $block->getImage($_item, $image)->toHtml() ?>

@@ -5,18 +5,29 @@
  * @author      Maxim Dzyuba
  */
 
-namespace Edu\CmsSimpleBadge\Block\Product\ProductList;
+namespace Edu\CmsSimpleBadge\Block\Product;
 
+//  Magento\CatalogWidget\Block\Product;
 
 use Edu\CmsSimpleBadge\Model\BadgesFactory;
 use Magento\Catalog\Block\Product\Context;
 use Magento\Catalog\Model\Product\Visibility;
-use Magento\Checkout\Model\ResourceModel\Cart;
-use Magento\Checkout\Model\Session;
+use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory;
+use Magento\CatalogWidget\Model\Rule;
 use Magento\Framework\Exception\LocalizedException;
-use Magento\Framework\Module\Manager;
+use Magento\Framework\Serialize\Serializer\Json;
+use Magento\Framework\Url\EncoderInterface;
+use Magento\Framework\View\LayoutFactory;
+use Magento\Rule\Model\Condition\Sql\Builder;
+use Magento\Widget\Helper\Conditions;
 
-class Related extends \Magento\Catalog\Block\Product\ProductList\Related
+/**
+ * Catalog Products List widget block
+ *
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ * @SuppressWarnings(PHPMD.ExcessiveParameterList)
+ */
+class ProductsList extends \Magento\CatalogWidget\Block\Product\ProductsList
 {
     /**
      * Badges repository
@@ -24,35 +35,50 @@ class Related extends \Magento\Catalog\Block\Product\ProductList\Related
      * @var BadgesFactory
      */
     protected $badges;
-
     /**
      * @param Context $context
-     * @param Cart $checkoutCart
+     * @param CollectionFactory $productCollectionFactory
      * @param Visibility $catalogProductVisibility
-     * @param Session $checkoutSession
-     * @param Manager $moduleManager
+     * @param \Magento\Framework\App\Http\Context $httpContext
+     * @param Builder $sqlBuilder
+     * @param Rule $rule
+     * @param Conditions $conditionsHelper
      * @param array $data
+     * @param Json|null $json
+     * @param LayoutFactory|null $layoutFactory
+     * @param \Magento\Framework\Url\EncoderInterface|null $urlEncoder
+     *
+     * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      */
     public function __construct(
         BadgesFactory $badges,
         Context $context,
-        Cart $checkoutCart,
+        CollectionFactory $productCollectionFactory,
         Visibility $catalogProductVisibility,
-        Session $checkoutSession,
-        Manager $moduleManager,
-        array $data = []
+        \Magento\Framework\App\Http\Context $httpContext,
+        Builder $sqlBuilder,
+        Rule $rule,
+        Conditions $conditionsHelper,
+        array $data = [],
+        Json $json = null,
+        LayoutFactory $layoutFactory = null,
+        EncoderInterface $urlEncoder = null
     ) {
         $this->badges = $badges;
         parent::__construct(
             $context,
-            $checkoutCart,
+            $productCollectionFactory,
             $catalogProductVisibility,
-            $checkoutSession,
-            $moduleManager,
-            $data
+            $httpContext,
+            $sqlBuilder,
+            $rule,
+            $conditionsHelper,
+            $data,
+            $json,
+            $layoutFactory,
+            $urlEncoder
         );
     }
-
 
     public function renderBadge($badgeIdList = null)
     {

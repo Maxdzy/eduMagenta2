@@ -6,6 +6,10 @@ use Edu\CmsSimpleBadge\Model\BadgesFactory;
 use Magento\Catalog\Block\Product\Context;
 use Magento\Framework\Exception\LocalizedException;
 
+/**
+ * Class Block
+ * @package Edu\CmsSimpleBadge\Block\Product\ProductList\Item
+ */
 class Block extends \Magento\Catalog\Block\Product\ProductList\Item\Block
 {
     /**
@@ -15,6 +19,12 @@ class Block extends \Magento\Catalog\Block\Product\ProductList\Item\Block
      */
     protected $badges;
 
+    /**
+     * Block constructor.
+     * @param BadgesFactory $badges
+     * @param Context $context
+     * @param array $data
+     */
     public function __construct(
         BadgesFactory $badges,
         Context $context,
@@ -24,6 +34,10 @@ class Block extends \Magento\Catalog\Block\Product\ProductList\Item\Block
         parent::__construct($context, $data);
     }
 
+    /**
+     * @param null $badgeIdList
+     * @return string
+     */
     public function renderBadge($badgeIdList = null)
     {
         $result = "";

@@ -4,10 +4,15 @@
  * @package     Edu\CmsSimpleBadge
  * @author      Maxim Dzyuba
  */
+
 namespace Edu\CmsSimpleBadge\Block\Adminhtml\Badges\Edit\Buttons;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 
+/**
+ * Class Save
+ * @package Edu\CmsSimpleBadge\Block\Adminhtml\Badges\Edit\Buttons
+ */
 class Save extends Generic implements ButtonProviderInterface
 {
     /**

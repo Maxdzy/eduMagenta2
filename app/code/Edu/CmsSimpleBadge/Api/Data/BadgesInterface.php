@@ -38,7 +38,7 @@ interface BadgesInterface
     /**
      * Get Name.
      *
-     * @return varchar
+     * @return string
      */
     public function getName();
 
@@ -51,7 +51,7 @@ interface BadgesInterface
     /**
      * Get getImage_url.
      *
-     * @return varchar
+     * @return string
      */
     public function getImageUrl();
 
@@ -64,7 +64,7 @@ interface BadgesInterface
     /**
      * Get Status.
      *
-     * @return varchar
+     * @return string
      */
     public function getStatus();
 
@@ -77,7 +77,7 @@ interface BadgesInterface
     /**
      * Get CreatedAt.
      *
-     * @return varchar
+     * @return string
      */
     public function getCreatedAt();
 
@@ -90,7 +90,7 @@ interface BadgesInterface
     /**
      * Get UpdateTime.
      *
-     * @return varchar
+     * @return string
      */
     public function getUpdateTime();
 

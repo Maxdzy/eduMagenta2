@@ -1,6 +1,5 @@
 <?php
 /**
- * Edu Admin Badges Map Record Save Controller.
  * @category  Edu
  * @package   Edu\CmsSimpleBadge
  * @author    Maxim Dzyuba

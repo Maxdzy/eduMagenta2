@@ -38,7 +38,6 @@ class Add extends Action
      */
     public function execute()
     {
-
         $resultForward = $this->resultForwardFactory->create();
         return $resultForward->forward('edit');
     }

@@ -8,12 +8,16 @@
 namespace Edu\CmsSimpleBadge\Block\Adminhtml\Badges\Edit\Buttons;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
+use Edu\CmsSimpleBadge\Block\Adminhtml\Badges\Edit\Buttons\Generic;
 
+/**
+ * Class Back
+ * @package Edu\CmsSimpleBadge\Block\Adminhtml\Badges\Edit\Buttons
+ */
 class Back extends Generic implements ButtonProviderInterface
 {
+
     /**
-     * Get button data
-     *
      * @return array
      */
     public function getButtonData()
@@ -26,9 +30,8 @@ class Back extends Generic implements ButtonProviderInterface
         ];
     }
 
+
     /**
-     * Get URL for back (reset) button
-     *
      * @return string
      */
     public function getBackUrl()

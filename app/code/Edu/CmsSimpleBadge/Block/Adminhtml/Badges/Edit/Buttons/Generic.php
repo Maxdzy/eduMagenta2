@@ -4,12 +4,17 @@
  * @package     Edu\CmsSimpleBadge
  * @author      Maxim Dzyuba
  */
+
 namespace Edu\CmsSimpleBadge\Block\Adminhtml\Badges\Edit\Buttons;
 
 use Edu\CmsSimpleBadge\Api\Data\BadgesInterface;
 use Magento\Backend\Block\Widget\Context;
 use Magento\Framework\Exception\NoSuchEntityException;
 
+/**
+ * Class Generic
+ * @package Edu\CmsSimpleBadge\Block\Adminhtml\Badges\Edit\Buttons
+ */
 class Generic
 {
     /**
@@ -37,7 +42,7 @@ class Generic
     /**
      * Return Badge ID
      *
-     * @return int|null
+     * @return int
      */
     public function getBadgeId()
     {

@@ -1,6 +1,5 @@
 <?php
 /**
- * Edu_CmsSimpleBadge Status Options Model.
  * @category    Edu
  * @package     Edu\CmsSimpleBadge
  * @author      Maxim Dzyuba

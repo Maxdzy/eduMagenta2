@@ -1,4 +1,10 @@
 <?php
+/*
+ * Edu_CmsCreateStore
+ * @category Edu
+ * @package Edu_CmsCreateStore
+ * @author Maxim Dzyuba
+ */
 
 namespace Edu\CmsCreateStore\Setup\Patch\Data;
 

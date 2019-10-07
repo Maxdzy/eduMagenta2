@@ -8,23 +8,29 @@
 
 namespace Edu\CmsSimpleBadge\Model;
 
-use Magento\Framework\Api\DataObjectHelper;
-use Magento\Framework\Exception\CouldNotSaveException;
-use Magento\Framework\Exception\StateException;
-use Magento\Framework\Exception\ValidatorException;
-use Magento\Framework\Exception\NoSuchEntityException;
 use Edu\CmsSimpleBadge\Api\BadgesRepositoryInterface;
 use Edu\CmsSimpleBadge\Api\Data\BadgesInterface;
 use Edu\CmsSimpleBadge\Api\Data\BadgesInterfaceFactory;
 use Edu\CmsSimpleBadge\Model\ResourceModel\Badges as ResourceBadges;
 use Edu\CmsSimpleBadge\Model\ResourceModel\Badges\CollectionFactory as BadgesCollectionFactory;
+use Magento\Framework\Api\DataObjectHelper;
+use Magento\Framework\Exception\CouldNotSaveException;
+use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Framework\Exception\StateException;
+use Magento\Framework\Exception\ValidatorException;
+use Magento\Framework\Model\AbstractModel;
 
+/**
+ * Class BadgesRepository
+ * @package Edu\CmsSimpleBadge\Model
+ */
 class BadgesRepository implements BadgesRepositoryInterface
 {
     /**
      * @var array
      */
     protected $instances = [];
+
     /**
      * @var ResourceBadges
      */
@@ -45,6 +51,13 @@ class BadgesRepository implements BadgesRepositoryInterface
      */
     protected $dataObjectHelper;
 
+    /**
+     * BadgesRepository constructor.
+     * @param ResourceBadges $resource
+     * @param BadgesCollectionFactory $badgesCollectionFactory
+     * @param BadgesInterfaceFactory $badgesInterfaceFactory
+     * @param DataObjectHelper $dataObjectHelper
+     */
     public function __construct(
         ResourceBadges $resource,
         BadgesCollectionFactory $badgesCollectionFactory,
@@ -59,13 +72,13 @@ class BadgesRepository implements BadgesRepositoryInterface
 
     /**
      * @param BadgesInterface $badges
-     * @return BadgesInterface
+     * @return BadgesInterface|AbstractModel|mixed
      * @throws CouldNotSaveException
      */
     public function save(BadgesInterface $badges)
     {
         try {
-            /** @var BadgesInterface|\Magento\Framework\Model\AbstractModel $badges */
+            /** @var BadgesInterface|AbstractModel $badges */
             $this->resource->save($badges);
         } catch (\Exception $exception) {
             throw new CouldNotSaveException(__(
@@ -77,8 +90,6 @@ class BadgesRepository implements BadgesRepositoryInterface
     }
 
     /**
-     * Get badges record
-     *
      * @param $badgesId
      * @return mixed
      * @throws NoSuchEntityException
@@ -88,8 +99,8 @@ class BadgesRepository implements BadgesRepositoryInterface
         if (!isset($this->instances[$badgesId])) {
             $badges = $this->badgesInterfaceFactory->create();
             $this->resource->load($badges, $badgesId);
-            if (!$badges->getId()) {
-                throw new NoSuchEntityException(__('Requested badges doesn\'t exist'));
+            if (!$badges->getBadgeId($badgesId)) {
+                throw new NoSuchEntityException(__('Requested badges does\'t exist'));
             }
             $this->instances[$badgesId] = $badges;
         }
@@ -97,34 +108,14 @@ class BadgesRepository implements BadgesRepositoryInterface
     }
 
     /**
-     * Get image record
-     *
-     * @param $badgesId
-     * @return mixed
-     * @throws NoSuchEntityException
-     */
-    public function getById($badgeId)
-    {
-        if (!isset($this->instances[$badgeId])) {
-            $badges = $this->imageInterfaceFactory->create();
-            $this->resource->load($badges, $badgeId);
-            if (!$badges->getId()) {
-                throw new NoSuchEntityException(__('Requested image doesn\'t exist'));
-            }
-            $this->instances[$badgeId] = $badges;
-        }
-        return $this->instances[$badgeId];
-    }
-
-    /**
      * @param BadgesInterface $badges
-     * @return bool
+     * @return bool|mixed
      * @throws CouldNotSaveException
      * @throws StateException
      */
     public function delete(BadgesInterface $badges)
     {
-        /** @var \Edu\CmsSimpleBadge\Api\Data\BadgesInterface|\Magento\Framework\Model\AbstractModel $badges */
+        /** @var BadgesInterface|AbstractModel $badges */
         $id = $badges->getId();
         try {
             unset($this->instances[$id]);
@@ -142,7 +133,10 @@ class BadgesRepository implements BadgesRepositoryInterface
 
     /**
      * @param $badgesId
-     * @return bool
+     * @return bool|mixed
+     * @throws CouldNotSaveException
+     * @throws NoSuchEntityException
+     * @throws StateException
      */
     public function deleteById($badgesId)
     {

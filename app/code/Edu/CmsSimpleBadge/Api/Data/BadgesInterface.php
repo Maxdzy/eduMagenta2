@@ -14,7 +14,6 @@ interface BadgesInterface
     /**
      * Constants for keys of data array. Identical to the name of the getter in snake case.
      */
-    const BADGES = 'badges';
     const BADGE_ID = 'badge_id';
     const NAME = 'name';
     const IMAGE_URL = 'image_url';
@@ -25,12 +24,14 @@ interface BadgesInterface
     /**
      * Get BadgeId.
      *
+     * @param $badgeId
      * @return int
      */
     public function getBadgeId($badgeId);
 
     /**
      * Set BadgeId.
+     * @param $badgeId
      */
     public function setBadgeId($badgeId);
 
@@ -43,6 +44,7 @@ interface BadgesInterface
 
     /**
      * Set Name.
+     * @param $name
      */
     public function setName($name);
 
@@ -55,6 +57,7 @@ interface BadgesInterface
 
     /**
      * Set ImageUrl.
+     * @param $imageUrl
      */
     public function setImageUrl($imageUrl);
 
@@ -67,6 +70,7 @@ interface BadgesInterface
 
     /**
      * Set Status.
+     * @param $status
      */
     public function setStatus($status);
 
@@ -79,6 +83,7 @@ interface BadgesInterface
 
     /**
      * Set CreatedAt.
+     * @param $createdAt
      */
     public function setCreatedAt($createdAt);
 
@@ -91,6 +96,7 @@ interface BadgesInterface
 
     /**
      * Set UpdateTime.
+     * @param $updateTime
      */
     public function setUpdateTime($updateTime);
 }

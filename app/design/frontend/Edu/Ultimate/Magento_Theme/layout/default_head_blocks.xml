@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/*
+ * Edu_Ultimate
+ * @category Edu
+ * @package Edu_Ultimate
+ * @author Maxim Dzyuba
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="assets/css/styles.css"/>
+        <script src_type="url" src="https://kit.fontawesome.com/0fdb539c7e.js"/>
+    </head>
+</page>

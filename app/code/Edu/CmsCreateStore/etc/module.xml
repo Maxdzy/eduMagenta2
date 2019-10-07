@@ -1,4 +1,12 @@
 <?xml version="1.0"?>
+<!--
+/*
+ * Edu_CmsCreateStore
+ * @category Edu
+ * @package Edu_CmsCreateStore
+ * @author Maxim Dzyuba
+ */
+-->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
     <module name="Edu_CmsCreateStore" setup_version="1.0.0"></module>

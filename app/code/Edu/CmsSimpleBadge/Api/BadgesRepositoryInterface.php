@@ -1,66 +1,46 @@
 <?php
 /**
- * Edu Admin Cagegory Map Record Save Controller.
+ * Edu Admin Badges Map Record Save Controller.
  * @category  Edu
- * @package   Edu_CmsSimpleBadge
+ * @package   Edu\CmsSimpleBadge
  * @author    Maxim Dzyuba
  */
 
 namespace Edu\CmsSimpleBadge\Api;
 
 use Edu\CmsSimpleBadge\Api\Data\BadgesInterface;
-use Magento\Framework\Exception\LocalizedException;
-use Magento\Framework\Exception\NoSuchEntityException;
 
 /**
- * @api
+ * Interface BadgesRepositoryInterface
+ * @package Edu\CmsSimpleBadge\Api
  */
 interface BadgesRepositoryInterface
 {
+
     /**
-     * Save page.
-     *
      * @param BadgesInterface $badges
-     * @return BadgesInterface
-     * @throws LocalizedException
+     * @return mixed
      */
     public function save(BadgesInterface $badges);
 
+
     /**
-     * Retrieve Badges.
-     *
-     * @param int $badgeId
-     * @return BadgesInterface
-     * @throws LocalizedException
+     * @param $badgeId
+     * @return mixed
      */
     public function getBadgeId($badgeId);
 
 
     /**
-     * Retrieve Badges.
-     *
-     * @param int $badgeId
-     * @return BadgesInterface
-     * @throws \Magento\Framework\Exception\LocalizedException
-     */
-    public function getById($badgeId);
-
-    /**
-     * Delete Badges.
-     *
      * @param BadgesInterface $badges
-     * @return bool true on success
-     * @throws LocalizedException
+     * @return mixed
      */
     public function delete(BadgesInterface $badges);
 
+
     /**
-     * Delete badge by ID.
-     *
-     * @param int $badgeId
-     * @return bool true on success
-     * @throws NoSuchEntityException
-     * @throws LocalizedException
+     * @param $badgeId
+     * @return mixed
      */
     public function deleteById($badgeId);
 }

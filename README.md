@@ -1,21 +1,39 @@
-#EDU270 scandiweb
+#Install Magento using Composer
 
-##4. Updating database data (migration scripts e.g. Configure store)
+##Magento Open Source
 
-Implement sticky header according to requirements.
+```composer create-project --repository=https://repo.magento.com/ magento/project-community-edition <install-directory-name>```
 
-Example:
 
-www.dropbox.com/s/gvmzf19lholly8d/Sticky_header_transition.mov?dl=0
+###Set file permissions
 
-https://www.loom.com/share/12489330f7b648a299c634dac0a7918a
+You must set read-write permissions for the web server group before you install the Magento software. This is necessary so that the Setup Wizard and command line can write files to the Magento file system.
 
-###Requirements
+cd /var/www/html/<magento install directory>
+find var generated vendor pub/static pub/media app/etc -type f -exec chmod g+w {} +
+find var generated vendor pub/static pub/media app/etc -type d -exec chmod g+ws {} +
+chown -R :www-data . # Ubuntu
+chmod u+x bin/magento
 
-When the user is scrolling down the header must be decreased to just the navigation menu.
+###DB mysql
+* create db "magento"
+* add user db "magento"
 
-The transition must happen smoothly. Logo and the search input should not dissapear during the transition 
-
-When scrolling back up, the menu should return to the original state.
-
-This transition must happen at 400px from the top of the page threshold 
+###Command line
+```
+sudo -su www-data php bin/magento setup:install \
+                      --base-url=http://magento2.local \
+                      --db-host=localhost \
+                      --db-name=magento \
+                      --db-user=magento \
+                      --db-password=magento \
+                      --admin-firstname=admin \
+                      --admin-lastname=admin \
+                      --admin-email=admin@admin.com \
+                      --admin-user=admin \
+                      --admin-password=admin123 \
+                      --language=en_US \
+                      --currency=USD \
+                      --timezone=America/Chicago \
+                      --use-rewrites=1
+```

@@ -4,6 +4,7 @@
  * @package     Edu\CmsSimpleBadge
  * @author      Maxim Dzyuba
  */
+
 namespace Edu\CmsSimpleBadge\Ui\Component\Listing\Column;
 
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
@@ -19,7 +20,7 @@ class BadgesActions extends Column
     /**
      * URL builder
      *
-     * @var \Magento\Framework\UrlInterface
+     * @var UrlInterface
      */
     protected $urlBuilder;
 

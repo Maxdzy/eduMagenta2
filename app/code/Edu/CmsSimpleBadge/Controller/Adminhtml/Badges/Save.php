@@ -8,20 +8,20 @@
 
 namespace Edu\CmsSimpleBadge\Controller\Adminhtml\Badges;
 
-use Edu\CmsSimpleBadge\Model\BadgesFactory;
-use Magento\Backend\App\Action\Context;
-use Magento\Framework\App\Filesystem\DirectoryList;
-use Magento\Framework\Api\DataObjectHelper;
-use Magento\Framework\Exception\LocalizedException;
-use Magento\Framework\Message\Manager;
-use Magento\Framework\Stdlib\DateTime\Filter\Date;
-use Magento\Framework\View\Result\PageFactory;
 use Edu\CmsSimpleBadge\Api\BadgesRepositoryInterface;
 use Edu\CmsSimpleBadge\Api\Data\BadgesInterfaceFactory;
 use Edu\CmsSimpleBadge\Controller\Adminhtml\Badges;
+use Edu\CmsSimpleBadge\Model\BadgesFactory;
 use Edu\CmsSimpleBadge\Model\Uploader;
 use Edu\CmsSimpleBadge\Model\UploaderPool;
+use Magento\Backend\App\Action\Context;
+use Magento\Framework\Api\DataObjectHelper;
+use Magento\Framework\App\Filesystem\DirectoryList;
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Message\Manager;
 use Magento\Framework\Registry;
+use Magento\Framework\Stdlib\DateTime\Filter\Date;
+use Magento\Framework\View\Result\PageFactory;
 
 class Save extends Badges
 {
@@ -43,7 +43,6 @@ class Save extends Badges
      * @var BadgesRepositoryInterface
      */
     protected $badgesRepository;
-
 
     /**
      * @var DataObjectHelper
@@ -80,8 +79,7 @@ class Save extends Badges
         BadgesInterfaceFactory $badgesInterfaceFactory,
         DataObjectHelper $dataObjectHelper,
         UploaderPool $uploaderPool
-    )
-    {
+    ) {
         parent::__construct($registry, $badgesRepository, $resultPageFactory, $dateFilter, $context);
         $this->badgesFactory = $badgesFactory;
         $this->messageManager = $messageManager;
@@ -119,11 +117,6 @@ class Save extends Badges
                 $rowData = $this->badgesFactory->create();
                 $rowData->setData($dataModel);
                 $this->badgesRepository->save($rowData);
-
-                //$this->dataObjectHelper->populateWithArray($model, $data, badgesInterface::class);
-                //$this->badgesRepository->save($model);
-
-
                 $this->messageManager->addSuccessMessage(__('You saved this badges.'));
                 $this->_getSession()->setFormData(false);
                 if ($this->getRequest()->getParam('back')) {

@@ -11,6 +11,7 @@ use Edu\CmsSimpleBadge\Model\Uploader;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\Controller\ResultFactory;
+use Magento\Framework\Controller\ResultInterface;
 
 class Upload extends Action
 {
@@ -41,7 +42,7 @@ class Upload extends Action
     /**
      * Upload file controller action
      *
-     * @return \Magento\Framework\Controller\ResultInterface
+     * @return ResultInterface
      */
     public function execute()
     {

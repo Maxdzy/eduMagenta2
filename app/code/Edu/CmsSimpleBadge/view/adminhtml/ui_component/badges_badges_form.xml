@@ -63,7 +63,7 @@
                     <item name="dataType" xsi:type="string">text</item>
                     <item name="label" xsi:type="string" translate="true">Badge ID</item>
                     <item name="formElement" xsi:type="string">input</item>
-                    <item name="source" xsi:type="string">image</item>
+                    <item name="source" xsi:type="string">badges</item>
                     <item name="dataScope" xsi:type="string">badge_id</item>
                 </item>
             </argument>
@@ -86,7 +86,7 @@
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="dataType" xsi:type="string">string</item>
-                    <item name="source" xsi:type="string">image_url</item>
+                    <item name="source" xsi:type="string">badges</item>
                     <item name="label" xsi:type="string" translate="true">Image</item>
                     <item name="visible" xsi:type="boolean">true</item>
                     <item name="formElement" xsi:type="string">fileUploader</item>

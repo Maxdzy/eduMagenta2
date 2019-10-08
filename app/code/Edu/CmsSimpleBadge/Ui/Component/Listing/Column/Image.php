@@ -84,7 +84,6 @@ class Image extends Column
                 $item[$fieldName . '_orig_src'] = $url;
             }
         }
-
         return $dataSource;
     }
 

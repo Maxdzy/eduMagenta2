@@ -4,12 +4,19 @@
  * @package     Edu\CmsSimpleBadge
  * @author      Maxim Dzyuba
  */
+
 namespace Edu\CmsSimpleBadge\Ui\DataProvider\Badges\Form\Modifier;
 
+use Edu\CmsSimpleBadge\Model\Badges;
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Ui\DataProvider\Modifier\ModifierInterface;
 use Edu\CmsSimpleBadge\Model\ResourceModel\Badges\CollectionFactory;
 use Edu\CmsSimpleBadge\Model\ResourceModel\Badges\Collection;
 
+/**
+ * Class BadgesData
+ * @package Edu\CmsSimpleBadge\Ui\DataProvider\Badges\Form\Modifier
+ */
 class BadgesData implements ModifierInterface
 {
     /**
@@ -38,22 +45,22 @@ class BadgesData implements ModifierInterface
     /**
      * @param array $data
      * @return array|mixed
-     * @throws \Magento\Framework\Exception\LocalizedException
+     * @throws LocalizedException
      */
     public function modifyData(array $data)
     {
-        $items = $this->collection->getItems();
-        /** @var $badges \Edu\CmsSimpleBadge\Model\Badges */
-        foreach ($items as $badges) {
-            $_data = $badges->getData();
-            if (isset($_data['badges'])) {
-                $badgesArr = [];
-                $badgesArr[0]['name'] = 'Image';
-                $badgesArr[0]['url'] = $badges->getImageUrl();
-                $_data['badges'] = $badgesArr;
+        $badges = $this->collection->getItems();
+        /** @var $badge Badges */
+        foreach ($badges as $badge) {
+            $_data = $badge->getData();
+            if (isset($_data['badge_id'])) {
+                $badgeArr = [];
+                $badgeArr[0]['name'] = $_data['name'];
+                $badgeArr[0]['image_url'] = $badge->getImageUrl();
+                $_data['image_url'] = $badge->getImageUrl(); //$badgeArr;
             }
-            $badges->setData($_data);
-            $data[$badges->getId()] = $_data;
+            $badge->setData($_data);
+            $data[$badge->getId()] = $_data;
         }
         return $data;
     }

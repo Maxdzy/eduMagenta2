@@ -59,7 +59,7 @@ class Badges extends AbstractModel implements BadgesInterface
         array $data = []
     ) {
         parent::__construct($context, $registry, $resource, $resourceCollection, $data);
-        $this->uploaderPool    = $uploaderPool;
+        $this->uploaderPool = $uploaderPool;
     }
 
     /**
@@ -95,7 +95,7 @@ class Badges extends AbstractModel implements BadgesInterface
     /**
      * Set image
      *
-     * @param $image
+     * @param $badges
      * @return $this
      */
     public function setImage($badges)
@@ -106,7 +106,7 @@ class Badges extends AbstractModel implements BadgesInterface
     /**
      * Get image URL
      *
-     * @return bool|string
+     * @return string
      * @throws LocalizedException
      * @throws \Exception
      */
@@ -114,25 +114,24 @@ class Badges extends AbstractModel implements BadgesInterface
     {
         $url = false;
         $badges = $this->getImage();
-        if ($badges) {
-            if (is_string($badges)) {
-                $uploader = $this->uploaderPool->getUploader('badges');
-                $url = $uploader->getBaseUrl() . $uploader->getBasePath() . $badges;
-            } else {
-                throw new LocalizedException(
-                    __('Something went wrong while getting the image url.')
-                );
-            }
+        if (is_string($badges)) {
+            $uploader = $this->uploaderPool->getUploader('badges');
+            $url = $uploader->getBaseUrl() . $uploader->getBasePath() . $badges;
+        } else {
+            throw new LocalizedException(
+                __('Something went wrong while getting the image url.')
+            );
         }
         return $url;
     }
 
-   /**
+    /**
      * Get BadgeId.
      *
+     * @param null $badgeId
      * @return int
      */
-    public function getBadgeId($badgeId=null)
+    public function getBadgeId($badgeId = null): int
     {
         return $this->getData(self::BADGE_ID);
     }

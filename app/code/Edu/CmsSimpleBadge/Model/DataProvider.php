@@ -54,7 +54,7 @@ class DataProvider extends AbstractDataProvider
      * @return array
      * @throws LocalizedException
      */
-    public function getData(): array
+    public function getData()
     {
         /** @var ModifierInterface $modifier */
         foreach ($this->pool->getModifiersInstances() as $modifier) {

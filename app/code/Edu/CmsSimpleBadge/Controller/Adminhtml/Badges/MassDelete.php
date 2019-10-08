@@ -15,8 +15,13 @@ use Magento\Backend\App\Action\Context;
 use Magento\Backend\Model\View\Result\Redirect;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Message\Manager;
 use Magento\Ui\Component\MassAction\Filter;
 
+/**
+ * Class MassDelete
+ * @package Edu\CmsSimpleBadge\Controller\Adminhtml\Badges
+ */
 class MassDelete extends Action
 {
     /**
@@ -31,17 +36,25 @@ class MassDelete extends Action
     protected $collectionFactory;
 
     /**
+     * @var Manager
+     */
+    protected $messageManager;
+
+    /**
      * @param Context $context
      * @param Filter $filter
      * @param CollectionFactory $collectionFactory
+     * @param Manager $messageManager
      */
     public function __construct(
         Context $context,
         Filter $filter,
-        CollectionFactory $collectionFactory
+        CollectionFactory $collectionFactory,
+        Manager $messageManager
     ) {
         $this->filter = $filter;
         $this->collectionFactory = $collectionFactory;
+        $this->messageManager = $messageManager;
         parent::__construct($context);
     }
 

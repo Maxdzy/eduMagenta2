@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace Edu\CmsSimpleBadge\Block\Frontend\Badges;
 
-use Edu\CmsSimpleBadge\Model\BadgesRepository;
+use Edu\CmsSimpleBadge\Model\BadgesRepositoryFactory as BadgesRepository;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Message\Manager;
 
@@ -56,7 +56,7 @@ class Render
             $badgesId = explode(',', $badgeIdList);
             $result.='<div class="relative">';
             foreach ($badgesId as $id) {
-                $badge = $this->badgesRepository->getBadgeId($id);
+                $badge = $this->badgesRepository->create()->getBadgeId($id);
                 try {
                     if ($badge->getStatus()) {
                         $result .= "<img src='{$badge->getImageUrl()}' 

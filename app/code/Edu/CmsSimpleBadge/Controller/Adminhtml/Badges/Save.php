@@ -17,12 +17,15 @@ use Edu\CmsSimpleBadge\Model\UploaderPool;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\Api\DataObjectHelper;
 use Magento\Framework\App\Filesystem\DirectoryList;
-use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Message\Manager;
 use Magento\Framework\Registry;
 use Magento\Framework\Stdlib\DateTime\Filter\Date;
 use Magento\Framework\View\Result\PageFactory;
 
+/**
+ * Class Save
+ * @package Edu\CmsSimpleBadge\Controller\Adminhtml\Badges
+ */
 class Save extends Badges
 {
     /**
@@ -101,33 +104,34 @@ class Save extends Badges
     {
         $data = $this->getRequest()->getPostValue();
         $resultRedirect = $this->resultRedirectFactory->create();
+
         if ($data) {
-            $id = $this->getRequest()->getParam('badges_id');
+            $id = $this->getRequest()->getParam('badge_id');
+
             if ($id) {
                 $model = $this->badgesRepository->getBadgeId($id);
             } else {
-                unset($data['badges_id']);
+                unset($data['badge_id']);
                 $model = $this->badgesFactory->create();
             }
 
             try {
-                $image = $this->getUploader('badges')->uploadFileAndGetName('image', $data);
+                $image = $this->getUploader('badges')->uploadFileAndGetName('image_url', $data);
                 $dataModel=[];
                 $dataModel['image_url'] = $image;
                 $dataModel['name'] = $this->getRequest()->getParam('name');
                 $dataModel['status'] = $this->getRequest()->getParam('status');
 
-                $rowData = $this->badgesFactory->create();
-                $rowData->setData($dataModel);
-                $this->badgesRepository->save($rowData);
+                $model->setData($dataModel);
+                $this->badgesRepository->save($model);
                 $this->messageManager->addSuccessMessage(__('You saved this badges.'));
                 $this->_getSession()->setFormData(false);
+
                 if ($this->getRequest()->getParam('back')) {
-                    return $resultRedirect->setPath('*/*/edit', ['badges_id' => $model->getId(), '_current' => true]);
+                    return $resultRedirect->setPath('*/*/edit', ['badge_id' => $model->getId(), '_current' => true]);
                 }
+
                 return $resultRedirect->setPath('*/*/');
-            } catch (LocalizedException $e) {
-                $this->messageManager->addErrorMessage($e->getMessage());
             } catch (\RuntimeException $e) {
                 $this->messageManager->addErrorMessage($e->getMessage());
             } catch (\Exception $e) {
@@ -138,8 +142,9 @@ class Save extends Badges
             }
 
             $this->_getSession()->setFormData($data);
-            return $resultRedirect->setPath('*/*/edit', ['badges_id' => $this->getRequest()->getParam('badge_id')]);
+            return $resultRedirect->setPath('*/*/edit', ['badge_id' => $this->getRequest()->getParam('badge_id')]);
         }
+
         return $resultRedirect->setPath('*/*/');
     }
 

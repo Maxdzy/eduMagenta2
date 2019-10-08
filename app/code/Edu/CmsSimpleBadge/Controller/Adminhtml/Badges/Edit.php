@@ -22,7 +22,6 @@ class Edit extends Badges
      */
     public function execute()
     {
-        //TODO change badges not work
         $badgeId = $this->getRequest()->getParam('badge_id');
         $resultPage = $this->resultPageFactory->create();
         $resultPage->setActiveMenu('Edu_CmsSimpleBadge::badges');

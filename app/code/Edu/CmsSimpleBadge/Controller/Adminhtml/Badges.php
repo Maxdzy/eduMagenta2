@@ -15,6 +15,10 @@ use Magento\Framework\View\Result\PageFactory;
 use Magento\Framework\Stdlib\DateTime\Filter\Date;
 use Edu\CmsSimpleBadge\Api\BadgesRepositoryInterface;
 
+/**
+ * Class Badges
+ * @package Edu\CmsSimpleBadge\Controller\Adminhtml
+ */
 abstract class Badges extends Action
 {
     /**

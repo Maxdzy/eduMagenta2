@@ -32,21 +32,6 @@ class ProductsList extends \Magento\CatalogWidget\Block\Product\ProductsList
      */
     protected $badgesRender;
 
-    /**
-     * ProductsList constructor.
-     * @param BadgesRender $badgesRender
-     * @param Context $context
-     * @param CollectionFactory $productCollectionFactory
-     * @param Visibility $catalogProductVisibility
-     * @param \Magento\Framework\App\Http\Context $httpContext
-     * @param Builder $sqlBuilder
-     * @param Rule $rule
-     * @param Conditions $conditionsHelper
-     * @param array $data
-     * @param Json|null $json
-     * @param LayoutFactory|null $layoutFactory
-     * @param EncoderInterface|null $urlEncoder
-     */
     public function __construct(
         BadgesRender $badgesRender,
         Context $context,

@@ -80,14 +80,6 @@
         </arguments>
     </type>
 
-    <type name="Magento\Framework\Console\CommandList">
-        <arguments>
-            <argument name="commands" xsi:type="array">
-                <item name="Badge" xsi:type="object">Edu\CmsSimpleBadge\Console\Command\badgesList</item>
-            </argument>
-        </arguments>
-    </type>
-
     <preference for="\Magento\Catalog\Block\Product\View\Gallery"
                 type="Edu\CmsSimpleBadge\Block\Product\View\Gallery" />
 

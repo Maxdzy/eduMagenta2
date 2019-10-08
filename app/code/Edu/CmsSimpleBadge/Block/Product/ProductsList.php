@@ -7,14 +7,12 @@
 
 namespace Edu\CmsSimpleBadge\Block\Product;
 
-//  Magento\CatalogWidget\Block\Product;
-
-use Edu\CmsSimpleBadge\Model\BadgesFactory;
+use Edu\CmsSimpleBadge\Block\Frontend\Badges\RenderFactory as BadgesRender;
 use Magento\Catalog\Block\Product\Context;
 use Magento\Catalog\Model\Product\Visibility;
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory;
 use Magento\CatalogWidget\Model\Rule;
-use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Serialize\Serializer\Json;
 use Magento\Framework\Url\EncoderInterface;
 use Magento\Framework\View\LayoutFactory;
@@ -30,12 +28,13 @@ use Magento\Widget\Helper\Conditions;
 class ProductsList extends \Magento\CatalogWidget\Block\Product\ProductsList
 {
     /**
-     * Badges repository
-     *
-     * @var BadgesFactory
+     * @var BadgesRender
      */
-    protected $badges;
+    protected $badgesRender;
+
     /**
+     * ProductsList constructor.
+     * @param BadgesRender $badgesRender
      * @param Context $context
      * @param CollectionFactory $productCollectionFactory
      * @param Visibility $catalogProductVisibility
@@ -46,12 +45,10 @@ class ProductsList extends \Magento\CatalogWidget\Block\Product\ProductsList
      * @param array $data
      * @param Json|null $json
      * @param LayoutFactory|null $layoutFactory
-     * @param \Magento\Framework\Url\EncoderInterface|null $urlEncoder
-     *
-     * @SuppressWarnings(PHPMD.ExcessiveParameterList)
+     * @param EncoderInterface|null $urlEncoder
      */
     public function __construct(
-        BadgesFactory $badges,
+        BadgesRender $badgesRender,
         Context $context,
         CollectionFactory $productCollectionFactory,
         Visibility $catalogProductVisibility,
@@ -64,7 +61,7 @@ class ProductsList extends \Magento\CatalogWidget\Block\Product\ProductsList
         LayoutFactory $layoutFactory = null,
         EncoderInterface $urlEncoder = null
     ) {
-        $this->badges = $badges;
+        $this->badgesRender = $badgesRender;
         parent::__construct(
             $context,
             $productCollectionFactory,
@@ -80,28 +77,13 @@ class ProductsList extends \Magento\CatalogWidget\Block\Product\ProductsList
         );
     }
 
-    public function renderBadge($badgeIdList = null)
+    /**
+     * @param null $badgeIdList
+     * @return string|null
+     * @throws NoSuchEntityException
+     */
+    public function getBadge($badgeIdList = null)
     {
-        $result = "";
-        if (isset($badgeIdList)) {
-            $badgesId = explode(',', $badgeIdList);
-            foreach ($badgesId as $id) {
-                $badge = $this->badges->create()->load($id);
-                try {
-                    if ($badge->getStatus() && $id != 0) {
-                        $result .= "<img src='{$badge->getImageUrl()}' 
-                                    data_badgeId='{$id}'
-                                    alt='{$badge->getName()}'
-                                    class='product_badge' />";
-                    }
-                } catch (LocalizedException $e) {
-                    echo "error";
-                } catch (\Exception $e) {
-                    echo "error getImageUrl";
-                }
-            }
-        }
-        return $result;
+        return $this->badgesRender->create()->renderBadges($badgeIdList);
     }
-
 }

@@ -1,10 +1,19 @@
 <?php
+/**
+ * @category    Edu
+ * @package     Edu\CmsSimpleBadge
+ * @author      Maxim Dzyuba
+ */
 
 namespace Edu\CmsSimpleBadge\Model\Config\Source;
 
 use Edu\CmsSimpleBadge\Model\BadgesFactory;
 use Magento\Eav\Model\Entity\Attribute\Source\AbstractSource;
 
+/**
+ * Class BadgesSelect
+ * @package Edu\CmsSimpleBadge\Model\Config\Source
+ */
 class BadgesSelect extends AbstractSource
 {
     /**
@@ -14,6 +23,9 @@ class BadgesSelect extends AbstractSource
      */
     protected $badges;
 
+    /**
+     * @var array
+     */
     protected $options;
 
     /**
@@ -25,7 +37,6 @@ class BadgesSelect extends AbstractSource
         BadgesFactory $badges
     ) {
         $this->badges = $badges;
-        $this->options = [];
     }
 
     /**
@@ -33,12 +44,15 @@ class BadgesSelect extends AbstractSource
      *
      * @return array
      */
-    public function getAllOptions()
+    public function getAllOptions(): array
     {
         return $this->toOptionArray();
     }
 
-    final public function toOptionArray()
+    /**
+     * @return array
+     */
+    final public function toOptionArray(): array
     {
         $badges = $this->badges->create()->getCollection();
         $this->options[] = [

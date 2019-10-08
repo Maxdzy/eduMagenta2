@@ -4,6 +4,7 @@
  * @package     Edu\CmsSimpleBadge
  * @author      Maxim Dzyuba
  */
+
 namespace Edu\CmsSimpleBadge\Ui\Component\Listing\Column;
 
 use Edu\CmsSimpleBadge\Model\Uploader;
@@ -13,6 +14,10 @@ use Magento\Framework\View\Element\UiComponentFactory;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Ui\Component\Listing\Columns\Column;
 
+/**
+ * Class Image
+ * @package Edu\CmsSimpleBadge\Ui\Component\Listing\Column
+ */
 class Image extends Column
 {
     const ALT_FIELD = 'name';
@@ -61,7 +66,7 @@ class Image extends Column
      * @param array $dataSource
      * @return array
      */
-    public function prepareDataSource(array $dataSource)
+    public function prepareDataSource(array $dataSource): array
     {
         if (isset($dataSource['data']['items'])) {
             $fieldName = $this->getData('name');
@@ -79,15 +84,16 @@ class Image extends Column
                 $item[$fieldName . '_orig_src'] = $url;
             }
         }
+
         return $dataSource;
     }
 
     /**
      * @param array $row
      *
-     * @return null|string
+     * @return string
      */
-    protected function getAlt($row)
+    protected function getAlt($row): string
     {
         $altField = $this->getData('config/altField') ?: self::ALT_FIELD;
         return isset($row[$altField]) ? $row[$altField] : null;

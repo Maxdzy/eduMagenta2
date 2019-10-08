@@ -1,11 +1,13 @@
 <?php
 /**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
+ * @category Edu
+ * @package Edu\CmsSimpleBadge
+ * @author Maxim Dzyuba <maxim.d@tdo.kz>
  */
 // @codingStandardsIgnoreFile
 use Magento\Catalog\Block\Product\AbstractProduct;
-use Magento\Catalog\Block\Product\ProductList\Related;
+use Edu\CmsSimpleBadge\Block\Product\ProductList\Related;
+use Magento\Framework\Exception\NoSuchEntityException;
 
 /* @var $block AbstractProduct */
 
@@ -58,14 +60,14 @@ if ($exist): ?>
                             <div class="product-item-info">
                                 <?= /* @escapeNotVerified */
                                 '<!-- ' . $image . '-->' ?>
-
-                                <div style="position: relative">
-                                    <?php
+                                <?php
                                     $badgesList = $_item->getData('badges_list');
-                                    echo $block->renderBadge($badgesList);
-                                    ?>
-                                </div>
-
+                                    try {
+                                        echo $block->getBadge($badgesList);
+                                    } catch (NoSuchEntityException $e) {
+                                        print_r($e);
+                                    }
+                                ?>
                                 <a href="<?= /* @escapeNotVerified */
                                 $block->getProductUrl($_item) ?>" class="product photo product-item-photo">
                                     <?= $block->getImage($_item, $image)->toHtml() ?>

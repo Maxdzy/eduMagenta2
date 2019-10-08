@@ -44,7 +44,7 @@ class Generic
      *
      * @return int
      */
-    public function getBadgeId()
+    public function getBadgeId(): ?int
     {
         try {
             return $this->badgesInterface->getBadgeId(
@@ -62,7 +62,7 @@ class Generic
      * @param   array $params
      * @return  string
      */
-    public function getUrl($route = '', $params = [])
+    public function getUrl($route = '', $params = []): string
     {
         return $this->context->getUrlBuilder()->getUrl($route, $params);
     }

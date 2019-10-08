@@ -7,6 +7,7 @@
 
 use Magento\Catalog\Block\Product\ReviewRendererInterface;
 use Edu\CmsSimpleBadge\Block\Product\ProductsList;
+use Magento\Framework\Exception\NoSuchEntityException;
 
 // @codingStandardsIgnoreFile
 
@@ -49,10 +50,12 @@ use Edu\CmsSimpleBadge\Block\Product\ProductsList;
                         <a href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>">
                             <?php
                                 $badgesList = $_item->getData('badges_list');
+                                try {
+                                    echo $block->getBadge($badgesList);
+                                } catch (NoSuchEntityException $e) {
+                                    print_r($e);
+                                }
                             ?>
-                            <div style="position: relative">
-                                <?= $block->renderBadge($badgesList) ?>
-                            </div>
                             <div class="product-item-info">
                                 <div class="product-item-photo">
                                     <?= $block->getImage($_item, $image)->toHtml() ?>

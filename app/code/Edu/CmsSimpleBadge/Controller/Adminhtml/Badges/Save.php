@@ -53,20 +53,24 @@ class Save extends Badges
      * @var UploaderPool
      */
     protected $uploaderPool;
+    /**
+     * @var BadgesInterfaceFactory
+     */
+    protected $badgesInterfaceFactory;
 
     /**
      * Save constructor.
      *
-     * @param BadgesRepositoryInterface $badgesRepository
+     * @param Context $context
+     * @param Registry $registry
      * @param PageFactory $resultPageFactory
      * @param Date $dateFilter
+     * @param BadgesFactory $badgesFactory
+     * @param BadgesRepositoryInterface $badgesRepository
      * @param Manager $messageManager
-     * @param BadgesInterfaceFactory $badgesFactory
+     * @param BadgesInterfaceFactory $badgesInterfaceFactory
      * @param DataObjectHelper $dataObjectHelper
      * @param UploaderPool $uploaderPool
-     * @param Context $context
-     * @param BadgesFactory $badgesFactory
-     * @param Registry $registry
      */
     public function __construct(
         Context $context,
@@ -92,7 +96,6 @@ class Save extends Badges
     /**
      * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      * @SuppressWarnings(PHPMD.NPathComplexity)
-     * @throws LocalizedException
      */
     public function execute()
     {

@@ -20,7 +20,7 @@ class Back extends Generic implements ButtonProviderInterface
     /**
      * @return array
      */
-    public function getButtonData()
+    public function getButtonData(): array
     {
         return [
             'label' => __('Back'),
@@ -34,7 +34,7 @@ class Back extends Generic implements ButtonProviderInterface
     /**
      * @return string
      */
-    public function getBackUrl()
+    public function getBackUrl(): string
     {
         return $this->getUrl('*/*/');
     }

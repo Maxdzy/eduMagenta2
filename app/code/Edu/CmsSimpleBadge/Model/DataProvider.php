@@ -9,10 +9,15 @@
 namespace Edu\CmsSimpleBadge\Model;
 
 use Edu\CmsSimpleBadge\Model\ResourceModel\Badges\CollectionFactory;
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Ui\DataProvider\AbstractDataProvider;
 use Magento\Ui\DataProvider\Modifier\ModifierInterface;
 use Magento\Ui\DataProvider\Modifier\PoolInterface;
 
+/**
+ * Class DataProvider
+ * @package Edu\CmsSimpleBadge\Model
+ */
 class DataProvider extends AbstractDataProvider
 {
     /**
@@ -28,7 +33,6 @@ class DataProvider extends AbstractDataProvider
      * @param PoolInterface $pool
      * @param array $meta
      * @param array $data
-     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function __construct(
         $name,
@@ -42,39 +46,21 @@ class DataProvider extends AbstractDataProvider
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
         $this->collection = $badgeCollectionFactory->create();
         $this->pool = $pool;
-        $this->meta = $this->prepareMeta($this->meta);
-    }
-
-    /**
-     * Prepares Meta
-     *
-     * @param array $meta
-     * @return array
-     * @throws \Magento\Framework\Exception\LocalizedException
-     */
-    public function prepareMeta(array $meta)
-    {
-        $meta = parent::getMeta();
-
-        /** @var ModifierInterface $modifier */
-        foreach ($this->pool->getModifiersInstances() as $modifier) {
-            $meta = $modifier->modifyMeta($meta);
-        }
-        return $meta;
     }
 
     /**
      * Get data
      *
      * @return array
-     * @throws \Magento\Framework\Exception\LocalizedException
+     * @throws LocalizedException
      */
-    public function getData()
+    public function getData(): array
     {
         /** @var ModifierInterface $modifier */
         foreach ($this->pool->getModifiersInstances() as $modifier) {
             $this->data = $modifier->modifyData($this->data);
         }
+
         return $this->data;
     }
 }

@@ -7,12 +7,12 @@
 
 namespace Edu\CmsSimpleBadge\Block\Product\View;
 
-use Edu\CmsSimpleBadge\Model\BadgesFactory;
+use Edu\CmsSimpleBadge\Block\Frontend\Badges\RenderFactory as BadgesRender;
 use Magento\Catalog\Block\Product\Context;
 use Magento\Catalog\Block\Product\View\Gallery as ParentGallery;
 use Magento\Catalog\Model\Product\Gallery\ImagesConfigFactoryInterface;
 use Magento\Catalog\Model\Product\Image\UrlBuilder;
-use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Json\EncoderInterface;
 use Magento\Framework\Stdlib\ArrayUtils;
 
@@ -24,14 +24,23 @@ use Magento\Framework\Stdlib\ArrayUtils;
 class Gallery extends ParentGallery
 {
     /**
-     * Badges repository
-     *
-     * @var BadgesFactory
+     * @var BadgesRender
      */
-    protected $badges;
+    protected $badgesRender;
 
+    /**
+     * Gallery constructor.
+     * @param BadgesRender $badgesRender
+     * @param Context $context
+     * @param ArrayUtils $arrayUtils
+     * @param EncoderInterface $jsonEncoder
+     * @param array $data
+     * @param ImagesConfigFactoryInterface|null $imagesConfigFactory
+     * @param array $galleryImagesConfig
+     * @param UrlBuilder|null $urlBuilder
+     */
     public function __construct(
-        BadgesFactory $badges,
+        BadgesRender $badgesRender,
         Context $context,
         ArrayUtils $arrayUtils,
         EncoderInterface $jsonEncoder,
@@ -40,7 +49,7 @@ class Gallery extends ParentGallery
         array $galleryImagesConfig = [],
         UrlBuilder $urlBuilder = null
     ) {
-        $this->badges = $badges;
+        $this->badgesRender = $badgesRender;
         parent::__construct(
             $context,
             $arrayUtils,
@@ -52,27 +61,13 @@ class Gallery extends ParentGallery
         );
     }
 
-    public function renderBadge($badgeIdList = null)
+    /**
+     * @param null $badgeIdList
+     * @return string|null
+     * @throws NoSuchEntityException
+     */
+    public function getBadge($badgeIdList = null)
     {
-        $result = "";
-        if (isset($badgeIdList)) {
-            $badgesId = explode(',', $badgeIdList);
-            foreach ($badgesId as $id) {
-                $badge = $this->badges->create()->load($id);
-                try {
-                    if ($badge->getStatus() && $id != 0) {
-                        $result .= "<img src='{$badge->getImageUrl()}' 
-                                    data_badgeId='{$id}'
-                                    alt='{$badge->getName()}'
-                                    class='product_badge' />";
-                    }
-                } catch (LocalizedException $e) {
-                    echo "error";
-                } catch (\Exception $e) {
-                    echo "error getImageUrl";
-                }
-            }
-        }
-        return $result;
+        return $this->badgesRender->create()->renderBadges($badgeIdList);
     }
 }

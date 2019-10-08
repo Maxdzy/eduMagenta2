@@ -71,10 +71,10 @@ class BadgesRepository implements BadgesRepositoryInterface
 
     /**
      * @param BadgesInterface $badges
-     * @return BadgesInterface|AbstractModel|mixed
+     * @return BadgesInterface
      * @throws CouldNotSaveException
      */
-    public function save(BadgesInterface $badges)
+    public function save(BadgesInterface $badges): BadgesInterface
     {
         try {
             /** @var BadgesInterface|AbstractModel $badges */
@@ -88,12 +88,13 @@ class BadgesRepository implements BadgesRepositoryInterface
         return $badges;
     }
 
+
     /**
      * @param $badgesId
-     * @return mixed
+     * @return object
      * @throws NoSuchEntityException
      */
-    public function getBadgeId($badgesId)
+    public function getBadgeId($badgesId): object
     {
         if (!isset($this->instances[$badgesId])) {
             $badges = $this->badgesInterfaceFactory->create();
@@ -108,11 +109,11 @@ class BadgesRepository implements BadgesRepositoryInterface
 
     /**
      * @param BadgesInterface $badges
-     * @return bool|mixed
+     * @return bool
      * @throws CouldNotSaveException
      * @throws StateException
      */
-    public function delete(BadgesInterface $badges)
+    public function delete(BadgesInterface $badges): bool
     {
         /** @var BadgesInterface|AbstractModel $badges */
         $id = $badges->getId();
@@ -132,12 +133,12 @@ class BadgesRepository implements BadgesRepositoryInterface
 
     /**
      * @param $badgesId
-     * @return bool|mixed
+     * @return bool
      * @throws CouldNotSaveException
      * @throws NoSuchEntityException
      * @throws StateException
      */
-    public function deleteById($badgesId)
+    public function deleteById($badgesId): bool
     {
         $badges = $this->getBadgeId($badgesId);
         return $this->delete($badges);

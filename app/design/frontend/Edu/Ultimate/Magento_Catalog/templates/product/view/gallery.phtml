@@ -1,19 +1,16 @@
 <?php
 /**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- */
-
-// @codingStandardsIgnoreFile
-
-/**
+ * @category Edu
+ * @package Edu\CmsSimpleBadge
+ * @author Maxim Dzyuba <maxim.d@tdo.kz>
+ *
  * Product media data template
  *
- * @var $block  Magento\Catalog\Block\Product\View\Gallery
+ * @var $block  Edu\CmsSimpleBadge\Block\Product\View\Gallery
  */
-?>
 
-<?php
+use Magento\Framework\Exception\NoSuchEntityException;
+
 $images = $block->getGalleryImages()->getItems();
 $mainImage = current(array_filter($images, function ($img) use ($block) {
     return $block->isMainImage($img);
@@ -28,10 +25,14 @@ $mainImageData = $mainImage ?
     $mainImage->getData('medium_image_url') :
     $helper->getDefaultPlaceholderUrl('image');
 $badgesList = $block->getProduct()->getData('badges_list');
+try {
+    echo $block->getBadge($badgesList);
+} catch (NoSuchEntityException $e) {
+    print_r($e);
+}
+
 ?>
-<div style="position: relative">
-    <?= $block->renderBadge($badgesList) ?>
-</div>
+
 <div class="gallery-placeholder _block-content-loading" data-gallery-role="gallery-placeholder">
     <img
             alt="main product photo"

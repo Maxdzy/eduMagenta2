@@ -10,8 +10,15 @@ namespace Edu\CmsSimpleBadge\Controller\Adminhtml\Badges;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
+use Magento\Backend\Model\View\Result\Forward;
 use Magento\Backend\Model\View\Result\ForwardFactory;
+use Magento\Framework\App\ResponseInterface;
+use Magento\Framework\Controller\ResultInterface;
 
+/**
+ * Class Add
+ * @package Edu\CmsSimpleBadge\Controller\Adminhtml\Badges
+ */
 class Add extends Action
 {
     /**
@@ -19,9 +26,9 @@ class Add extends Action
      */
     protected $resultForwardFactory;
 
+
     /**
      * Add constructor.
-     *
      * @param Context $context
      * @param ForwardFactory $resultForwardFactory
      */
@@ -33,12 +40,14 @@ class Add extends Action
         $this->resultForwardFactory = $resultForwardFactory;
     }
 
+
     /**
-     * Forward to edit
+     * @return ResultInterface
      */
     public function execute()
     {
         $resultForward = $this->resultForwardFactory->create();
+
         return $resultForward->forward('edit');
     }
 }

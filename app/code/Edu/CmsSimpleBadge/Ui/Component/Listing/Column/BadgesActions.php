@@ -7,11 +7,15 @@
 
 namespace Edu\CmsSimpleBadge\Ui\Component\Listing\Column;
 
+use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
 use Magento\Framework\View\Element\UiComponentFactory;
-use Magento\Framework\UrlInterface;
 use Magento\Ui\Component\Listing\Columns\Column;
 
+/**
+ * Class BadgesActions
+ * @package Edu\CmsSimpleBadge\Ui\Component\Listing\Column
+ */
 class BadgesActions extends Column
 {
     const URL_PATH_EDIT = 'badges/badges/edit';
@@ -44,11 +48,10 @@ class BadgesActions extends Column
 
     /**
      * Prepare Data Source
-     *
      * @param array $dataSource
      * @return array
      */
-    public function prepareDataSource(array $dataSource)
+    public function prepareDataSource(array $dataSource): array
     {
         if (isset($dataSource['data']['items'])) {
             foreach ($dataSource['data']['items'] as & $item) {
@@ -80,6 +83,7 @@ class BadgesActions extends Column
                 }
             }
         }
+
         return $dataSource;
     }
 }

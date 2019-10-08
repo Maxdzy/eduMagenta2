@@ -79,6 +79,9 @@ p {
   -webkit-flex-grow: 1;
   flex-grow: 1; }
 
+.relative {
+  position: relative; }
+
 .full-page {
   width: 100%;
   color: #85878f;

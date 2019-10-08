@@ -7,25 +7,29 @@
 
 namespace Edu\CmsSimpleBadge\Block\Product\ProductList;
 
-
-use Edu\CmsSimpleBadge\Model\BadgesFactory;
+use Edu\CmsSimpleBadge\Block\Frontend\Badges\RenderFactory as BadgesRender;
 use Magento\Catalog\Block\Product\Context;
 use Magento\Catalog\Model\Product\Visibility;
 use Magento\Checkout\Model\ResourceModel\Cart;
 use Magento\Checkout\Model\Session;
-use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Module\Manager;
 
+/**
+ * Class Related
+ * @package Edu\CmsSimpleBadge\Block\Product\ProductList
+ */
 class Related extends \Magento\Catalog\Block\Product\ProductList\Related
 {
-    /**
-     * Badges repository
-     *
-     * @var BadgesFactory
-     */
-    protected $badges;
 
     /**
+     * @var BadgesRender
+     */
+    protected $badgesRender;
+
+    /**
+     * Related constructor.
+     * @param BadgesRender $badgesRender
      * @param Context $context
      * @param Cart $checkoutCart
      * @param Visibility $catalogProductVisibility
@@ -34,7 +38,7 @@ class Related extends \Magento\Catalog\Block\Product\ProductList\Related
      * @param array $data
      */
     public function __construct(
-        BadgesFactory $badges,
+        BadgesRender $badgesRender,
         Context $context,
         Cart $checkoutCart,
         Visibility $catalogProductVisibility,
@@ -42,7 +46,7 @@ class Related extends \Magento\Catalog\Block\Product\ProductList\Related
         Manager $moduleManager,
         array $data = []
     ) {
-        $this->badges = $badges;
+        $this->badgesRender = $badgesRender;
         parent::__construct(
             $context,
             $checkoutCart,
@@ -53,29 +57,13 @@ class Related extends \Magento\Catalog\Block\Product\ProductList\Related
         );
     }
 
-
-    public function renderBadge($badgeIdList = null)
+    /**
+     * @param null $badgeIdList
+     * @return string|null
+     * @throws NoSuchEntityException
+     */
+    public function getBadge($badgeIdList = null)
     {
-        $result = "";
-        if (isset($badgeIdList)) {
-            $badgesId = explode(',', $badgeIdList);
-            foreach ($badgesId as $id) {
-                $badge = $this->badges->create()->load($id);
-                try {
-                    if ($badge->getStatus() && $id != 0) {
-                        $result .= "<img src='{$badge->getImageUrl()}' 
-                                    data_badgeId='{$id}'
-                                    alt='{$badge->getName()}'
-                                    class='product_badge' />";
-                    }
-                } catch (LocalizedException $e) {
-                    echo "error";
-                } catch (\Exception $e) {
-                    echo "error getImageUrl";
-                }
-            }
-        }
-        return $result;
+        return $this->badgesRender->create()->renderBadges($badgeIdList);
     }
-
 }

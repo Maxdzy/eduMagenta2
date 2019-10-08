@@ -1,0 +1,47 @@
+<?php
+/**
+ * @category    Scandiweb
+ * @package     Scandiweb/StoreFinder
+ * @author      Andris Bremanis <info@scandiweb.com>
+ * @copyright   Copyright (c) 2018 Scandiweb, Inc (https://scandiweb.com)
+ * @license     http://opensource.org/licenses/OSL-3.0 The Open Software License 3.0 (OSL-3.0)
+ */
+
+use Scandiweb\StoreFinder\Block\Gmap;
+
+/**
+ * @var Gmap $block
+ */
+
+$template = $block->getInfoWindowTemplate();
+?>
+<script type="text/javascript">
+    window.googleMapsApiKey = "<?= $block->getGoogleApiKey() ?>";
+    window.googleMapsMarkerIcon = "<?= $block->escapeUrl($block->getMapMarkerIcon()) ?>";
+    <?php if ($template !== null) : ?>
+    window.googleMapsInfoWindowTemplate = <?= json_encode($template) ?>;
+    <?php else : ?>
+    window.googleMapsInfoWindowTemplate = '<h4>%store_name%</h4>';
+    <?php endif ?>
+    window.googleMarkerClustererStyles = [{
+        "url": "<?= $block->escapeUrl($block->getMarkerClustererIcon('m1.png')) ?>",
+        "height": 53,
+        "width": 53
+    }, {
+        "url": "<?= $block->escapeUrl($block->getMarkerClustererIcon('m2.png')) ?>",
+        "height": 56,
+        "width": 56
+    }, {
+        "url": "<?= $block->escapeUrl($block->getMarkerClustererIcon('m3.png')) ?>",
+        "height": 66,
+        "width": 66
+    }, {
+        "url": "<?= $block->escapeUrl($block->getMarkerClustererIcon('m4.png')) ?>",
+        "height": 78,
+        "width": 78
+    }, {
+        "url": "<?= $block->escapeUrl($block->getMarkerClustererIcon('m5.png')) ?>",
+        "height": 90,
+        "width": 90
+    }];
+</script>

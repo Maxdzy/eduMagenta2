@@ -1,0 +1,17 @@
+<!--
+/**
+ * @category    Scandiweb
+ * @package     Scandiweb/StoreFinder
+ * @author      Andris Bremanis <info@scandiweb.com>
+ * @copyright   Copyright (c) 2018 Scandiweb, Inc (https://scandiweb.com)
+ * @license     http://opensource.org/licenses/OSL-3.0 The Open Software License 3.0 (OSL-3.0)
+ */
+-->
+
+<!-- ko foreach: {data: item.stores, as: 'store'} -->
+    <!-- ko template: 'Scandiweb_StoreFinder/events/address' --><!-- /ko -->
+    <!-- ko if: ($index() == 0) -->
+        <span class="show-more-addresses"
+              data-bind="i18n: 'Show other addresses', click: $parents[1].toggleShowAddress.bind(this, item.event_id)"></span>
+    <!-- /ko -->
+<!-- /ko -->

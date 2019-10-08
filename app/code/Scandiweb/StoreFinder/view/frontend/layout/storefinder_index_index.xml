@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    Scandiweb
+ * @package     Scandiweb/StoreFinder
+ * @author      Andris Bremanis <info@scandiweb.com>
+ * @copyright   Copyright (c) 2018 Scandiweb, Inc (https://scandiweb.com)
+ * @license     http://opensource.org/licenses/OSL-3.0 The Open Software License 3.0 (OSL-3.0)
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="gmap"/>
+    <head>
+        <css src="Scandiweb_StoreFinder::css/storefinder.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block name="storefinder"
+                   class="Scandiweb\StoreFinder\Block\Storefinder"
+                   template="Scandiweb_StoreFinder::storefinder.phtml" />
+        </referenceContainer>
+    </body>
+</page>

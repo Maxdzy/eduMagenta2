@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    Scandiweb
+ * @package     Scandiweb/StoreFinder
+ * @author      Andris Bremanis <info@scandiweb.com>
+ * @copyright   Copyright (c) 2018 Scandiweb, Inc (https://scandiweb.com)
+ * @license     http://opensource.org/licenses/OSL-3.0 The Open Software License 3.0 (OSL-3.0)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="scandiweb_store_finder" translate="label" sortOrder="200" showInStore="0" showInWebsite="1"
+                 showInDefault="1">
+            <label>Store Finder</label>
+            <tab>scandiweb</tab>
+            <resource>Scandiweb_StoreFinder::store_finder</resource>
+            <group id="general" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1"
+                   showInStore="0">
+                <label>General</label>
+                <field id="events_enabled" translate="label" type="select" sortOrder="5"
+                       showInDefault="1" showInStore="0" showInWebsite="0">
+                    <label>Events Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="google_maps_api_key" translate="label" sortOrder="10" type="text" showInDefault="1"
+                       showInWebsite="1" showInStore="0">
+                    <label>Google Maps API Key</label>
+                </field>
+                <field id="allowed_store_types" translate="label" sortOrder="20" type="text" showInDefault="1"
+                       showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Allowed Store Types</label>
+                    <frontend_model>Scandiweb\StoreFinder\Block\Adminhtml\System\Config\StoreTypes</frontend_model>
+                    <backend_model>Scandiweb\StoreFinder\Block\Adminhtml\System\Config\StoreTypesBackend</backend_model>
+                </field>
+                <field id="allowed_countries" translate="label" sortOrder="30" type="multiselect" showInStore="0"
+                       showInWebsite="1" showInDefault="1" canRestore="1">
+                    <label>Allowed Store Countries</label>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                </field>
+                <field id="distances" translate="label comment" sortOrder="40" type="text" showInDefault="1"
+                       showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Distances (StoreFinder Map)</label>
+                    <frontend_model>Scandiweb\StoreFinder\Block\Adminhtml\System\Config\Distances</frontend_model>
+                    <backend_model>Scandiweb\StoreFinder\Block\Adminhtml\System\Config\DistancesBackend</backend_model>
+                    <comment>Distances used in store finder map to find closest stores</comment>
+                </field>
+                <field id="default_location_name" translate="label comment" sortOrder="45" type="text" showInDefault="1"
+                       showInWebsite="1" showInStore="0">
+                    <label>Default Location Name (StoreFinder Map)</label>
+                </field>
+                <field id="default_latitude" translate="label comment" sortOrder="50" type="text" showInDefault="1"
+                       showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Default Location Latitude (StoreFinder Map)</label>
+                    <comment>
+                        Coordinates (latitude) to which map should be centered when store finder page is opened
+                    </comment>
+                </field>
+                <field id="default_longitude" translate="label comment" sortOrder="60" type="text" showInDefault="1"
+                       showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Default Location Longitude (StoreFinder Map)</label>
+                    <comment>
+                        Coordinates (longitude) to which map should be centered when store finder page is opened
+                    </comment>
+                </field>
+                <field id="search_from_customer" translate="label comment" sortOrder="70" type="text" showInDefault="1"
+                       showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Max Search distance from customer in meters (StoreFinder Map)</label>
+                    <comment>
+                        Maximum distance to search within when looking for stores near customer using GeoLocation
+                    </comment>
+                </field>
+            </group>
+            <group id="events" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1"
+                   showInStore="0">
+                <label>Events</label>
+                <field id="head_image" translate="label" type="image" sortOrder="100"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Head image for Event list page</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">storefinder/events</upload_dir>
+                    <base_url type="media" scope_info="1">storefinder/events</base_url>
+                </field>
+            </group>
+            <group id="seo" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Search Engine Optimization</label>
+                <field id="storefinder" translate="label" sortOrder="10" type="text" showInDefault="1"
+                       showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Store Finder Page URL key</label>
+                </field>
+                <field id="storelist" translate="label" sortOrder="20" type="text" showInDefault="1"
+                       showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Store List Page URL key</label>
+                </field>
+                <field id="eventlist" translate="label" sortOrder="30" type="text" showInDefault="1"
+                       showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Event List Page URL key</label>
+                </field>
+                <field id="storedetails" translate="label" sortOrder="40" type="text" showInDefault="1"
+                       showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Store Details Page URL key</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

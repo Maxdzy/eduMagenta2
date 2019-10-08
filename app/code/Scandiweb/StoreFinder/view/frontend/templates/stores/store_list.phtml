@@ -1,0 +1,47 @@
+<?php
+/**
+ * @category    Scandiweb
+ * @package     Scandiweb/StoreFinder
+ * @author      Andris Bremanis <info@scandiweb.com>
+ * @copyright   Copyright (c) 2018 Scandiweb, Inc (https://scandiweb.com)
+ * @license     http://opensource.org/licenses/OSL-3.0 The Open Software License 3.0 (OSL-3.0)
+ */
+
+use Scandiweb\StoreFinder\Block\StoreList;
+use Scandiweb\StoreFinder\Helper\Data as DataHelper;
+
+/**
+ * @var StoreList $block
+ */
+?>
+<div class="storefinder-store-list" data-bind="scope: 'storeList'">
+    <div class="storefinder-list-head">
+        <h2 class="storefinder-list-title" data-bind="i18n: 'Our Stores'"></h2>
+        <div class="storefinder-list-filters">
+            <?= $block->getCountrySelect() ?>
+        </div>
+        <a href="<?= $block->escapeUrl($block->getRetailStoreUrl()) ?>"
+           class="storefinder-retail-link"><?= $block->getRetailStoreText() ?></a>
+    </div>
+    <div class="storefinder-stores">
+        <!-- ko foreach: {data: stores, as: 'item'} -->
+        <!-- ko template: 'Scandiweb_StoreFinder/stores/store' --><!-- /ko -->
+        <!-- /ko -->
+    </div>
+</div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "storeList": {
+                        "component": "storefinderStoreList",
+                        "config": {
+                            "ajaxUrl": "<?= $block->escapeUrl($block->getUrl(DataHelper::URL_LOAD_STORELIST)) ?>"
+                        }
+                    }
+                }
+            }
+        }
+    }
+</script>

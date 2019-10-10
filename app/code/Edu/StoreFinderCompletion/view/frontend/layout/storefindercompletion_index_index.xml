@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    Edu
+ * @package     Edu/StoreFinderCompletion
+ * @author      Maxim Dzyuba <maxim.d@tdo.kz>
+
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="gmap"/>
+    <head>
+        <css src="Edu_StoreFinderCompletion::css/storefinder.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block name="storefindercompletion"
+                   class="Edu\StoreFinderCompletion\Block\StoreFinderCompletion"
+                   template="Edu_StoreFinderCompletion::storefindercompletion.phtml" />
+        </referenceContainer>
+    </body>
+</page>

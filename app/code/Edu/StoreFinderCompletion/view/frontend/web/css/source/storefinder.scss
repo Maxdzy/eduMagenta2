@@ -1,0 +1,199 @@
+/**
+ * @category    Edu
+ * @package     Edu/StoreFinderCompletion
+ * @author      Maxim Dzyuba <maxim.d@tdo.kz>
+
+ */
+
+@import "compass";
+
+@import "base";
+
+// Phone and General
+.page-title {
+    margin-bottom: 10px;
+}
+
+.storefinder-index-page {
+    @include display-flex();
+    @include flex-wrap(wrap);
+
+    .head {
+        @include flex(1 1 100%);
+        @include order(20);
+        @include display-flex();
+        @include flex-wrap(wrap);
+        margin-bottom: 20px;
+    }
+
+    .gmap-place-search-submit {
+        @include flex(1 1 100%);
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 20px;
+        text-transform: none;
+        padding: 2px;
+    }
+
+    #storefinder-distance, #storefinder_distance_chosen {
+        @include flex(1 1 100%);
+        margin-top: 10px;
+        width: 100%;
+        max-width: none;
+    }
+
+    .map {
+        @include flex(1 1 100%);
+        @include order(10);
+        width: 100%;
+        height: 300px;
+        margin-bottom: 20px;
+    }
+
+    .list {
+        @include flex(1 1 100%);
+        @include order(30);
+
+        .title-row {
+            @include display-flex();
+        }
+
+        .index {
+            @include flex(0 0 30px);
+            font-size: 24px;
+        }
+
+        .title {
+            @include flex(1 1);
+            display: inline-block;
+            margin: 0;
+            line-height: 34px;
+        }
+
+        .go-to-marker {
+            @include flex(0 0 30px);
+            width: 30px;
+            height: 0;
+            overflow: visible;
+        }
+
+        .go-to-marker-button {
+            display: block;
+            width: 30px;
+            height: 30px;
+            @include background-size(100%);
+            @include background-image($image-map-marker);
+            background-repeat: no-repeat;
+            cursor: pointer;
+        }
+    }
+
+    .storefinder-store {
+        margin-bottom: 20px;
+    }
+
+    .url-row {
+        @include display-flex();
+        @include flex-direction(row);
+        margin-top: 5px;
+    }
+
+    .more-details-block, .direction-url-block {
+        @include flex(1 1 50%);
+        height: 40px;
+        padding: 2px;
+    }
+
+    .more-details-url, .direction-url {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        @include display-flex();
+        @include justify-content(center);
+        @include align-items(center);
+        border: 1px solid gray;
+    }
+}
+
+.storefinder-infowindow {
+    @include display-flex();
+
+    .image {
+        max-width: 100px;
+        max-height: 100px;
+        @include display-flex();
+        @include justify-content(center);
+        @include align-items(center);
+    }
+
+    .info-block {
+        padding-left: 20px;
+    }
+}
+
+// Google Autocomplete
+div.pac-logo:after {
+    content: none;
+}
+
+// PC
+@media screen and (min-width: $break-tablet) {
+    .storefinder-index-page {
+        .head {
+            @include flex(1 1 100%);
+        }
+
+        .map {
+            @include flex(1 1 50%);
+            @include order(30);
+            height: 600px;
+        }
+
+        .list {
+            position: relative;
+            @include flex(1 1 50%);
+            @include order(20);
+            height: 600px;
+            overflow-y: auto;
+            box-sizing: border-box;
+            padding-right: 30px;
+        }
+
+        .gmap-place-search {
+            @include flex(1 1 60%);
+            width: auto;
+        }
+
+        .gmap-place-search-submit {
+            @include flex(0 0 80px);
+            width: 100px;
+            margin-right: 40px;
+        }
+
+        #storefinder-distance, #storefinder_distance_chosen {
+            @include flex(1 1 20%);
+            margin-top: 0;
+            width: auto;
+            max-width: none;
+        }
+
+        .url-row {
+            @include justify-content(space-between);
+        }
+
+        .more-details-block, .direction-url-block {
+            @include flex(1 1 50%);
+            height: auto;
+            padding: 0;
+        }
+
+        .more-details-url, .direction-url {
+            display: inline;
+            border: none;
+        }
+
+        .direction-url-block {
+            text-align: right;
+        }
+    }
+}

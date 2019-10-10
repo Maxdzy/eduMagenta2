@@ -1,0 +1,56 @@
+/**
+ * @category    Edu
+ * @package     Edu/StoreFinderCompletion
+ * @author      Maxim Dzyuba <maxim.d@tdo.kz>
+
+ */
+
+@import "store-list";
+@import "event-list";
+
+// Phone and general
+.storefinder-list-page {
+    .list-page-menu {
+        @include display-flex();
+        @include flex-direction(column);
+        padding-bottom: 20px;
+    }
+
+    .menu-store-button, .menu-event-button {
+        text-align: center;
+        background-color: $color-light-bg;
+        color: $color-dark-text;
+        padding: 10px;
+        cursor: pointer;
+
+        &.active {
+            background-color: $color-medium-bg;
+        }
+
+        &:hover {
+            background-color: $color-dark-bg;
+            color: $color-light-text;
+        }
+    }
+
+    .store-list-wrapper, .event-list-wrapper {
+        display: none;
+
+        &.active {
+            display: block;
+        }
+    }
+}
+
+// Tablet
+@media screen and (min-width: $break-phone) {
+    .storefinder-list-page {
+        .list-page-menu {
+            @include flex-direction(row);
+        }
+
+        .menu-store-button, .menu-event-button {
+            @include flex(1 1 50%);
+        }
+    }
+}

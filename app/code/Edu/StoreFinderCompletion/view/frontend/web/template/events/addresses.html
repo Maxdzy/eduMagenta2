@@ -1,0 +1,16 @@
+<!--
+/**
+ * @category    Edu
+ * @package     Edu/StoreFinderCompletion
+ * @author      Maxim Dzyuba <maxim.d@tdo.kz>
+
+ */
+-->
+
+<!-- ko foreach: {data: item.stores, as: 'store'} -->
+    <!-- ko template: 'Edu_StoreFinderCompletion/events/address' --><!-- /ko -->
+    <!-- ko if: ($index() == 0) -->
+        <span class="show-more-addresses"
+              data-bind="i18n: 'Show other addresses', click: $parents[1].toggleShowAddress.bind(this, item.event_id)"></span>
+    <!-- /ko -->
+<!-- /ko -->

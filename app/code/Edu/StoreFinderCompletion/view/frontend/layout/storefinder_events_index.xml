@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    Edu
+ * @package     Edu/StoreFinderCompletion
+ * @author      Maxim Dzyuba <maxim.d@tdo.kz>
+
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Edu_StoreFinderCompletion::css/list-page.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block name="storefinder.list"
+                   class="Edu\StoreFinderCompletion\Block\ListPage"
+                   template="Edu_StoreFinderCompletion::list_page.phtml">
+                <arguments>
+                    <argument name="list" xsi:type="string">events</argument>
+                </arguments>
+                <block name="storefinder.list.stores"
+                       class="Edu\StoreFinderCompletion\Block\StoreList"
+                       template="Edu_StoreFinderCompletion::stores/store_list.phtml"/>
+                <block name="storefinder.list.events"
+                       class="Edu\StoreFinderCompletion\Block\EventList"
+                       template="Edu_StoreFinderCompletion::events/event_list.phtml"/>
+            </block>
+            <block name="event.rsvp.modal"
+                   class="Edu\StoreFinderCompletion\Block\RsvpPopup"
+                   template="Edu_StoreFinderCompletion::events/rsvp_popup.phtml"
+                   after="storefinder.list"/>
+        </referenceContainer>
+    </body>
+</page>

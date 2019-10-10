@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    Edu
+ * @package     Edu\CmsSimpleBadge
+ * @author      Maxim Dzyuba
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="badges" resource="default" engine="innodb" comment="Product Badges type Table">
+        <column xsi:type="int" name="badge_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Badge ID"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="128" default="simple" comment="Name Badge"/>
+        <column xsi:type="varchar" name="image_url" nullable="true" length="254" comment="Badge Image Url"/>
+        <column xsi:type="boolean" name="status" nullable="false" default="1" comment="Activate/Disable"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Creation Time"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Update Time"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="badge_id"/>
+        </constraint>
+    </table>
+</schema>

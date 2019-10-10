@@ -79,6 +79,9 @@ p {
   -webkit-flex-grow: 1;
   flex-grow: 1; }
 
+.relative {
+  position: relative; }
+
 .full-page {
   width: 100%;
   color: #85878f;
@@ -205,6 +208,9 @@ p {
       width: 7.4rem;
       height: 7.4rem;
       border-radius: 5px; }
+
+.product-item-info {
+  width: 100% !important; }
 
 .page-header {
   background-color: #fff; }
@@ -546,3 +552,9 @@ header {
     .slick-dots li.slick-active button:before {
       color: black;
       opacity: 0.75; }
+
+.product_badge {
+  max-width: 140px;
+  position: absolute;
+  z-index: 100;
+  right: 0; }

@@ -1,0 +1,66 @@
+<?php
+/**
+ * @category Edu
+ * @package Edu\CmsSimpleBadge
+ * @author Maxim Dzyuba <maxim.d@tdo.kz>
+ *
+ * Product media data template
+ *
+ * @var $block  Edu\CmsSimpleBadge\Block\Product\View\Gallery
+ */
+
+use Magento\Framework\Exception\NoSuchEntityException;
+
+$images = $block->getGalleryImages()->getItems();
+$mainImage = current(array_filter($images, function ($img) use ($block) {
+    return $block->isMainImage($img);
+}));
+
+if (!empty($images) && empty($mainImage)) {
+    $mainImage = $block->getGalleryImages()->getFirstItem();
+}
+
+$helper = $block->getData('imageHelper');
+$mainImageData = $mainImage ?
+    $mainImage->getData('medium_image_url') :
+    $helper->getDefaultPlaceholderUrl('image');
+$badgesList = $block->getProduct()->getData('badges_list');
+try {
+    echo $block->getBadge($badgesList);
+} catch (NoSuchEntityException $e) {
+    print_r($e);
+}
+
+?>
+
+<div class="gallery-placeholder _block-content-loading" data-gallery-role="gallery-placeholder">
+    <img
+            alt="main product photo"
+            class="gallery-placeholder__image"
+            src="<?= /* @noEscape */
+            $mainImageData ?>"
+    />
+</div>
+
+
+<script type="text/x-magento-init">
+    {
+        "[data-gallery-role=gallery-placeholder]": {
+            "mage/gallery/gallery": {
+                "mixins":["magnifier/magnify"],
+                "magnifierOpts": <?= /* @escapeNotVerified */
+    $block->getMagnifier() ?>,
+                "data": <?= /* @escapeNotVerified */
+    $block->getGalleryImagesJson() ?>,
+                "options": <?= /* @noEscape */
+    $block->getGalleryOptions()->getOptionsJson() ?>,
+                "fullscreen": <?= /* @noEscape */
+    $block->getGalleryOptions()->getFSOptionsJson() ?>,
+                "breakpoints": <?= /* @escapeNotVerified */
+    $block->getBreakpoints() ?>
+            }
+        }
+    }
+
+
+</script>

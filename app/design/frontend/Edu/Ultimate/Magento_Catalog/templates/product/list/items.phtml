@@ -1,16 +1,19 @@
 <?php
 /**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
+ * @category Edu
+ * @package Edu\CmsSimpleBadge
+ * @author Maxim Dzyuba <maxim.d@tdo.kz>
  */
 // @codingStandardsIgnoreFile
-/* @var $block \Magento\Catalog\Block\Product\AbstractProduct */
-?>
+use Magento\Catalog\Block\Product\AbstractProduct;
+use Edu\CmsSimpleBadge\Block\Product\ProductList\Related;
+use Magento\Framework\Exception\NoSuchEntityException;
 
-<?php
+/* @var $block AbstractProduct */
+
 $type = $block->getType();
-if($type == 'related') {
-    /** @var \Magento\Catalog\Block\Product\ProductList\Related $block */
+if ($type == 'related') {
+    /** @var Related $block */
     if ($exist = $block->getItems()->getSize()) {
         $type = 'related';
         $class = $type;
@@ -27,11 +30,11 @@ if($type == 'related') {
         $templateType = null;
         $description = false;
     }
-}else{
+} else {
     $exist = null;
 }
-?>
-<?php if ($exist): ?>
+
+if ($exist): ?>
     <div class="block <?= /* @escapeNotVerified */
         $class ?>" data-mage-init='{"relatedProducts":{"relatedCheckbox":".related.checkbox"}}'
         data-limit="<?= /* @escapeNotVerified */
@@ -57,7 +60,14 @@ if($type == 'related') {
                             <div class="product-item-info">
                                 <?= /* @escapeNotVerified */
                                 '<!-- ' . $image . '-->' ?>
-
+                                <?php
+                                    $badgesList = $_item->getData('badges_list');
+                                    try {
+                                        echo $block->getBadge($badgesList);
+                                    } catch (NoSuchEntityException $e) {
+                                        print_r($e);
+                                    }
+                                ?>
                                 <a href="<?= /* @escapeNotVerified */
                                 $block->getProductUrl($_item) ?>" class="product photo product-item-photo">
                                     <?= $block->getImage($_item, $image)->toHtml() ?>

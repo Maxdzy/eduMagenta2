@@ -210,13 +210,17 @@ return [
         'Edu_CmsCreatePage' => 1,
         'Edu_CmsCreateSlider' => 1,
         'Edu_CmsCreateStore' => 1,
+        'Edu_CmsSimpleBadge' => 1,
         'Edu_StickyHeader' => 1,
         'Klarna_Core' => 1,
         'Klarna_Ordermanagement' => 1,
         'Klarna_Kp' => 1,
         'Magento_PaypalReCaptcha' => 1,
         'MSP_TwoFactorAuth' => 1,
+        'Mageplaza_HelloWorld' => 1,
         'Temando_Shipping' => 1,
-        'Vertex_Tax' => 1
+        'Turiknox_SampleImageUploader' => 1,
+        'Vertex_Tax' => 1,
+        'Webkul_Grid' => 0
     ]
 ];

@@ -37,3 +37,6 @@ package-lock.json
 /Gruntfile.js.sample
 /phpserver/README.md
 /phpserver/router.php
+/app/code/Mageplaza/
+/app/code/Webkul/
+/app/code/Turiknox/

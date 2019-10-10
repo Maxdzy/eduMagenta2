@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aa0866eca2ed3b895fd207b07d197291",
+    "content-hash": "20c6368372dc160be7abb641dabbf66c",
     "packages": [
         {
             "name": "amzn/amazon-pay-and-login-magento-2-module",
@@ -11174,6 +11174,73 @@
                 "promises"
             ],
             "time": "2019-01-07T21:25:54+00:00"
+        },
+        {
+            "name": "scandiweb/module-core",
+            "version": "0.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/scandiwebcom/Scandiweb-Assets-Core.git",
+                "reference": "cbec569f0f47393458b599c1aeafb400580682e0"
+            },
+            "dist": {
+                "type": "tar",
+                "url": "https://packages.indvp.com/dist/scandiweb/module-core/scandiweb-module-core-cbec569f0f47393458b599c1aeafb400580682e0-zip-c39845.tar",
+                "reference": "cbec569f0f47393458b599c1aeafb400580682e0",
+                "shasum": "3c13c8357643afe84ff01806afe37559195f8df4"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Scandiweb\\Core\\": ""
+                }
+            },
+            "license": [
+                "OSL-3.0"
+            ],
+            "description": "Scandiweb Core module for Magento 2 extensions.",
+            "support": {
+                "source": "https://github.com/scandiwebcom/Scandiweb-Assets-Core/tree/v0.1.4",
+                "issues": "https://github.com/scandiwebcom/Scandiweb-Assets-Core/issues"
+            },
+            "time": "2019-03-19T11:21:34+00:00"
+        },
+        {
+            "name": "scandiweb/module-store-finder",
+            "version": "1.1.10",
+            "source": {
+                "type": "git",
+                "url": "git@bitbucket.org:scandiweb/storefinder.git",
+                "reference": "38b74f9d6c67a11ab96931fc8398a3e105675d54"
+            },
+            "dist": {
+                "type": "tar",
+                "url": "https://packages.indvp.com/dist/scandiweb/module-store-finder/scandiweb-module-store-finder-1.1.10-c24775.tar",
+                "reference": "38b74f9d6c67a11ab96931fc8398a3e105675d54",
+                "shasum": "3c5be0d2871764f5661577390ab171d048755f0e"
+            },
+            "require": {
+                "php": "~7.0.0|~7.1.0|~7.2.0",
+                "scandiweb/module-core": "^0.1.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Scandiweb\\StoreFinder\\": ""
+                }
+            },
+            "license": [
+                "OSL 3.0"
+            ],
+            "description": "Scandiweb Store Finder module for Magento 2",
+            "homepage": "https://bitbucket.org/scandiweb/storefinder/src/master/",
+            "time": "2019-07-10T14:46:13+00:00"
         },
         {
             "name": "seld/jsonlint",

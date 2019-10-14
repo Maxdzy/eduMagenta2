@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAA;;;;;;GAMG;ACNH;;;;;;GAMG;ADIH,kBAAmB;EACf,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;EAEtB,iEAA4B;IACxB,UAAU,EAAE,GAAG;EAGnB,gCAAc;IACV,OAAO,EAAE,GAAG;EAGhB,uCAAqB;IACjB,cAAc,EAAE,CAAC",
-"sources": ["source/store-list.scss","source/_base.scss"],
-"names": [],
-"file": "store-list.css"
-}

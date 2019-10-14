@@ -13,7 +13,7 @@ use Edu\StoreFinderCompletion\Helper\Data as DataHelper;
  * @var StoreFinderCompletion $block
  */
 ?>
-<div class="storefinder-index-page" data-bind="scope: 'storefinderList'">
+<div class="storefinder-index-page" data-bind="scope: 'storefinderList2'">
     <div class="head">
         <input class="gmap-place-search" id="gmap-place-search"
                type="text" data-bind="attr: {title: $t('Google Maps Place Search')}" />
@@ -52,8 +52,8 @@ use Edu\StoreFinderCompletion\Helper\Data as DataHelper;
         "*": {
             "Magento_Ui/js/core/app": {
                 "components": {
-                    "storefinderList": {
-                        "component": "storefinderList",
+                    "storefinderList2": {
+                        "component": "storefinderList2",
                         "config": {
                             "ajaxUrl": "<?= $block->escapeUrl($block->getUrl(DataHelper::URL_LOAD_MAPSTORELIST)) ?>",
                             "gmapSelector": "#storefinder-gmap",
@@ -65,12 +65,12 @@ use Edu\StoreFinderCompletion\Helper\Data as DataHelper;
                         }
                     },
                     "storesNearYouPopup": {
-                        "component": "storefinderStoresNearYouPopup",
+                        "component": "storefinderStoresNearYouPopup2",
                         "config": {
                             "ajaxUrl": "<?= $block->escapeUrl($block->getUrl(DataHelper::URL_LOAD_STORESNEARYOU)) ?>",
                             "popupSelector": "#storefinder-stores-near-you-modal",
                             "searchFromCustomer": <?= $block->getSearchFromCustomer() ?>,
-                            "storefinderList": "storefinderList"
+                            "storefinderList2": "storefinderList2"
                         }
                     }
                 }

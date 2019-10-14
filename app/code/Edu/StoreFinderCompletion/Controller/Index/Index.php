@@ -21,7 +21,7 @@ class Index extends Action
     {
         /** @var Page $page */
         $page = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
-        $page->getConfig()->getTitle()->set(__('Store Finder'));
+        $page->getConfig()->getTitle()->set(__('Store Finder !!!'));
 
         return $page;
     }

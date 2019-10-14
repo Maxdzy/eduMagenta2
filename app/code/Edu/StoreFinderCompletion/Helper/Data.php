@@ -18,8 +18,8 @@ use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Asset\Repository as AssetRepository;
 use Magento\Store\Model\Store;
 use Magento\Store\Model\StoreManagerInterface;
-use Edu\StoreFinderCompletion\Block\Adminhtml\System\Config\Distances;
-use Edu\StoreFinderCompletion\Block\Adminhtml\System\Config\StoreTypes;
+use Scandiweb\StoreFinder\Block\Adminhtml\System\Config\Distances;
+use Scandiweb\StoreFinder\Block\Adminhtml\System\Config\StoreTypes;
 use Edu\StoreFinderCompletion\Helper\Map as MapHelper;
 use Edu\StoreFinderCompletion\Model\Store as StoreModel;
 
@@ -33,7 +33,7 @@ class Data extends AbstractHelper
     const CONFIG_PATH_EVENTS_ENABLED = 'Edu_store_finder/general/events_enabled';
     const CONFIG_PATH_ALLOWED_COUNTRIES = 'Edu_store_finder/general/allowed_countries';
     const CONFIG_PATH_ALLOWED_STORE_TYPES = 'Edu_store_finder/general/allowed_store_types';
-    const CONFIG_PATH_DISTANCES = 'Edu_store_finder/general/distances';
+    const CONFIG_PATH_DISTANCES = 'scandiweb_store_finder/general/distances';
     const CONFIG_PATH_DEFAULT_LOCATION_NAME = 'Edu_store_finder/general/default_location_name';
     const CONFIG_PATH_DEFAULT_LATITUDE = 'scandiweb_store_finder/general/default_latitude';
     const CONFIG_PATH_DEFAULT_LONGITUDE = 'scandiweb_store_finder/general/default_longitude';

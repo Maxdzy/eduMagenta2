@@ -70,7 +70,7 @@ class StoreFinderCompletion extends Template
             )->setClass(
                 DataHelper::URI_PARAM_DISTANCE . ' chosen-active'
             )->setId(
-                'storefindercompletion-' . DataHelper::URI_PARAM_DISTANCE
+                'storefinder-' . DataHelper::URI_PARAM_DISTANCE
             )->setOptions(
                 $options
             )->setData(
@@ -92,7 +92,7 @@ class StoreFinderCompletion extends Template
      */
     public function getMapMarkerUrl()
     {
-        return $this->getViewFileUrl('Edu_StoreFinderCompletion::images/storefindercompletion-map-marker.png');
+        return $this->getViewFileUrl('Edu_StoreFinderCompletion::images/storefinder-map-marker.png');
     }
 
     /**

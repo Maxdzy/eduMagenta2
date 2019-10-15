@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category Edu
+ * @package Edu\Ultimate
+ * @author Maxim Dzyuba <maxim.d@tdo.kz>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="gmap"/>
+    <head>
+        <css src="Scandiweb_StoreFinder::css/storefinder.css"/>
+        <script src="js/google_maps.js" />
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block name="storefinder.list.stores"
+                   class="Scandiweb\StoreFinder\Block\StoreList"
+                   template="Scandiweb_StoreFinder::stores/store_list.phtml"/>
+            <block name="storefinder"
+                   class="Scandiweb\StoreFinder\Block\Storefinder"
+                   template="Scandiweb_StoreFinder::storefinder.phtml" />
+        </referenceContainer>
+    </body>
+</page>

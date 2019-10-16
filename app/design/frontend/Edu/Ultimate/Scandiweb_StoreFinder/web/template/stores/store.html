@@ -13,7 +13,7 @@
     <div class="right-column list">
         <h3 class="title" data-bind="text: store_name"></h3>
         <div class="go-to-marker">
-            <span class="go-to-marker-button" data-bind="click: console.log('111')"></span>
+            <span class="go-to-marker-button" data-bind=""></span> click: $parent.goToMarker.bind($parent, item)
         </div>
         <div class="address" data-bind="html: $parent.formatAddress(address)"></div>
         <!-- ko if: ($parent.isShowDirectionUrl(item)) -->

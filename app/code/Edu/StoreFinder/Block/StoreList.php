@@ -1,7 +1,7 @@
 <?php
 /**
  * @category Edu
- * @package Edu\Ultimate
+ * @package Edu\StoreFinder
  * @author Maxim Dzyuba <maxim.d@tdo.kz>
  */
 
@@ -11,8 +11,13 @@ use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\View\Element\Html\Select;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
+use Magento\Tests\NamingConvention\true\string;
 use Scandiweb\StoreFinder\Helper\Data as DataHelper;
 
+/**
+ * Class StoreList
+ * @package Edu\StoreFinder\Block
+ */
 class StoreList extends Template
 {
     /**
@@ -35,7 +40,7 @@ class StoreList extends Template
     /**
      * @return array
      */
-    public function getCountryFilterOptions()
+    public function getCountryFilterOptions(): array
     {
         return array_merge(['' => __('All')], $this->dataHelper->getAllowedCountries());
     }
@@ -45,7 +50,7 @@ class StoreList extends Template
      *
      * @return string
      */
-    public function getCountrySelect()
+    public function getCountrySelect(): string
     {
         $options = $this->getCountryFilterOptions();
 
@@ -77,7 +82,7 @@ class StoreList extends Template
     /**
      * @return string
      */
-    public function getRetailStoreUrl()
+    public function getRetailStoreUrl(): string
     {
         return $this->dataHelper->getStoreFinderUrl();
     }
@@ -85,7 +90,7 @@ class StoreList extends Template
     /**
      * @return string
      */
-    public function getRetailStoreText()
+    public function getRetailStoreText(): string
     {
         return (string)__('Don\'t live near a store? Find our <strong>Retail Partners</strong>');
     }

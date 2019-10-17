@@ -2,9 +2,7 @@
 /**
  * @category Edu
  * @package Edu\StoreFinder
- * @author Andris Bremanis <info@Edu.com>
- * @copyright Copyright (c) 2018 Edu, Ltd (https://Edu.com)
- * @license http://opensource.org/licenses/afl-3.0.php Academic Free License (AFL 3.0)
+ * @author Maxim Dzyuba <maxim.d@tdo.kz>
  */
 
 \Magento\Framework\Component\ComponentRegistrar::register(

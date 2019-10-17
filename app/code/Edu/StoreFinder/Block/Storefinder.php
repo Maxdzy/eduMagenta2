@@ -1,7 +1,7 @@
 <?php
 /**
  * @category Edu
- * @package Edu\Ultimate
+ * @package Edu\StoreFinder
  * @author Maxim Dzyuba <maxim.d@tdo.kz>
  */
 
@@ -10,10 +10,14 @@ namespace Edu\StoreFinder\Block;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\View\Element\Html\Select;
 use Magento\Framework\View\Element\Template\Context;
-use Scandiweb\StoreFinder\Block\Storefinder as SF;
+use Scandiweb\StoreFinder\Block\Storefinder as ScandiwebStorefinder;
 use Scandiweb\StoreFinder\Helper\Data as DataHelper;
 
-class Storefinder extends SF
+/**
+ * Class Storefinder
+ * @package Edu\StoreFinder\Block
+ */
+class Storefinder extends ScandiwebStorefinder
 {
     /**
      * @var DataHelper
@@ -43,7 +47,7 @@ class Storefinder extends SF
     /**
      * @return array
      */
-    public function getCountryFilterOptions()
+    public function getCountryFilterOptions(): array
     {
         return array_merge(['' => __('All')], $this->dataHelper->getAllowedCountries());
     }
@@ -53,7 +57,7 @@ class Storefinder extends SF
      *
      * @return string
      */
-    public function getCountrySelect()
+    public function getCountrySelect(): string
     {
         $options = $this->getCountryFilterOptions();
 

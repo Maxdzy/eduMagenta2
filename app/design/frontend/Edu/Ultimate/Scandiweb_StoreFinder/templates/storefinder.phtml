@@ -1,0 +1,101 @@
+<?php
+/**
+ * @category Edu
+ * @package Edu\Ultimate
+ * @author Maxim Dzyuba <maxim.d@tdo.kz>
+ */
+
+use Scandiweb\StoreFinder\Block\StoreFinder;
+use Scandiweb\StoreFinder\Helper\Data as DataHelper;
+
+/**
+ * @var StoreFinder $block
+ */
+?>
+<div class="storefinder-index-page" data-bind="scope: 'storefinderList'">
+    <div class="head">
+        <div class="storefinder-store-list" data-bind="scope: 'storeList'">
+            <div class="storefinder-list-head">
+                <div class="storefinder-list-filters">
+                    <?= $block->getCountrySelect() ?>
+                </div>
+            </div>
+        </div>
+
+        <input class="gmap-place-search" id="gmap-place-search"
+               type="text" data-bind="attr: {title: $t('Google Maps Place Search')}"/>
+        <button class="gmap-place-search-submit" data-bind="click: submitPlaceSearch">
+            <span data-bind="i18n: 'Search'"></span>
+        </button>
+        <?= $block->getDistanceSelect() ?>
+        <!-- ko if: warningMessage -->
+        <!-- ko template: 'Scandiweb_StoreFinder/storefinder/warning-message' --><!-- /ko -->
+        <!-- /ko -->
+        <!-- ko if: errorMessage -->
+        <!-- ko template: 'Scandiweb_StoreFinder/storefinder/error-message' --><!-- /ko -->
+        <!-- /ko -->
+    </div>
+    <div class="map" id="storefinder-gmap"></div>
+    <div class="list">
+        <!-- ko if: (hasStores()) -->
+        <!-- ko foreach: {data: getStores(), as: 'item'} -->
+        <!-- ko template: 'Scandiweb_StoreFinder/storefinder/store' --><!-- /ko -->
+        <!-- /ko -->
+        <!-- /ko -->
+        <!-- ko ifnot: (hasStores()) -->
+        <!-- ko template: 'Scandiweb_StoreFinder/storefinder/no-stores-found' --><!-- /ko -->
+        <!-- /ko -->
+    </div>
+</div>
+<div id="storefinder-stores-near-you-modal" class="storefinder-stores-near-you-modal"
+     style="display: none" data-bind="scope: 'storesNearYouPopup'">
+    <p class="stores-near-you-message" data-bind="text: storesNearYouMessage"></p>
+    <p class="go-to-your-location-message"><?= $block->escapeHtml(
+            __('Would you like to go to your location on the map?')
+        ) ?></p>
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "storefinderList": {
+                        "component": "storefinderList",
+                        "config": {
+                            "ajaxUrl": "<?= $block->escapeUrl($block->getUrl(DataHelper::URL_LOAD_MAPSTORELIST)) ?>",
+                            "gmapSelector": "#storefinder-gmap",
+                            "placeSearchSelector": "#gmap-place-search",
+                            "distanceSelector": "#storefinder-distance",
+                            "mapMarkerUrl": "<?= $block->escapeUrl($block->getMapMarkerUrl()) ?>",
+                            "searchFromCustomer": <?= $block->getSearchFromCustomer() ?>,
+                            "storesNearYouPopup": "storesNearYouPopup"
+                        }
+                    },
+                    "storesNearYouPopup": {
+                        "component": "storefinderStoresNearYouPopup",
+                        "config": {
+                            "ajaxUrl": "<?= $block->escapeUrl($block->getUrl(DataHelper::URL_LOAD_STORESNEARYOU)) ?>",
+                            "popupSelector": "#storefinder-stores-near-you-modal",
+                            "searchFromCustomer": <?= $block->getSearchFromCustomer() ?>,
+                            "storefinderList": "storefinderList"
+                        }
+                    },
+                    "storeList": {
+                        "component": "storefinderList",
+                        "config": {
+                            "ajaxUrl": "<?= $block->escapeUrl($block->getUrl(DataHelper::URL_LOAD_STORELIST)) ?>",
+                            "gmapSelector": "#storefinder-gmap",
+                            "placeSearchSelector": "#gmap-place-search",
+                            "distanceSelector": "#storefinder-distance",
+                            "mapMarkerUrl": "<?= $block->escapeUrl($block->getMapMarkerUrl()) ?>",
+                            "searchFromCustomer": <?= $block->getSearchFromCustomer() ?>,
+                            "storesNearYouPopup": "storesNearYouPopup"
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+</script>
